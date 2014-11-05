@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 public class NewGame extends Activity {
   ListView list;
   public static final String choice = "choice";
@@ -36,7 +37,7 @@ public class NewGame extends Activity {
                 		Intent i = new Intent(NewGame.this, StartGame.class);
                     	i.putExtra(choice, position);
                 		startActivity(i);
- 
+
                 	
                 }
             });

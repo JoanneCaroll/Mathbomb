@@ -73,7 +73,7 @@ public class StartGame extends Activity {
 				case 0:
 					res1 = (Integer) arrayList.get(index);
 					Log.i("caroll",res1+"");
-			 		break;
+					break;
 				case 1:
 					res2 = (Integer) arrayList.get(index);
 					Log.i("caroll",res2+"");
@@ -94,7 +94,7 @@ public class StartGame extends Activity {
 	 	    choice[2].setText(Integer.toString(res3));
 	 	    choice[3].setText(Integer.toString(res4));
 		}
-	 
+	
 	public void calculateAnswer(){
 		if(opt == 1)
 		{

@@ -36,7 +36,7 @@ public class NewGame extends Activity {
                 		Intent i = new Intent(NewGame.this, StartGame.class);
                     	i.putExtra(choice, position);
                 		startActivity(i);
- 
+                		finish();
                 	
                 }
             });

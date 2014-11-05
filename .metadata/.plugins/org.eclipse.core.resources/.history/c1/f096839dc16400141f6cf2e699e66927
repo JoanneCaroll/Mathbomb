@@ -94,7 +94,7 @@ public class StartGame extends Activity {
 	 	    choice[2].setText(Integer.toString(res3));
 	 	    choice[3].setText(Integer.toString(res4));
 		}
-	 
+	
 	public void calculateAnswer(){
 		if(opt == 1)
 		{
