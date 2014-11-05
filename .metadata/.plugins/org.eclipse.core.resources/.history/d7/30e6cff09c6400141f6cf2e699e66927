@@ -11,12 +11,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class StartGame extends Activity {
 
 	
-	public TextView int1, int2, result, operator, score, check;
+	public TextView int1, int2, result, operator, score;
 	public int rand1, opt, rand2, res1, res2, res3, res4, scoreinc=0;
 	Button[] choice = new Button[4];
 	public  List arrayList = new ArrayList<Integer>();
@@ -44,7 +43,6 @@ public class StartGame extends Activity {
 		operation[2]=rand1-rand2;
 		
 		operator = (TextView)findViewById(R.id.operator);
-		
 		if(opt == 1)
 			operator.setText("+");
 		else if(opt==2)
@@ -65,21 +63,18 @@ public class StartGame extends Activity {
  	    choice[a].setText(String.valueOf(operation[opt]));
  	    
  	    score = (TextView)findViewById(R.id.showscore);
+ 	    
  	    choice[0].setOnClickListener(new OnClickListener() {
        	public void onClick(View v)
      	   {	
               	if (choice[0].getText() == String.valueOf(operation[opt])){
     			   scoreinc++;
     			   score.setText(String.valueOf(scoreinc));
-    			   Toast.makeText(StartGame.this, "Correct!", Toast.LENGTH_SHORT).show();
-    			   onStart();
-
+    			  onStart();
               	}
               	else 
-              		{check.setVisibility(View.VISIBLE);
-              		Toast.makeText(StartGame.this, "Wrong!", Toast.LENGTH_SHORT).show();
-              		onStart();}
-     	   }	
+              		onStart();
+     	   }
  	    	 });
  	    choice[1].setOnClickListener(new OnClickListener() {
  	       	public void onClick(View v)
@@ -87,11 +82,9 @@ public class StartGame extends Activity {
  	              	if (choice[1].getText() == String.valueOf(operation[opt])){
  	    			   scoreinc++;
  	    			  score.setText(String.valueOf(scoreinc));
- 	    			 Toast.makeText(StartGame.this, "Correct!", Toast.LENGTH_SHORT).show();
- 	    			 onStart();
+ 	    			  onStart();
  	              	}
  	              	else 
- 	              		Toast.makeText(StartGame.this, "Wrong!", Toast.LENGTH_SHORT).show();
  	              		onStart();
  	     	   }
  	         });
@@ -101,11 +94,9 @@ public class StartGame extends Activity {
  	              	if (choice[2].getText() == String.valueOf(operation[opt])){
  	    			   scoreinc++;
  	    			  score.setText(String.valueOf(scoreinc));
- 	    			 Toast.makeText(StartGame.this, "Correct!", Toast.LENGTH_SHORT).show();
  	    			  onStart();
  	              	}
  	              	else 
- 	              		Toast.makeText(StartGame.this, "Wrong!", Toast.LENGTH_SHORT).show();
  	              		onStart();
  	     	   }
  	         });
@@ -115,11 +106,9 @@ public class StartGame extends Activity {
  	              	if (choice[3].getText() == String.valueOf(operation[opt])){
  	    			   scoreinc++;
  	    			  score.setText(String.valueOf(scoreinc));
- 	    			 Toast.makeText(StartGame.this, "Correct!", Toast.LENGTH_SHORT).show();
  	    			  onStart();
  	              	}
  	              	else 
- 	              		Toast.makeText(StartGame.this, "Wrong!", Toast.LENGTH_SHORT).show();
  	              		onStart();
  	     	   }
  	         });

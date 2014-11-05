@@ -65,19 +65,18 @@ public class StartGame extends Activity {
  	    choice[a].setText(String.valueOf(operation[opt]));
  	    
  	    score = (TextView)findViewById(R.id.showscore);
+// 	    check = (TextView)findViewById(R.id.check);
  	    choice[0].setOnClickListener(new OnClickListener() {
        	public void onClick(View v)
      	   {	
               	if (choice[0].getText() == String.valueOf(operation[opt])){
     			   scoreinc++;
     			   score.setText(String.valueOf(scoreinc));
-    			   Toast.makeText(StartGame.this, "Correct!", Toast.LENGTH_SHORT).show();
     			   onStart();
 
               	}
               	else 
               		{check.setVisibility(View.VISIBLE);
-              		Toast.makeText(StartGame.this, "Wrong!", Toast.LENGTH_SHORT).show();
               		onStart();}
      	   }	
  	    	 });

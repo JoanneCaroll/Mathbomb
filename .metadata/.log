@@ -550,3 +550,35 @@ com.android.ddmlib.ShellCommandUnresponsiveException
 	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
 	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-11-05 11:36:37.805
+!MESSAGE Exception in checkAndLoadTargetData.
+!STACK 0
+java.lang.UnsupportedClassVersionError: Unsupported major.minor version 51.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:489)
+	at com.android.ide.eclipse.adt.internal.sdk.AndroidJarLoader.defineAndCacheClass(AndroidJarLoader.java:336)
+	at com.android.ide.eclipse.adt.internal.sdk.AndroidJarLoader.findClass(AndroidJarLoader.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:323)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:268)
+	at com.android.ide.eclipse.adt.internal.sdk.AndroidTargetParser.collectPermissions(AndroidTargetParser.java:336)
+	at com.android.ide.eclipse.adt.internal.sdk.AndroidTargetParser.run(AndroidTargetParser.java:107)
+	at com.android.ide.eclipse.adt.internal.sdk.Sdk$6.run(Sdk.java:712)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-11-05 11:36:37.885
+!MESSAGE Parsing Data for android-21 failed
+!STACK 0
+java.lang.UnsupportedClassVersionError: Unsupported major.minor version 51.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:489)
+	at com.android.ide.eclipse.adt.internal.sdk.AndroidJarLoader.defineAndCacheClass(AndroidJarLoader.java:336)
+	at com.android.ide.eclipse.adt.internal.sdk.AndroidJarLoader.findClass(AndroidJarLoader.java:312)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:323)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:268)
+	at com.android.ide.eclipse.adt.internal.sdk.AndroidTargetParser.collectPermissions(AndroidTargetParser.java:336)
+	at com.android.ide.eclipse.adt.internal.sdk.AndroidTargetParser.run(AndroidTargetParser.java:107)
+	at com.android.ide.eclipse.adt.internal.sdk.Sdk$6.run(Sdk.java:712)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
