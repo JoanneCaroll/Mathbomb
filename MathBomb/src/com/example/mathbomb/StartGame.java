@@ -26,13 +26,11 @@ public class StartGame extends Activity {
 	public  List arrayList = new ArrayList<Integer>();
 	public String answer = "";
 
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_startgame);
 		
-			//generateUnique();
 			int1  = (TextView)findViewById(R.id.integer1);
 			int2 = (TextView)findViewById(R.id.integer2);
 			operator = (TextView)findViewById(R.id.operator);
@@ -42,6 +40,7 @@ public class StartGame extends Activity {
 			choice[2] = (Button)findViewById(R.id.choice3);
 			choice[3] = (Button)findViewById(R.id.choice4);
 			score = (TextView)findViewById(R.id.showscore);
+			score.setText(Integer.toString(scoreinc));
 			timer = (TextView)findViewById(R.id.showtime);
            	new CountDownTimer(31000, 1000) {
       		   public void onTick(long millisUntilFinished) {
@@ -52,17 +51,16 @@ public class StartGame extends Activity {
                 }
               }.start();
 			resetGame();
-			
+			 
 			choice[0].setOnClickListener(clicker);
 			choice[1].setOnClickListener(clicker);
 			choice[2].setOnClickListener(clicker);			
 			choice[3].setOnClickListener(clicker);
 
-			
-			
 	}
 	
 	public  void generateUnique(){
+			
 			for (int i = 0; i < 40; i++) {
 				arrayList.add(i);
 			}
@@ -72,19 +70,15 @@ public class StartGame extends Activity {
 				switch(i){
 				case 0:
 					res1 = (Integer) arrayList.get(index);
-					Log.i("caroll",res1+"");
 			 		break;
 				case 1:
 					res2 = (Integer) arrayList.get(index);
-					Log.i("caroll",res2+"");
 					break;
 				case 2:
 					res3 = (Integer) arrayList.get(index);
-					Log.i("caroll",res3+"");
 					break;
 				case 3:
 					res4 = (Integer) arrayList.get(index);
-					Log.i("caroll",res4+"");
 					break;
 				 }
 				arrayList.remove(index);					 	
@@ -116,7 +110,7 @@ public class StartGame extends Activity {
 		}
 	}
 	//create reusable listener instead of anonymous types
-	 private OnClickListener clicker = new OnClickListener() {
+	private OnClickListener clicker = new OnClickListener() {
        @Override
        public void onClick(View v) {
        	//get view id
@@ -138,9 +132,9 @@ public class StartGame extends Activity {
            //checkanswer only when a button is clicked
            checkAnswer();
        }
-   };
-
-     private void checkAnswer(){
+	};
+ 
+    private void checkAnswer(){
        if (answer ==Integer.toString(intres)){
            scoreinc++;
            score.setText(String.valueOf(scoreinc));
@@ -153,7 +147,7 @@ public class StartGame extends Activity {
        }
    }
     
-   private void resetGame(){
+    private void resetGame(){
 	    Random rm = new Random();
 		final int a = rm.nextInt(3)+0;
 	    Bundle extra = getIntent().getExtras();
@@ -169,8 +163,7 @@ public class StartGame extends Activity {
 			{
 				rand1 = rm.nextInt(5)+1;
 				rand2 = rm.nextInt(5)+1;	
-			}
-			
+			}			
 			int1.setText(Integer.toString(rand1));
 			int2.setText(Integer.toString(rand2));
 			
@@ -222,15 +215,11 @@ public class StartGame extends Activity {
 			generateUnique();
 		}
 		
-	    choice[a].setText(Integer.toString(intres));
-       
-       
+	    choice[a].setText(Integer.toString(intres));     
    }
-
-   public void gameOver()
+ 
+    public void gameOver()
    {
-	   super.onDestroy();
-	  
 		        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		        builder.setMessage("GameOver! \nYour score is "+ score.getText())
 		               .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -238,8 +227,7 @@ public class StartGame extends Activity {
 		                       finish();
 		                   }
 		               });
-		               builder.show();
-		
+		               builder.show();		
    }
 
 }

@@ -1,0 +1,88 @@
+package com.example.mathbomb;
+
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class Scores {
+
+    private static final String JSON_ID = "id";
+    private static final String JSON_SCORE = "score";
+    private static final String JSON_DATE = "date";
+    private static final String JSON_TIME= "time";
+    
+    private UUID mId;
+    private String mTitle;
+    private Date mDate;
+    private SimpleDateFormat mTime;
+    
+    public Scores() {
+        mId = UUID.randomUUID();
+        mDate = new Date();
+        mTime = new SimpleDateFormat("hh:mm");
+        d_min = sdf.parse(time_min);//time_min is the Minimum time in String
+        d_max = sdf.parse(time_max);time_max is the Maximun time in String
+        d_compare = d_max.compareTo(d_min);
+    }
+
+    java.util.Date d_min = null;
+    java.util.Date d_max = null;
+   
+       
+
+    public Crime(JSONObject json) throws JSONException {
+        mId = UUID.fromString(json.getString(JSON_ID));
+        mTitle = json.getString(JSON_TITLE);
+        mSolved = json.getBoolean(JSON_SOLVED);
+        mDate = new Date(json.getLong(JSON_DATE));
+    }
+
+    public JSONObject toJSON() throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put(JSON_ID, mId.toString());
+        json.put(JSON_TITLE, mTitle);
+        json.put(JSON_DATE, mDate.getTime());
+        json.put(JSON_SOLVED, mSolved);
+        return json;
+    }
+
+    @Override
+    public String toString() {
+        return mTitle;
+    }
+
+    public String getTitle() {
+        return mTitle;
+    }
+
+    public void setTitle(String title) {
+        mTitle = title;
+    }
+
+    public UUID getId() {
+        return mId;
+    }
+
+    public boolean isSolved() {
+        return mSolved;
+    }
+
+    public void setSolved(boolean solved) {
+        mSolved = solved;
+    }
+
+    public Date getDate() {
+        return mDate;
+    }
+
+    public void setDate(Date date) {
+        mDate = date;
+    }
+    
+    
+}
