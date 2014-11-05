@@ -31,18 +31,17 @@ public class StartGame extends Activity {
 		super.onStart();
 		
 		Random rm = new Random();
+		final int[] operation = new int[3];
 		final int a = rm.nextInt(3)+0;
 		opt   = rm.nextInt(2)+1;
 		rand1 = rm.nextInt(5)+1;
 		rand2 = rm.nextInt(5)+1;	
-		while(rand2>rand1)
-		{
-			rand1 = rm.nextInt(5)+1;
-			rand2 = rm.nextInt(5)+1;	
-		}
 		generateUnique();
 		int1  = (TextView)findViewById(R.id.integer1);
 		int1.setText(String.valueOf(rand1));
+		
+//		operation[1]=rand1+rand2;
+//		operation[2]=rand1-rand2;
 		
 		operator = (TextView)findViewById(R.id.operator);
 		
@@ -54,6 +53,11 @@ public class StartGame extends Activity {
 		else if(opt==2)
 		{
 			operator.setText("-");
+//			if(rand2>rand1)
+//				{
+//					rand1 = rm.nextInt(5)+1;
+//					rand2 = rm.nextInt(5)+1;
+//				}
 			intres=rand1-rand2;
 		}
 		

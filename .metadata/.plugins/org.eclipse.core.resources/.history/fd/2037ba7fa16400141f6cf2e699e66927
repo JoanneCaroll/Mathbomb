@@ -54,6 +54,11 @@ public class StartGame extends Activity {
 		else if(opt==2)
 		{
 			operator.setText("-");
+//			if(rand2>rand1)
+//				{
+//					rand1 = rm.nextInt(5)+1;
+//					rand2 = rm.nextInt(5)+1;
+//				}
 			intres=rand1-rand2;
 		}
 		

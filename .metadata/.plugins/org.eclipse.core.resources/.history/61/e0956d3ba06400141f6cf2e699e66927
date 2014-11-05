@@ -17,7 +17,7 @@ public class StartGame extends Activity {
 
 	
 	public TextView int1, int2, result, operator, score, check;
-	public int rand1, opt, rand2, res1, res2, res3, res4, scoreinc=0, intres;
+	public int rand1, opt, rand2, res1, res2, res3, res4, scoreinc=0;
 	Button[] choice = new Button[4];
 	public  List arrayList = new ArrayList<Integer>();
 
@@ -31,31 +31,24 @@ public class StartGame extends Activity {
 		super.onStart();
 		
 		Random rm = new Random();
+		final int[] operation = new int[3];
 		final int a = rm.nextInt(3)+0;
 		opt   = rm.nextInt(2)+1;
 		rand1 = rm.nextInt(5)+1;
 		rand2 = rm.nextInt(5)+1;	
-		while(rand2>rand1)
-		{
-			rand1 = rm.nextInt(5)+1;
-			rand2 = rm.nextInt(5)+1;	
-		}
 		generateUnique();
 		int1  = (TextView)findViewById(R.id.integer1);
 		int1.setText(String.valueOf(rand1));
 		
+		operation[1]=rand1+rand2;
+		operation[2]=rand1-rand2;
+		
 		operator = (TextView)findViewById(R.id.operator);
 		
 		if(opt == 1)
-		{
 			operator.setText("+");
-			intres = rand1+rand2;
-		}
 		else if(opt==2)
-		{
 			operator.setText("-");
-			intres=rand1-rand2;
-		}
 		
 		int2 = (TextView)findViewById(R.id.integer2);int2.setText(String.valueOf(rand2));
 
@@ -69,13 +62,13 @@ public class StartGame extends Activity {
  	    choice[2].setText(String.valueOf(res3));
  	    choice[3].setText(String.valueOf(res4));	 	
    
- 	    choice[a].setText(String.valueOf(intres));
+ 	    choice[a].setText(String.valueOf(operation[opt]));
  	    
  	    score = (TextView)findViewById(R.id.showscore);
  	    choice[0].setOnClickListener(new OnClickListener() {
        	public void onClick(View v)
      	   {	
-              	if (choice[0].getText() == String.valueOf(intres)){
+              	if (choice[0].getText() == String.valueOf(operation[opt])){
     			   scoreinc++;
     			   score.setText(String.valueOf(scoreinc));
     			   Toast.makeText(StartGame.this, "Correct!", Toast.LENGTH_SHORT).show();
@@ -83,7 +76,7 @@ public class StartGame extends Activity {
 
               	}
               	else 
-              		{
+              		{check.setVisibility(View.VISIBLE);
               		Toast.makeText(StartGame.this, "Wrong!", Toast.LENGTH_SHORT).show();
               		onStart();}
      	   }	
@@ -91,7 +84,7 @@ public class StartGame extends Activity {
  	    choice[1].setOnClickListener(new OnClickListener() {
  	       	public void onClick(View v)
  	     	   {	
- 	              	if (choice[1].getText() ==String.valueOf(intres)){
+ 	              	if (choice[1].getText() == String.valueOf(operation[opt])){
  	    			   scoreinc++;
  	    			  score.setText(String.valueOf(scoreinc));
  	    			 Toast.makeText(StartGame.this, "Correct!", Toast.LENGTH_SHORT).show();
@@ -105,7 +98,7 @@ public class StartGame extends Activity {
  	    choice[2].setOnClickListener(new OnClickListener() {
  	       	public void onClick(View v)
  	     	   {	
- 	              	if (choice[2].getText() == String.valueOf(intres)){
+ 	              	if (choice[2].getText() == String.valueOf(operation[opt])){
  	    			   scoreinc++;
  	    			  score.setText(String.valueOf(scoreinc));
  	    			 Toast.makeText(StartGame.this, "Correct!", Toast.LENGTH_SHORT).show();
@@ -119,7 +112,7 @@ public class StartGame extends Activity {
  	    choice[3].setOnClickListener(new OnClickListener() {
  	       	public void onClick(View v)
  	     	   {	
- 	              	if (choice[3].getText() == String.valueOf(intres)){
+ 	              	if (choice[3].getText() == String.valueOf(operation[opt])){
  	    			   scoreinc++;
  	    			  score.setText(String.valueOf(scoreinc));
  	    			 Toast.makeText(StartGame.this, "Correct!", Toast.LENGTH_SHORT).show();
