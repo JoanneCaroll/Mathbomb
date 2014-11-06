@@ -2,6 +2,7 @@
 package com.example.mathbomb;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -18,9 +19,12 @@ import android.widget.TextView;
 
 
 public class StartGame extends Activity {
+	
+	private Date mDate;
+	private SaveScore mSaveScore;
     public TextView num1, num2, operator, score, timer;
 
-    public int rand1, opt, rand2, res1, res2, res3, res4, scoreinc = 0, intres;
+    public int rand1, opt, rand2, res1, res2, res3, res4, scoreinc, intres;
     public Button[] choice = new Button[4];
     public List arrayList = new ArrayList<Integer>();
     public String answer = "";
@@ -49,12 +53,11 @@ public class StartGame extends Activity {
             checkAnswer();
         }
     };
-   
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startgame);
-
+        mSaveScore = new SaveScore(this);
         num1 = (TextView) findViewById(R.id.integer1);
         num2 = (TextView) findViewById(R.id.integer2);
         operator = (TextView) findViewById(R.id.operator);
@@ -64,27 +67,23 @@ public class StartGame extends Activity {
         choice[3] = (Button) findViewById(R.id.choice4);
         
         score = (TextView) findViewById(R.id.showscore);
-        
+        resetGame();
+        choice[0].setOnClickListener(clicker);
+        choice[1].setOnClickListener(clicker);
+        choice[2].setOnClickListener(clicker);
+        choice[3].setOnClickListener(clicker);
         timer = (TextView) findViewById(R.id.showtime);
         new CountDownTimer(31000, 1000) {
             public void onTick(long millisUntilFinished) {
                 timer.setText(millisUntilFinished / 1000 + " seconds");
             }
-
-            public void onFinish() {
-                gameOver();
+ 
+            public void onFinish() {    			
+                
+            	gameOver();
             }
-        }.start();
-        
-        resetGame();
-
-        choice[0].setOnClickListener(clicker);
-        choice[1].setOnClickListener(clicker);
-        choice[2].setOnClickListener(clicker);
-        choice[3].setOnClickListener(clicker);
-
+        }.start();    
     }
-
     public void generateUnique(int intres) {
     	
     	//clear arraylist
@@ -147,7 +146,6 @@ public class StartGame extends Activity {
         choice[2].setText(Integer.toString(res3));
         choice[3].setText(Integer.toString(res4));
     }
-
     private void resetGame() {
         
         final int a = rm.nextInt(3);
@@ -177,8 +175,6 @@ public class StartGame extends Activity {
         generateUnique(intres);
         choice[a].setText(Integer.toString(intres));
     }
-
-    
     private void calculateAnswer() {
         if (opt == 1) 
         {
@@ -191,7 +187,6 @@ public class StartGame extends Activity {
             intres = rand1 - rand2;
         }
     }
-    
     private void checkAnswer() {
         if (answer == Integer.toString(intres)) {
             scoreinc++;
@@ -201,27 +196,32 @@ public class StartGame extends Activity {
             resetGame();
         }
     }
-
-    private void gameOver() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    private void gameOver() {        
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("GameOver! \nYour score is " + score.getText()).setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                finish();
+            	timer.setText("Time's up!");
+    			mDate = new Date();
+    			try {
+    					mSaveScore.saveScore(scoreinc, mDate);    
+    					Log.i("SAVING", scoreinc+"");
+       				 					
+    			} catch (Exception e) {
+    				e.printStackTrace();
+    				Log.e("error"," saving score");
+    			}
+            	finish();
             }
-        });
+        }); 
         builder.show();
-
     }
-    
-    private void generateInput(int min, int max){
+   private void generateInput(int min, int max){
     	rand1 = rm.nextInt(max) + min;
 		rand2 = rm.nextInt(max) + min;
-
         // avoid negative results
         while (rand2 > rand1) {
             rand1 = rm.nextInt(max) + min;
             rand2 = rm.nextInt(max) + min;
         }
     }
-
 }
