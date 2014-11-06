@@ -9,7 +9,7 @@
             android:id="@+id/difficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose Difficulty"
+            android:text="@string/setRange"
             android:layout_gravity="center"
             android:textSize="30dp"/>
         <ListView 
