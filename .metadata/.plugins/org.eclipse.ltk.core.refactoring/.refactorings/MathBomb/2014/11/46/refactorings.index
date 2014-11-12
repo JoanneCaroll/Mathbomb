@@ -3,3 +3,18 @@
 1415766412173	Delete element
 1415766416149	Delete element
 1415766473914	Delete element
+1415775597393	Delete element
+1415775607950	Delete element
+1415777198534	Rename type 'CustomListCategory'
+1415777249035	Rename type 'MainMenu'
+1415777259617	Rename type 'NewGame'
+1415777307274	Rename type 'ScoreShow'
+1415777420134	Rename type 'StartGame'
+1415778910009	Rename resource 'main_menu.xml'
+1415778958607	Rename resource 'list_main.xml'
+1415778988174	Rename resource 'highscore_single.xml'
+1415778996379	Delete element
+1415783218245	Delete element
+1415783230312	Rename resource 'cat2.png'
+1415783236499	Rename resource 'cat3.png'
+1415783242664	Rename resource 'cat4.png'

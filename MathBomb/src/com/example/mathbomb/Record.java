@@ -6,8 +6,6 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Context;
-
 @SuppressWarnings("serial")
 public class Record implements Serializable, Comparable<Record>  {
 	
@@ -57,6 +55,4 @@ public class Record implements Serializable, Comparable<Record>  {
 	public int compareTo(Record another) {
 		return Integer.parseInt(another.mScore) - Integer.parseInt(this.mScore);
 	}
-	
-
 }

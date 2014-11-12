@@ -7,35 +7,30 @@
 	<TableLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"   
-	    android:orientation="horizontal"
-	    >
+	    android:orientation="horizontal">
 	    <TableRow>
 		    <TextView
 		        android:padding="10dp"
 		        android:id="@+id/score"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:text="@string/score"	        
-		        />	    
+		        android:text="@string/score"/>	    
 		    <TextView	           
 		        android:padding="30dp"
 		        android:id="@+id/showscore"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"	
-		        />
+		        android:layout_width="100dp"
+		        android:layout_height="wrap_content"/>
 		    <TextView
 		        android:padding="10dp"
 		        android:id="@+id/highscore"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:text="@string/highscore"	        
-		        />	    
+		        android:text="@string/highscore"/>	    
 		    <TextView
 		        android:padding="30dp"
 		        android:id="@+id/showhighscore"
 		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"/>
-		    
+		        android:layout_height="wrap_content"/>		    
 		   <TextView	        
 		        android:padding="10dp"
 		        android:id="@+id/time"
@@ -44,10 +39,9 @@
 		        android:text="@string/timeleft"/>   
 		    <TextView	        
 		        android:padding="30dp"
-		        android:id="@+id/showtime"
+		        android:id="@+id/showtimeleft"
 		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        />	    	        
+		        android:layout_height="wrap_content"/>	    	        
 	    </TableRow>
 	</TableLayout>
    
@@ -55,37 +49,32 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
-        
+            android:padding="10dp">        
 	     <TextView
 		    android:id="@+id/integer1"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content" 
 		    android:padding="5dp"
-		    android:textSize="50dp"
-		    />
-		    
+		    android:textSize="50dp"/>		    
 		 <TextView
 		    android:layout_toRightOf="@id/integer1"
 		    android:id="@+id/operator"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:padding="5dp"
-		    android:textSize="50dp" />
-	        
+		    android:textSize="50dp" />   
 		 <TextView
 		    android:layout_toRightOf="@id/operator"
 		    android:id="@+id/integer2"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:padding="5dp"
-		    android:textSize="50dp" />
-            
+		    android:textSize="50dp" />		             
     </RelativeLayout>
 	
 	<TextView
 	    	android:layout_gravity="center"
-		    android:id="@+id/showcorrect"
+		    android:id="@+id/showresult"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:padding="5dp" />
@@ -93,37 +82,29 @@
 	<RelativeLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:gravity="center">
-	    
+	        android:gravity="center">	    
 		    <Button
 		        android:layout_alignParentBottom="true"
 		        android:id="@+id/choice1"
 		        android:layout_width="50dp"
-		        android:layout_height="wrap_content"
-		       />
-		    
+		        android:layout_height="wrap_content"/>		    
 		    <Button
 		        android:layout_alignParentBottom="true"
 		        android:id="@+id/choice2"
 		        android:layout_toRightOf="@id/choice1"
 		        android:layout_width="50dp"
-		        android:layout_height="wrap_content"/>
-		    
+		        android:layout_height="wrap_content"/>		    
 		    <Button
 		        android:layout_alignParentBottom="true"
 		        android:id="@+id/choice3"
 		        android:layout_toRightOf="@id/choice2"
 		        android:layout_width="50dp"
-		        android:layout_height="wrap_content"/>
-		    
+		        android:layout_height="wrap_content"/>		    
 		     <Button
 		        android:layout_alignParentBottom="true"
 		        android:id="@+id/choice4"
 		        android:layout_toRightOf="@id/choice3"
 		        android:layout_width="50dp"
 		        android:layout_height="wrap_content"/>
-        
-  		 </RelativeLayout>    
-
-
+	</RelativeLayout>
 </LinearLayout>

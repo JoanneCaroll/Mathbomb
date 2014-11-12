@@ -9,4 +9,11 @@
     <string name="highscoretitle">HIGH SCORE</string>
     <string name="ok">Ok</string>
 	<string name="setRange">Choose Range of Numbers: </string>
+	
+	<string name="menuplay">Play!</string>
+	<string name="menuhighscore">High Score</string>
+	<string name="menuhowtoplay">How to Play</string>
+	<string name="menusettings">Settings</string>
+	<string name="menuexit">Exit</string>
+	
 </resources>

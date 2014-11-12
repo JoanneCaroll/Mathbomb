@@ -3,12 +3,10 @@ package com.example.mathbomb;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.UUID;
 
 import org.json.JSONException;
 
 import android.content.Context;
-import android.util.Log;
 
 public class SingleRecord {
 

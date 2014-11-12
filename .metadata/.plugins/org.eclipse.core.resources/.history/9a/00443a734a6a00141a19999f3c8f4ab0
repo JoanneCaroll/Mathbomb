@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:gravity = "center">
+    
+    <Button
+        android:id="@+id/playbutton"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:padding="10dp"
+    	android:text="Play!"
+    	/>
+    <Button
+        android:id="@+id/highscorebutton"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:padding="10dp"
+    	android:text="High Score"
+    	/>
+    <Button
+        android:id="@+id/howtoplaybutton"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:padding="10dp"
+    	android:text="How to Play"
+    	/>
+    <Button
+        android:id="@+id/settingsbutton"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:padding="10dp"
+    	android:text="Settings"
+    	/>
+    <Button
+        android:id="@+id/exitbutton"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:padding="10dp"
+    	android:text="Exit"
+    	/>
+
+</LinearLayout>
