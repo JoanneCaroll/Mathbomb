@@ -28,16 +28,12 @@ public class ScoreShow extends Activity {
 			e.printStackTrace(); 
 		}
         Record record = mRecord.get(0);
-        
         highscore = (TextView)findViewById(R.id.highscoreshow);
-		
-        score = (TextView)findViewById(R.id.score);
+		score = (TextView)findViewById(R.id.score);
 		score.setText(record.getScore().toString());
-		
 		date = (TextView)findViewById(R.id.date);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date.setText(dateFormat.format(record.getDate()) + "");
-		
 		okbutton = (Button)findViewById(R.id.ok_highscore);
 		okbutton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

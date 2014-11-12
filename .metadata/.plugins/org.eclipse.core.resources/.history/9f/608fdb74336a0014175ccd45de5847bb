@@ -39,7 +39,7 @@
    <Button
         android:layout_gravity="center"
        	android:id="@+id/ok_highscore"
-        android:layout_width="80dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:text="@string/ok"
