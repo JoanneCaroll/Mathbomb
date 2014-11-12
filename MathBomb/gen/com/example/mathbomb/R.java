@@ -1098,7 +1098,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
-        public static final int action_settings=0x7f090050;
+        public static final int action_settings=0x7f090055;
         public static final int activity_chooser_view_content=0x7f090025;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
@@ -1116,11 +1116,14 @@ containing a value of this type.
         public static final int dropdown=0x7f090015;
         public static final int edit_query=0x7f090030;
         public static final int end=0x7f090017;
+        public static final int exitbutton=0x7f090054;
         public static final int expand_activities_button=0x7f090026;
         public static final int expanded_menu=0x7f09002c;
         public static final int highscore=0x7f09003e;
+        public static final int highscorebutton=0x7f090051;
         public static final int home=0x7f090000;
         public static final int homeAsUp=0x7f09000a;
+        public static final int howtoplaybutton=0x7f090052;
         public static final int icon=0x7f09002a;
         public static final int ifRoom=0x7f090011;
         public static final int image=0x7f090027;
@@ -1134,6 +1137,7 @@ containing a value of this type.
         public static final int none=0x7f090019;
         public static final int normal=0x7f090007;
         public static final int operator=0x7f090043;
+        public static final int playbutton=0x7f090050;
         public static final int progress_circular=0x7f090004;
         public static final int progress_horizontal=0x7f090005;
         public static final int radio=0x7f09002f;
@@ -1148,6 +1152,7 @@ containing a value of this type.
         public static final int search_plate=0x7f090036;
         public static final int search_src_text=0x7f090037;
         public static final int search_voice_btn=0x7f09003b;
+        public static final int settingsbutton=0x7f090053;
         public static final int shortcut=0x7f09002e;
         public static final int showCustom=0x7f09000b;
         public static final int showHome=0x7f09000c;
@@ -1222,7 +1227,8 @@ containing a value of this type.
         public static final int highscore_single=0x7f03001a;
         public static final int list_main=0x7f03001b;
         public static final int list_single=0x7f03001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
+        public static final int main_menu=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
