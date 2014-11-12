@@ -6,9 +6,11 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-@SuppressWarnings("serial")
-public class Record implements Serializable, Comparable<Record>{
+import android.content.Context;
 
+@SuppressWarnings("serial")
+public class Record implements Serializable, Comparable<Record>  {
+	
 	private static final String JSON_SCORE = "score";
 	private static final String JSON_DATE = "date";
 
@@ -28,6 +30,7 @@ public class Record implements Serializable, Comparable<Record>{
 	public JSONObject toJsonObject() throws JSONException {
 
 		JSONObject jsonObject = new JSONObject();
+
 		jsonObject.put(JSON_SCORE, mScore);
         jsonObject.put(JSON_DATE, mDate.getTime());
 
@@ -54,5 +57,6 @@ public class Record implements Serializable, Comparable<Record>{
 	public int compareTo(Record another) {
 		return Integer.parseInt(another.mScore) - Integer.parseInt(this.mScore);
 	}
+	
 
 }

@@ -3,6 +3,7 @@ import java.util.Date;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 public class SaveScore {
 	private Context mAppContext;
@@ -12,12 +13,15 @@ public class SaveScore {
 	}
 	
 	public void saveScore(int score, Date date) throws Exception {
-		Record mClass = new Record();
+		Record mRecord = new Record();
 		
-		mClass.setScore(Integer.toString(score));
-		mClass.setDate(date);
-
-		SingleRecord.get(mAppContext).addDetails(mClass);
+		mRecord.setScore(Integer.toString(score));
+		mRecord.setDate(date);
+		SingleRecord.get(mAppContext).addDetails(mRecord);
 		SingleRecord.get(mAppContext).saveDetails();
+		Log.i("SaveScore",score+"");	
+		Log.i("SaveScore",date+"");
 	}
+	
+	
 }

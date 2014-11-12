@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import android.content.Context;
@@ -34,24 +35,21 @@ public class JSONScoreSerializer {
 		}
 
 		Writer writer = null;
-try{
-		OutputStream outputStream = mContext.openFileOutput(mFilename,
-				Context.MODE_PRIVATE);
+
+		OutputStream outputStream = mContext.openFileOutput(mFilename, Context.MODE_PRIVATE);
 		writer = new OutputStreamWriter(outputStream);
 		writer.write(jsonArray.toString());
-}
-finally{
+
 		if (writer != null) {
 			writer.close();
 		}
-}
 	}
 
 	public ArrayList<Record> loadDetails() throws Exception {
 
 		ArrayList<Record> modelClasses = new ArrayList<Record>();
 		BufferedReader reader = null;
-try{
+
 		InputStream inputStream = mContext.openFileInput(mFilename);
 		reader = new BufferedReader(new InputStreamReader(inputStream));
 
@@ -68,14 +66,59 @@ try{
 		for (int i = 0; i < jsonArray.length(); i++) {
 			modelClasses.add(new Record(jsonArray.getJSONObject(i)));
 		}
-}
-catch(FileNotFoundException e){
-	
-}
-	finally{
+
 		if (reader != null)
 			reader.close();
-	}
+
 		return modelClasses;
 	}
+//	private Context mContext;
+//	private String mFilename;
+//
+//	public JSONScoreSerializer(Context c, String fname) {
+//		mContext = c;
+//		mFilename = fname;
+//	}
+//	
+//	public void saveDetails(Record mRecords) throws JSONException, IOException {
+//		JSONObject jsonobject = new JSONObject();
+//		jsonobject.put(mFilename, mRecords);
+//		Writer writer = null;
+//		try{
+//			OutputStream outputStream = mContext.openFileOutput(mFilename,Context.MODE_PRIVATE);
+//			writer = new OutputStreamWriter(outputStream);
+//			writer.write(jsonobject.toString());
+//		}
+//		finally{
+//			if (writer != null) {
+//				writer.close();
+//			}
+//		}
+//	}
+//
+//	public Record loadDetails() throws Exception {
+//		
+//		Record mRecords = new Record();
+//		BufferedReader reader = null;
+//		try{
+//			InputStream inputStream = mContext.openFileInput(mFilename);
+//			reader = new BufferedReader(new InputStreamReader(inputStream));	
+//			StringBuilder json_string = new StringBuilder();
+//			String line = null;	
+//			while ((line = reader.readLine()) != null) {
+//				json_string.append(line);
+//			}
+//			
+//			JSONObject object = (JSONObject) new JSONTokener(json_string.toString()).nextValue();
+//			JSONObject query = object.getJSONObject(mFilename);			
+//		}
+//		catch(FileNotFoundException e){
+//			
+//		}
+//		finally{
+//				if (reader != null)
+//					reader.close();
+//				}
+//		return mRecords;
+//		}
 }

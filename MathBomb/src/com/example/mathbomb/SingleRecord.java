@@ -12,52 +12,41 @@ import android.util.Log;
 
 public class SingleRecord {
 
+
 	private static final String FILENAME = "score.json";
+
 	private ArrayList<Record> mRecord;
 
 	private JSONScoreSerializer mJsonSerializer;
 
-	private static SingleRecord sModelSingleton;
-	private Context mAppContext;
+	private static SingleRecord sSingleRecord;
 
-	private SingleRecord(Context appContext) {
-		mAppContext = appContext;
-		mJsonSerializer = new JSONScoreSerializer(mAppContext, FILENAME);
-        try {
-            mRecord = mJsonSerializer.loadDetails();
-        } catch (Exception e) {
-        	mRecord = new ArrayList<Record>();
-            Log.e("SingleRecord", "Error loading crimes: ", e);
-        }
+	private SingleRecord(Context context) {
+		mJsonSerializer = new JSONScoreSerializer(context, FILENAME);
+		try {
+			mRecord = highScores();
+		} catch (Exception e) {
+			mRecord = new ArrayList<Record>();
+			e.printStackTrace();
+		}
 	}
 
 	public static SingleRecord get(Context c) throws Exception {
-		if (sModelSingleton == null) {
-			sModelSingleton = new SingleRecord(c.getApplicationContext());
+		if (sSingleRecord == null) {
+			sSingleRecord = new SingleRecord(c.getApplicationContext());
 		}
 
-		return sModelSingleton;
+		return sSingleRecord;
 
 	}
 
-    public Record getSCore(String score) {
-        for (Record c : mRecord) {
-            if (c.getScore().equals(score))
-                return c;
-        }
-        return null;
-    }
-    
-    public void addDetails(Record c) {
-		mRecord.add(c);
-	}    
-
-    public ArrayList<Record> getRecord() {
-        return mRecord;
-    }
-
 	public ArrayList<Record> getDetails() {
 		return highScores();
+	}
+
+	public void addDetails(Record c) throws JSONException, IOException {
+		mRecord.add(c);
+		saveDetails();
 	}
 
 	public boolean saveDetails() throws JSONException, IOException {
@@ -68,21 +57,22 @@ public class SingleRecord {
 	// Sorting Scores in descending order
 	public ArrayList<Record> highScores() {
 
-		ArrayList<Record> tempModelClass1 = new ArrayList<Record>();
-		ArrayList<Record> tempModelClass2 = new ArrayList<Record>();
+		ArrayList<Record> tempRecord1 = new ArrayList<Record>();
+		ArrayList<Record> tempRecord2 = new ArrayList<Record>();
 		try {
-			tempModelClass1 = mJsonSerializer.loadDetails();
+			tempRecord1 = mJsonSerializer.loadDetails();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
-		Collections.sort(tempModelClass1);
 
-		for (Record mC : tempModelClass1) {
-			if (tempModelClass2.size() > 9)
+		Collections.sort(tempRecord1);
+
+		for (Record mC : tempRecord1) {
+			if (tempRecord2.size() > 9)
 				break;
-			tempModelClass2.add(mC);
+			tempRecord2.add(mC);
 		}
-		return tempModelClass2;
+		return tempRecord2;
 	}
+	
 }

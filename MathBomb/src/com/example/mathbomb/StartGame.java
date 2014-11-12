@@ -1,34 +1,37 @@
 
 package com.example.mathbomb;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 public class StartGame extends Activity {
 	
 	private Date mDate;
 	private SaveScore mSaveScore;
     public TextView num1, num2, operator, score, timer;
-
     public int rand1, opt, rand2, res1, res2, res3, res4, scoreinc, intres;
     public Button[] choice = new Button[4];
     public List arrayList = new ArrayList<Integer>();
     public String answer = "";
     public Random rm = new Random();
+    public SingleRecord record;
     // create reusable listener instead of anonymous types
     private OnClickListener clicker = new OnClickListener() {
         @Override
@@ -53,36 +56,45 @@ public class StartGame extends Activity {
             checkAnswer();
         }
     };
+    @SuppressLint("SimpleDateFormat") 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_startgame);
+        setContentView(R.layout.activity_startgame);		
         mSaveScore = new SaveScore(this);
+        ArrayList<Record> mRecord = null;
+        try {
+			mRecord = SingleRecord.get(this).getDetails();
+		} catch (Exception e) {
+			e.printStackTrace(); 
+		}
+        Record record = mRecord.get(0);      
         num1 = (TextView) findViewById(R.id.integer1);
         num2 = (TextView) findViewById(R.id.integer2);
         operator = (TextView) findViewById(R.id.operator);
+        
         choice[0] = (Button) findViewById(R.id.choice1);
         choice[1] = (Button) findViewById(R.id.choice2);
         choice[2] = (Button) findViewById(R.id.choice3);
         choice[3] = (Button) findViewById(R.id.choice4);
         
         score = (TextView) findViewById(R.id.showscore);
+        score.setText(Integer.toString(scoreinc));
         resetGame();
         choice[0].setOnClickListener(clicker);
         choice[1].setOnClickListener(clicker);
         choice[2].setOnClickListener(clicker);
         choice[3].setOnClickListener(clicker);
         timer = (TextView) findViewById(R.id.showtime);
-        new CountDownTimer(31000, 1000) {
+        new CountDownTimer(10000, 1000) {
             public void onTick(long millisUntilFinished) {
                 timer.setText(millisUntilFinished / 1000 + " seconds");
             }
- 
-            public void onFinish() {    			
-                
+            public void onFinish() {    
             	gameOver();
             }
-        }.start();    
+        }.start();  
+        
     }
     public void generateUnique(int intres) {
     	
@@ -198,22 +210,23 @@ public class StartGame extends Activity {
     }
     private void gameOver() {        
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("GameOver! \nYour score is " + score.getText()).setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-            	timer.setText("Time's up!");
-    			mDate = new Date();
-    			try {
-    					mSaveScore.saveScore(scoreinc, mDate);    
-    					Log.i("SAVING", scoreinc+"");
-       				 					
-    			} catch (Exception e) {
-    				e.printStackTrace();
-    				Log.e("error"," saving score");
-    			}
-            	finish();
-            }
-        }); 
-        builder.show();
+    	{
+	    	builder.setTitle("Game Over!")
+	        .setMessage("Your score is " + score.getText() + "\nNEW HIGH SCORE!")
+	        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog, int id) {
+	    			try {
+	    					mSaveScore.saveScore(scoreinc, mDate);   
+	    					Log.i("SAVING",scoreinc+"" );		    					
+	    			} 
+	    			catch (Exception e) {
+	    				e.printStackTrace();
+	    				Log.e("error"," saving score");
+	    			}
+	            	finish();
+	            }
+	        }).setCancelable(false).show(); 
+    	}
     }
    private void generateInput(int min, int max){
     	rand1 = rm.nextInt(max) + min;

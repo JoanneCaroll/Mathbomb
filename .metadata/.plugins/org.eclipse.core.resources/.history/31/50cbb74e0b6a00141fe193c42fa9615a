@@ -1,0 +1,14 @@
+package com.example.mathbomb;
+
+import android.app.Application;
+
+public class Mathbomb extends Application{
+
+	private int prevscore;
+	public int getPrevScore(){
+		return prevscore;
+	}
+	public void setPrevScore(int score){
+		score = prevscore;
+	}
+}
