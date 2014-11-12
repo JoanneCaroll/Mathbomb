@@ -147,18 +147,18 @@ public class StartGameActivity extends Activity {
         for (int i = 0; i < 4; i++) {
             int index = new Random().nextInt(arrayList.size());
             switch (i) {
-	            case 0:
-	            	randomResult1 = (Integer) arrayList.get(index);
-	                break;
-	            case 1:
-	            	randomResult2 = (Integer) arrayList.get(index);
-	                break;
-	            case 2:
-	            	randomResult3 = (Integer) arrayList.get(index);
-	                break;
-	            case 3:
-	            	randomResult4 = (Integer) arrayList.get(index);
-	                break;
+            case 0:
+            	randomResult1 = (Integer) arrayList.get(index);
+                break;
+            case 1:
+            	randomResult2 = (Integer) arrayList.get(index);
+                break;
+            case 2:
+            	randomResult3 = (Integer) arrayList.get(index);
+                break;
+            case 3:
+            	randomResult4 = (Integer) arrayList.get(index);
+                break;
             }
             arrayList.remove(index);
         }

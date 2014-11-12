@@ -237,8 +237,9 @@ int drawable abc_textfield_searchview_right_holo_light 0x7f020056
 int drawable cat1 0x7f020057
 int drawable cat2 0x7f020058
 int drawable cat3 0x7f020059
-int drawable ic_launcher 0x7f02005a
-int drawable icon 0x7f02005b
+int drawable cat4 0x7f02005a
+int drawable ic_launcher 0x7f02005b
+int drawable icon 0x7f02005c
 int id action_bar 0x7f09001c
 int id action_bar_activity_content 0x7f090001
 int id action_bar_container 0x7f09001b
