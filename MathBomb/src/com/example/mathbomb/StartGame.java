@@ -1,31 +1,29 @@
 
 package com.example.mathbomb;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class StartGame extends Activity {
 	
 	private Date mDate;
 	private SaveScore mSaveScore;
-    public TextView num1, num2, operator, score, timer;
+    public TextView num1, num2, operator, score, timer, highscore, result;
     public int rand1, opt, rand2, res1, res2, res3, res4, scoreinc, intres;
     public Button[] choice = new Button[4];
     public List arrayList = new ArrayList<Integer>();
@@ -56,7 +54,7 @@ public class StartGame extends Activity {
             checkAnswer();
         }
     };
-    @SuppressLint("SimpleDateFormat") 
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +66,7 @@ public class StartGame extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace(); 
 		}
-        Record record = mRecord.get(0);      
+        Record record = mRecord.get(0);
         num1 = (TextView) findViewById(R.id.integer1);
         num2 = (TextView) findViewById(R.id.integer2);
         operator = (TextView) findViewById(R.id.operator);
@@ -77,7 +75,10 @@ public class StartGame extends Activity {
         choice[1] = (Button) findViewById(R.id.choice2);
         choice[2] = (Button) findViewById(R.id.choice3);
         choice[3] = (Button) findViewById(R.id.choice4);
-        
+        highscore = (TextView)findViewById(R.id.showhighscore);
+        highscore.setText(record.getScore().toString());
+        result = (TextView)findViewById(R.id.showcorrect);
+        result.setVisibility(View.INVISIBLE);
         score = (TextView) findViewById(R.id.showscore);
         score.setText(Integer.toString(scoreinc));
         resetGame();
@@ -86,15 +87,14 @@ public class StartGame extends Activity {
         choice[2].setOnClickListener(clicker);
         choice[3].setOnClickListener(clicker);
         timer = (TextView) findViewById(R.id.showtime);
-        new CountDownTimer(10000, 1000) {
+        new CountDownTimer(30000, 1000) {
             public void onTick(long millisUntilFinished) {
-                timer.setText(millisUntilFinished / 1000 + " seconds");
+                timer.setText(millisUntilFinished / 1000 + " seconds");               
             }
-            public void onFinish() {    
+            public void onFinish() {
             	gameOver();
             }
-        }.start();  
-        
+        }.start();          
     }
     public void generateUnique(int intres) {
     	
@@ -203,8 +203,28 @@ public class StartGame extends Activity {
         if (answer == Integer.toString(intres)) {
             scoreinc++;
             score.setText(String.valueOf(scoreinc));
+            new CountDownTimer(1000, 500) {
+                public void onTick(long millisUntilFinished) {
+                	result.setVisibility(View.VISIBLE);
+                	result.setTextColor(Color.GREEN);
+                	result.setText("Correct!");              
+                }
+                public void onFinish() {
+                	result.setVisibility(View.INVISIBLE);
+                }
+            }.start();           
             resetGame();
         } else {
+        	new CountDownTimer(1000, 500) {
+                public void onTick(long millisUntilFinished) {
+                	result.setVisibility(View.VISIBLE);
+                	result.setTextColor(Color.RED);
+                    result.setText("Wrong!");              
+                }
+                public void onFinish() {
+                	result.setVisibility(View.INVISIBLE);
+                }
+            }.start();         
             resetGame();
         }
     }
@@ -213,7 +233,7 @@ public class StartGame extends Activity {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
     	{
 	    	builder.setTitle("Game Over!")
-	        .setMessage("Your score is " + score.getText() + "\nNEW HIGH SCORE!")
+	        .setMessage("Your score is " + score.getText())
 	        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 	            public void onClick(DialogInterface dialog, int id) {
 	    			mDate = new Date();
