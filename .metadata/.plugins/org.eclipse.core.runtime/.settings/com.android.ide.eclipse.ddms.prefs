@@ -1,10 +1,11 @@
 ddms.logcat.auotmonitor.level=error
 ddms.logcat.automonitor.userprompt=true
 eclipse.preferences.version=1
-logcat.view.colsize.Application=89
+logcat.view.colsize.Application=111
 logcat.view.colsize.Level=22
 logcat.view.colsize.PID=54
 logcat.view.colsize.TID=54
-logcat.view.colsize.Tag=84
+logcat.view.colsize.Tag=124
 logcat.view.colsize.Text=674
 logcat.view.colsize.Time=156
+logcat.view.filters.list=name\: 'generateUnique()', tag\: 'generateUnique()', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'saving', tag\: 'SAVING', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'HIGHSCORE', tag\: 'HIGHSCORE', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'error', tag\: 'error', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'SAVING', tag\: 'SAVING', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'SaveScore', tag\: 'SaveScore', text\: '', pid\: '', app\: '', level\: 'verbose', 

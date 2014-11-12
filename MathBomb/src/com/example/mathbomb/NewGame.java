@@ -25,8 +25,8 @@ public class NewGame extends Activity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.list_main);
-    CustomList adapter = new
-        CustomList(NewGame.this, web, imageId);
+    CustomListCategory adapter = new
+        CustomListCategory(NewGame.this, web, imageId);
     	list=(ListView)findViewById(R.id.ListView01);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
