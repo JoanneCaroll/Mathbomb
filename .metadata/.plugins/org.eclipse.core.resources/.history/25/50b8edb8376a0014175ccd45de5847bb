@@ -59,6 +59,51 @@ public class ScoreShow extends Activity {
 	   				}
    			});
 		}
+//        Record record = mRecord.get(0);
+//        try 
+//        {
+//        	if(mRecord.get(0)!=null)
+//        	{
+//	        	highscore = (TextView)findViewById(R.id.highscoreshow);
+//	    		
+//	            score = (TextView)findViewById(R.id.score);
+//	    		score.setText(record.getScore().toString());
+//	    		
+//	    		date = (TextView)findViewById(R.id.date);
+//	    		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//	    		date.setText(dateFormat.format(record.getDate()) + "");
+//	    		
+//	    		okbutton = (Button)findViewById(R.id.ok_highscore);
+//	    		okbutton.setOnClickListener(new View.OnClickListener() {
+//	    			public void onClick(View v) {
+//	    				finish();
+//	    			}
+//	    		});
+//        	}
+//        	else
+//        	{
+//        		 highscore = (TextView)findViewById(R.id.highscoreshow);
+//        			
+//        	     score = (TextView)findViewById(R.id.score);
+//        		 score.setText("norecord");
+//        		 date = (TextView)findViewById(R.id.date);
+//        		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//        			date.setText("norecord");
+//        			
+//        			okbutton = (Button)findViewById(R.id.ok_highscore);
+//        			okbutton.setOnClickListener(new View.OnClickListener() {
+//        				public void onClick(View v) {
+//        					finish();
+//        				}
+//        			});
+//        	}
+//        }
+//        
+//        catch(Exception e)
+//        {
+//        	e.printStackTrace();
+//        	Log.e("ScoreShow", "Error");
+//        }
        
        
 	}

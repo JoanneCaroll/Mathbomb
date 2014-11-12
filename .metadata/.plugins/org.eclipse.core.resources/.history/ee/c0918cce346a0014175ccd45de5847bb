@@ -63,65 +63,39 @@ public class StartGame extends Activity {
         mSaveScore = new SaveScore(this);
         ArrayList<Record> mRecord = null;
         try {
-				mRecord = SingleRecord.get(this).getDetails();   
-				 Record record = mRecord.get(0);
-			        num1 = (TextView) findViewById(R.id.integer1);
-			        num2 = (TextView) findViewById(R.id.integer2);
-			        operator = (TextView) findViewById(R.id.operator);        
-			        choice[0] = (Button) findViewById(R.id.choice1);
-			        choice[1] = (Button) findViewById(R.id.choice2);
-			        choice[2] = (Button) findViewById(R.id.choice3);
-			        choice[3] = (Button) findViewById(R.id.choice4);
-			        highscore = (TextView)findViewById(R.id.showhighscore);
-			        highscore.setText(record.getScore().toString());
-			        result = (TextView)findViewById(R.id.showcorrect);
-			        result.setVisibility(View.INVISIBLE);
-			        score = (TextView) findViewById(R.id.showscore);
-			        score.setText(Integer.toString(scoreinc));
-			        resetGame();
-			        choice[0].setOnClickListener(clicker);
-			        choice[1].setOnClickListener(clicker);
-			        choice[2].setOnClickListener(clicker);
-			        choice[3].setOnClickListener(clicker);
-			        timer = (TextView) findViewById(R.id.showtime);
-			        new CountDownTimer(30000, 1000) {
-			            public void onTick(long millisUntilFinished) {
-			                timer.setText(millisUntilFinished / 1000 + " seconds");               
-			            }
-			            public void onFinish() {
-			            	gameOver();
-			            }
-			        }.start();          
+			mRecord = SingleRecord.get(this).getDetails();
 		} catch (Exception e) {
 			e.printStackTrace(); 
-			num1 = (TextView) findViewById(R.id.integer1);
-	        num2 = (TextView) findViewById(R.id.integer2);
-	        operator = (TextView) findViewById(R.id.operator);        
-	        choice[0] = (Button) findViewById(R.id.choice1);
-	        choice[1] = (Button) findViewById(R.id.choice2);
-	        choice[2] = (Button) findViewById(R.id.choice3);
-	        choice[3] = (Button) findViewById(R.id.choice4);
-	        highscore = (TextView)findViewById(R.id.showhighscore);
-	        highscore.setText("0");
-	        result = (TextView)findViewById(R.id.showcorrect);
-	        result.setVisibility(View.INVISIBLE);
-	        score = (TextView) findViewById(R.id.showscore);
-	        score.setText(Integer.toString(scoreinc));
-	        resetGame();
-	        choice[0].setOnClickListener(clicker);
-	        choice[1].setOnClickListener(clicker);
-	        choice[2].setOnClickListener(clicker);
-	        choice[3].setOnClickListener(clicker);
-	        timer = (TextView) findViewById(R.id.showtime);
-	        new CountDownTimer(30000, 1000) {
-	            public void onTick(long millisUntilFinished) {
-	                timer.setText(millisUntilFinished / 1000 + " seconds");               
-	            }
-	            public void onFinish() {
-	            	gameOver();
-	            }
-	        }.start();          
-		}  
+		}
+        Record record = mRecord.get(0);
+        num1 = (TextView) findViewById(R.id.integer1);
+        num2 = (TextView) findViewById(R.id.integer2);
+        operator = (TextView) findViewById(R.id.operator);
+        
+        choice[0] = (Button) findViewById(R.id.choice1);
+        choice[1] = (Button) findViewById(R.id.choice2);
+        choice[2] = (Button) findViewById(R.id.choice3);
+        choice[3] = (Button) findViewById(R.id.choice4);
+        highscore = (TextView)findViewById(R.id.showhighscore);
+        highscore.setText(record.getScore().toString());
+        result = (TextView)findViewById(R.id.showcorrect);
+        result.setVisibility(View.INVISIBLE);
+        score = (TextView) findViewById(R.id.showscore);
+        score.setText(Integer.toString(scoreinc));
+        resetGame();
+        choice[0].setOnClickListener(clicker);
+        choice[1].setOnClickListener(clicker);
+        choice[2].setOnClickListener(clicker);
+        choice[3].setOnClickListener(clicker);
+        timer = (TextView) findViewById(R.id.showtime);
+        new CountDownTimer(30000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                timer.setText(millisUntilFinished / 1000 + " seconds");               
+            }
+            public void onFinish() {
+            	gameOver();
+            }
+        }.start();          
     }
     public void generateUnique(int intres) {
     	
