@@ -1,0 +1,31 @@
+package com.example.mathbomb;
+
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class ScoreShow extends Activity {
+
+	TextView score, date;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.highscore_single);
+		ArrayList<Record> mRecord = null;
+        try {
+			mRecord = SingleRecord.get(this).getDetails();
+		} catch (Exception e) {
+			e.printStackTrace(); 
+		}
+        Record record = mRecord.get(0);
+		score = (TextView)findViewById(R.id.score);
+		score.setText(record.getScore().toString());
+		date = (TextView)findViewById(R.id.date);
+		date.setText(record.getDate().toString());
+	}
+	
+}

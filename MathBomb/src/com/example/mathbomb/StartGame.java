@@ -1,6 +1,7 @@
 
 package com.example.mathbomb;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,10 +10,10 @@ import java.util.Random;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -237,6 +238,7 @@ public class StartGame extends Activity {
 	        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 	            public void onClick(DialogInterface dialog, int id) {
 	    			mDate = new Date();
+	    			
 	            	try {
 	    					mSaveScore.saveScore(scoreinc, mDate);   
 	    					Log.i("SAVING",scoreinc+"" );		    					

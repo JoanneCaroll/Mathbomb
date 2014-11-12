@@ -6,5 +6,7 @@
     <string name="score">Score: </string>
     <string name="timeleft">Time Left: </string>
     <string name="highscore">High Score: </string>
+    <string name="highscoretitle">HIGH SCORE</string>
+    <string name="ok">Ok</string>
 	<string name="setRange">Choose Range of Numbers: </string>
 </resources>

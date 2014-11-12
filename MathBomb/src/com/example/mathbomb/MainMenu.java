@@ -23,6 +23,12 @@ public class MainMenu extends Activity{
 			}
 		});
 		menu[1] = (Button)findViewById(R.id.highscorebutton);
+		menu[1].setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(MainMenu.this, ScoreShow.class);
+				startActivity(i);
+			}
+		});
 		menu[2]	= (Button)findViewById(R.id.howtoplaybutton);
 		menu[3]	= (Button)findViewById(R.id.settingsbutton);
 		menu[4] = (Button)findViewById(R.id.exitbutton);
