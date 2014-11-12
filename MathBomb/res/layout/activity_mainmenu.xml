@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:gravity = "center">
+    android:gravity = "center" >
     
     <Button
         android:id="@+id/playbutton"
@@ -11,34 +11,34 @@
     	android:layout_height="wrap_content"
     	android:padding="10dp"
     	android:text="@string/menuplay"
-    	/>
+    	android:textSize="30dp" />
     <Button
         android:id="@+id/highscorebutton"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:padding="10dp"
     	android:text="@string/menuhighscore"
-    	/>
+    	android:textSize="30dp" />
     <Button
         android:id="@+id/howtoplaybutton"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:padding="10dp"
     	android:text="@string/menuhowtoplay"
-    	/>
+    	android:textSize="30dp" />
     <Button
         android:id="@+id/settingsbutton"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:padding="10dp"
     	android:text="@string/menusettings"
-    	/>
+    	android:textSize="30dp" />
     <Button
         android:id="@+id/exitbutton"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:padding="10dp"
     	android:text="@string/menuexit"
-    	/>
+    	android:textSize="30dp" />
 
 </LinearLayout>

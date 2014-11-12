@@ -1119,7 +1119,7 @@ containing a value of this type.
         public static final int exitbutton=0x7f090046;
         public static final int expand_activities_button=0x7f090026;
         public static final int expanded_menu=0x7f09002c;
-        public static final int highscore=0x7f090048;
+        public static final int highscore=0x7f09004a;
         public static final int highscorebutton=0x7f090043;
         public static final int highscoreshow=0x7f09003c;
         public static final int home=0x7f090000;
@@ -1159,14 +1159,14 @@ containing a value of this type.
         public static final int showCustom=0x7f09000b;
         public static final int showHome=0x7f09000c;
         public static final int showTitle=0x7f09000d;
-        public static final int showhighscore=0x7f090049;
+        public static final int showhighscore=0x7f09004b;
         public static final int showresult=0x7f09004f;
         public static final int showscore=0x7f090047;
-        public static final int showtimeleft=0x7f09004b;
+        public static final int showtimeleft=0x7f090049;
         public static final int split_action_bar=0x7f09001e;
         public static final int submit_area=0x7f090039;
         public static final int tabMode=0x7f090008;
-        public static final int time=0x7f09004a;
+        public static final int time=0x7f090048;
         public static final int title=0x7f09002b;
         public static final int top_action_bar=0x7f090020;
         public static final int up=0x7f090021;

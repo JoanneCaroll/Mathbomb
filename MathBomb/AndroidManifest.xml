@@ -16,7 +16,7 @@
         >
         <activity
             android:name=".MainMenuActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="portrait">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -24,15 +24,15 @@
         </activity>
         <activity
             android:name=".StartGameActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".NewGameActivity"
-            android:screenOrientation="landscape">           
+            android:screenOrientation="portrait">           
         </activity>
         <activity
             android:name=".HighScoreActivity"
-            android:screenOrientation="landscape">           
+            android:screenOrientation="portrait">           
         </activity>
     </application>
 

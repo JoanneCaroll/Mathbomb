@@ -108,7 +108,7 @@ public class StartGameActivity extends Activity {
         
         new CountDownTimer(31000, 1000) {
             public void onTick(long millisUntilFinished) {
-            	showTimeLeft.setText(millisUntilFinished / 1000 + " seconds");               
+            	showTimeLeft.setText(millisUntilFinished / 1000 + " sec(s)");               
             }
             public void onFinish() {
             	gameOver();
@@ -140,7 +140,7 @@ public class StartGameActivity extends Activity {
         }
         
         //removes answer in random set if its inside the set
-        if(arrayList.contains(answer)){
+        if(arrayList.contains(answer)) {
             arrayList.remove(arrayList.get(answer));
         }  
         
@@ -264,12 +264,12 @@ public class StartGameActivity extends Activity {
 		            	finish();
 		            }
 		        }).setCancelable(false).show(); 
-    	} catch(Exception e){
+    	} catch (Exception e) {
     		Log.e(TAG, "gameOver()");
     	}
     }
     
-   private void generateInput(int min, int max){
+   private void generateInput(int min, int max) {
 	   try {
 		   randomInt1 = random.nextInt(max) + min;
 		   randomInt2 = random.nextInt(max) + min;		   
