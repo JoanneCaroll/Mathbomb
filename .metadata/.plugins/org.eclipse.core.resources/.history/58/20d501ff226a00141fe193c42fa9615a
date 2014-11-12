@@ -208,7 +208,6 @@ public class StartGame extends Activity {
             resetGame();
         }
     }
-    
     private void gameOver() {        
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
     	{
@@ -216,8 +215,7 @@ public class StartGame extends Activity {
 	        .setMessage("Your score is " + score.getText() + "\nNEW HIGH SCORE!")
 	        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 	            public void onClick(DialogInterface dialog, int id) {
-	    			mDate = new Date();
-	            	try {
+	    			try {
 	    					mSaveScore.saveScore(scoreinc, mDate);   
 	    					Log.i("SAVING",scoreinc+"" );		    					
 	    			} 
