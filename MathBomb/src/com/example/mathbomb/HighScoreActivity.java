@@ -13,49 +13,77 @@ import android.widget.TextView;
 
 public class HighScoreActivity extends Activity {
 
-	TextView score, date, highscore;
-	Button okbutton;
+	private TextView 
+		highscore, 
+		easy, easyscore, easydate,
+		normal, normalscore, normaldate, 
+		hard, hardscore, harddate;
+	private Button okbutton;
+	
 	@SuppressLint("SimpleDateFormat")
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_highscore);
+		
+		highscore = (TextView)findViewById(R.id.highscoreshow);
+		easy = (TextView)findViewById(R.id.easy);
+    	easy.setText(StartGameActivity.category[0]);
+    	normal = (TextView)findViewById(R.id.normal);
+		normal.setText(StartGameActivity.category[1]);
+		hard = (TextView)findViewById(R.id.hard);
+		hard.setText(StartGameActivity.category[2]);
+		okbutton = (Button)findViewById(R.id.ok_highscore);
+		okbutton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				finish();
+			}
+		});
+		
 		ArrayList<Record> mRecord = null;
         try {
 			mRecord = SingleRecord.get(this).getDetails();
-			Record record = mRecord.get(0);
-        	highscore = (TextView)findViewById(R.id.highscoreshow);
-    		
-            score = (TextView)findViewById(R.id.score);
-    		score.setText(record.getScore().toString());
-    		 
-    		date = (TextView)findViewById(R.id.date);
-    		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    		date.setText(dateFormat.format(record.getDate()) + "");
-    		
-    		okbutton = (Button)findViewById(R.id.ok_highscore);
-    		okbutton.setOnClickListener(new View.OnClickListener() {
-    			public void onClick(View v) {
-    				finish();
-    			}
-    		});
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 			
-		} catch (Exception e) {
-			e.printStackTrace(); 
-			highscore = (TextView)findViewById(R.id.highscoreshow);
+			Record recordeasy = mRecord.get(MainMenuActivity.indexEasy);
+        	        	        	
+            easyscore = (TextView)findViewById(R.id.easyscore);
+    		easyscore.setText(recordeasy.getScore().toString());    		 
+    		easydate = (TextView)findViewById(R.id.easydate);    		
+    		easydate.setText(dateFormat.format(recordeasy.getDate()) + "");
+    		
+    		Record recordnormal = mRecord.get(MainMenuActivity.indexNormal);
+    		 		
+    		normalscore = (TextView)findViewById(R.id.normalscore);
+    		normalscore.setText(recordnormal.getScore().toString());     		 
+     		normaldate = (TextView)findViewById(R.id.normaldate);
+     		normaldate.setText(dateFormat.format(recordnormal.getDate()) + "");
+     		
+     		Record recordhard = mRecord.get(MainMenuActivity.indexHard);
+     		
+    		hardscore = (TextView)findViewById(R.id.hardscore);
+    		hardscore.setText(recordhard.getScore().toString());     		 
+     		harddate = (TextView)findViewById(R.id.harddate);
+     		harddate.setText(dateFormat.format(recordhard.getDate()) + "");     		
+     	} catch (Exception e) {
 			
-	   	     score = (TextView)findViewById(R.id.score);
-	   		 score.setText("norecord");
-	   		 date = (TextView)findViewById(R.id.date);
-	   			date.setText("norecord");
-	   			
-	   			okbutton = (Button)findViewById(R.id.ok_highscore);
-	   			okbutton.setOnClickListener(new View.OnClickListener() {
-	   				public void onClick(View v) {
-	   					finish();
-	   				}
-   			});
+     		e.printStackTrace(); 	
+     		
+		   	easyscore = (TextView)findViewById(R.id.easyscore);
+		   	easyscore.setText("norecord");
+		   	easydate = (TextView)findViewById(R.id.easydate);
+	   		easydate.setText("norecord");	
+	   		
+	    	normalscore = (TextView)findViewById(R.id.normalscore);
+	    	normalscore.setText("norecord");	     		 
+	     	normaldate = (TextView)findViewById(R.id.normaldate);
+	     	normaldate.setText("norecord");	     	
+	     	
+	    	hardscore = (TextView)findViewById(R.id.hardscore);
+	    	hardscore.setText("norecord");	     		 
+	     	harddate = (TextView)findViewById(R.id.harddate);
+	     	harddate.setText("norecord"); 	    	
 		}
 	}
 	

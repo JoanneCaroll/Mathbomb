@@ -6,7 +6,7 @@
     android:orientation="vertical" >
     
     <TextView
-        android:paddingTop="100dp"
+        android:paddingTop="70dp"
         android:paddingBottom="30dp"
         android:layout_gravity="center"
         android:id="@+id/highscoreshow"
@@ -16,21 +16,30 @@
         android:textStyle="bold"
         android:text="@string/highscoretitle" />   
     
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/easy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:paddingBottom="10dp"/>     
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingBottom="50dp" >
+        android:paddingBottom="10dp" >
         
         <TextView
-            android:id="@+id/score"
+            android:id="@+id/easyscore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:paddingRight="50dp" />       
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/easydate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp" 
@@ -38,6 +47,66 @@
             
    </LinearLayout>
    
+   <TextView
+        android:layout_gravity="center"
+        android:id="@+id/normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:paddingBottom="10dp"/> 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="10dp" >
+        
+        <TextView
+            android:id="@+id/normalscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:paddingRight="50dp" />       
+        <TextView
+            android:id="@+id/normaldate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp" 
+            android:padding="5dp" />  
+            
+   </LinearLayout>
+   
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/hard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:paddingBottom="10dp"/> 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="30dp" >
+        
+        <TextView
+            android:id="@+id/hardscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:paddingRight="50dp" />       
+        <TextView
+            android:id="@+id/harddate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp" 
+            android:padding="5dp" />  
+            
+   </LinearLayout>
+    
    <Button
         android:layout_gravity="center"
        	android:id="@+id/ok_highscore"

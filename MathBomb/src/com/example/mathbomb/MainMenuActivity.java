@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainMenuActivity extends Activity {
-
+	public static int 
+    prevEasyScore, prevNormalScore, prevHardScore,
+    indexEasy, indexNormal, indexHard;
 	public Button[] menu = new Button[5];
 	
 	@Override
@@ -21,19 +23,16 @@ public class MainMenuActivity extends Activity {
 				Intent i = new Intent(MainMenuActivity.this, NewGameActivity.class);
 				startActivity(i);
 			}
-		});
-		
+		});		
 		menu[1] = (Button)findViewById(R.id.highscorebutton);
 		menu[1].setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent i = new Intent(MainMenuActivity.this, HighScoreActivity.class);
 				startActivity(i);
 			}
-		});
-		
+		});		
 		menu[2]	= (Button)findViewById(R.id.howtoplaybutton);
-		menu[3]	= (Button)findViewById(R.id.settingsbutton);
-		
+		menu[3]	= (Button)findViewById(R.id.settingsbutton);		
 		menu[4] = (Button)findViewById(R.id.exitbutton);
 		menu[4].setOnClickListener(new View.OnClickListener() {
 			@Override

@@ -34,6 +34,9 @@ public class StartGameActivity extends Activity {
     private Button[] choice = new Button[4];
     private List<Integer> arrayList = new ArrayList<Integer>();
     private String choiceText = "";
+    public static final String[] category = {
+    	"Easy", "Normal", "Hard",
+    };
 //    private SingleRecord record;
     private Random random = new Random();
     
@@ -83,20 +86,50 @@ public class StartGameActivity extends Activity {
 		
 		showResult = (TextView)findViewById(R.id.showresult);
 		showResult.setVisibility(View.INVISIBLE);
+		Bundle getextra = getIntent().getExtras();
+		int choices = getextra.getInt("choice");    	
 		
-		ArrayList<Record> mRecord = null;		
 		try {
-				mRecord = SingleRecord.get(this).getDetails();   
-				//get the highest score
-				Record record = mRecord.get(0);							
-				showHighScore = (TextView)findViewById(R.id.showhighscore);
-				showHighScore.setText(record.getScore().toString());
+			ArrayList<Record> mRecord = null;			
+			mRecord = SingleRecord.get(this).getDetails();   							   	
+        		
+        		for(int i = 0; i < mRecord.size(); i++)
+				{			
+        			Record recordeasy = mRecord.get(i);	
+					if(recordeasy.getCategory().equals(category[choices]))
+					{
+						if(choices == 0) {							
+							if(Integer.valueOf(recordeasy.getScore()) > MainMenuActivity.prevEasyScore) {
+					        	Log.i(TAG, Integer.valueOf(recordeasy.getScore())+"");
+					        	MainMenuActivity.prevEasyScore = Integer.valueOf(recordeasy.getScore());						        	
+					        	MainMenuActivity.indexEasy = i;
+							}	
+							showHighScore = (TextView)findViewById(R.id.showhighscore);
+							showHighScore.setText(Integer.toString(MainMenuActivity.prevEasyScore));
+						} else if (choices == 1) {					
+							if(Integer.valueOf(recordeasy.getScore()) > MainMenuActivity.prevNormalScore) {
+								Log.i(TAG, Integer.valueOf(recordeasy.getScore())+"");
+								MainMenuActivity.prevNormalScore = Integer.valueOf(recordeasy.getScore());					        	
+								MainMenuActivity.indexNormal= i;	 
+							}		
+							showHighScore = (TextView)findViewById(R.id.showhighscore);
+							showHighScore.setText(Integer.toString(MainMenuActivity.prevNormalScore));
+						} else if (choices == 2) {
+							if(Integer.valueOf(recordeasy.getScore()) > MainMenuActivity.prevHardScore)
+					        {
+					        	Log.i(TAG, Integer.valueOf(recordeasy.getScore())+"");
+					        	MainMenuActivity.prevHardScore = Integer.valueOf(recordeasy.getScore());					        	
+					        	MainMenuActivity.indexHard = i;
+					        }
+							showHighScore = (TextView)findViewById(R.id.showhighscore);
+							showHighScore.setText(Integer.toString(MainMenuActivity.prevHardScore));	
+						}
+					}
+				}				
 		} catch (Exception e) {
 				e.printStackTrace(); 	
-		        showHighScore = (TextView)findViewById(R.id.showhighscore);
-		        showHighScore.setText("0");
 		}
-        
+	
         resetGame();
         
         choice[0].setOnClickListener(choiceClicker);
@@ -106,14 +139,14 @@ public class StartGameActivity extends Activity {
         
         showTimeLeft = (TextView) findViewById(R.id.showtimeleft);
         
-        new CountDownTimer(31000, 1000) {
+        new CountDownTimer(11000, 1000) {
             public void onTick(long millisUntilFinished) {
             	showTimeLeft.setText(millisUntilFinished / 1000 + " sec(s)");               
             }
             public void onFinish() {
             	gameOver();
             }
-        }.start();          
+        }.start();  
         
     }
     
@@ -253,8 +286,10 @@ public class StartGameActivity extends Activity {
 		            public void onClick(DialogInterface dialog, int id) {
 		    			mDate = new Date();	    			
 		            	try {
-		    					mSaveScore.saveScore(score, mDate);   	
-		    					Log.i(TAG,"Score saved.");
+		            		 Bundle getextra = getIntent().getExtras();
+		            		 int choices = getextra.getInt("choice");    					
+		            		 mSaveScore.saveScore(score, category[choices], mDate);   	
+		    				 Log.i(TAG,"Score saved.");
 		    			} catch (Exception e) {
 		    				e.printStackTrace();
 		    				Log.e(TAG,"Error saving score");
@@ -269,7 +304,7 @@ public class StartGameActivity extends Activity {
     	}
     }
     
-   private void generateInput(int min, int max) {
+    private void generateInput(int min, int max) {
 	   try {
 		   randomInt1 = random.nextInt(max) + min;
 		   randomInt2 = random.nextInt(max) + min;		   

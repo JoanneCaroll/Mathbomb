@@ -11,8 +11,9 @@ public class Record implements Serializable, Comparable<Record>  {
 	
 	private static final String JSON_SCORE = "score";
 	private static final String JSON_DATE = "date";
-
-	private String mScore;
+	private static final String JSON_CATEGORY = "category";
+	
+	private String mScore, mCategory;
 	private Date mDate;
 
 	public Record() {
@@ -20,8 +21,8 @@ public class Record implements Serializable, Comparable<Record>  {
 	}
 
 	public Record(JSONObject jsonObject) throws JSONException {
-
 		mScore = jsonObject.getString(JSON_SCORE);
+		mCategory = jsonObject.getString(JSON_CATEGORY);
         mDate = new Date(jsonObject.getLong(JSON_DATE));
 	}
 
@@ -30,6 +31,7 @@ public class Record implements Serializable, Comparable<Record>  {
 		JSONObject jsonObject = new JSONObject();
 
 		jsonObject.put(JSON_SCORE, mScore);
+		jsonObject.put(JSON_CATEGORY, mCategory);
         jsonObject.put(JSON_DATE, mDate.getTime());
 
 		return jsonObject;
@@ -41,6 +43,14 @@ public class Record implements Serializable, Comparable<Record>  {
 
 	public void setScore(String score) {
 		mScore = score;
+	}
+	
+	public String getCategory() {
+		return mCategory;
+	}
+
+	public void setCategory(String category) {
+		mCategory = category;
 	}
 
 	public Date getDate() {
