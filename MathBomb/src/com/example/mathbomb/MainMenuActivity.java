@@ -1,5 +1,7 @@
 package com.example.mathbomb;
 
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +10,9 @@ import android.widget.Button;
 
 public class MainMenuActivity extends Activity {
 	public static int 
-    prevEasyScore, prevNormalScore, prevHardScore,
-    indexEasy, indexNormal, indexHard;
+	    prevEasyScore, prevNormalScore, prevHardScore,	    
+	    indexEasy, indexNormal, indexHard;
+	public static Date prevEasyDate, prevNormalDate, prevHardDate;
 	public Button[] menu = new Button[5];
 	
 	@Override
@@ -23,7 +26,7 @@ public class MainMenuActivity extends Activity {
 				Intent i = new Intent(MainMenuActivity.this, NewGameActivity.class);
 				startActivity(i);
 			}
-		});		
+		});	
 		menu[1] = (Button)findViewById(R.id.highscorebutton);
 		menu[1].setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

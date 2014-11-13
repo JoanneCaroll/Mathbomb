@@ -95,31 +95,34 @@ public class StartGameActivity extends Activity {
         		
         		for(int i = 0; i < mRecord.size(); i++)
 				{			
-        			Record recordeasy = mRecord.get(i);	
-					if(recordeasy.getCategory().equals(category[choices]))
+        			Record record = mRecord.get(i);	
+					if(record.getCategory().equals(category[choices]))
 					{
 						if(choices == 0) {							
-							if(Integer.valueOf(recordeasy.getScore()) > MainMenuActivity.prevEasyScore) {
-					        	Log.i(TAG, Integer.valueOf(recordeasy.getScore())+"");
-					        	MainMenuActivity.prevEasyScore = Integer.valueOf(recordeasy.getScore());						        	
+							if(Integer.valueOf(record.getScore()) > MainMenuActivity.prevEasyScore) {
+					        	Log.i(TAG, Integer.valueOf(record.getScore())+"");
+					        	MainMenuActivity.prevEasyScore = Integer.valueOf(record.getScore());						        	
 					        	MainMenuActivity.indexEasy = i;
+					        	MainMenuActivity.prevEasyDate = record.getDate();
 							}	
 							showHighScore = (TextView)findViewById(R.id.showhighscore);
 							showHighScore.setText(Integer.toString(MainMenuActivity.prevEasyScore));
 						} else if (choices == 1) {					
-							if(Integer.valueOf(recordeasy.getScore()) > MainMenuActivity.prevNormalScore) {
-								Log.i(TAG, Integer.valueOf(recordeasy.getScore())+"");
-								MainMenuActivity.prevNormalScore = Integer.valueOf(recordeasy.getScore());					        	
-								MainMenuActivity.indexNormal= i;	 
+							if(Integer.valueOf(record.getScore()) > MainMenuActivity.prevNormalScore) {
+								Log.i(TAG, Integer.valueOf(record.getScore())+"");
+								MainMenuActivity.prevNormalScore = Integer.valueOf(record.getScore());					        	
+								MainMenuActivity.indexNormal= i;
+								MainMenuActivity.prevNormalDate = record.getDate();
 							}		
 							showHighScore = (TextView)findViewById(R.id.showhighscore);
 							showHighScore.setText(Integer.toString(MainMenuActivity.prevNormalScore));
 						} else if (choices == 2) {
-							if(Integer.valueOf(recordeasy.getScore()) > MainMenuActivity.prevHardScore)
+							if(Integer.valueOf(record.getScore()) > MainMenuActivity.prevHardScore)
 					        {
-					        	Log.i(TAG, Integer.valueOf(recordeasy.getScore())+"");
-					        	MainMenuActivity.prevHardScore = Integer.valueOf(recordeasy.getScore());					        	
+					        	Log.i(TAG, Integer.valueOf(record.getScore())+"");
+					        	MainMenuActivity.prevHardScore = Integer.valueOf(record.getScore());					        	
 					        	MainMenuActivity.indexHard = i;
+					        	MainMenuActivity.prevHardDate = record.getDate();
 					        }
 							showHighScore = (TextView)findViewById(R.id.showhighscore);
 							showHighScore.setText(Integer.toString(MainMenuActivity.prevHardScore));	
@@ -285,9 +288,9 @@ public class StartGameActivity extends Activity {
 		        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		            public void onClick(DialogInterface dialog, int id) {
 		    			mDate = new Date();	    			
-		            	try {
+		    			try {
 		            		 Bundle getextra = getIntent().getExtras();
-		            		 int choices = getextra.getInt("choice");    					
+		            		 int choices = getextra.getInt("choice");    	
 		            		 mSaveScore.saveScore(score, category[choices], mDate);   	
 		    				 Log.i(TAG,"Score saved.");
 		    			} catch (Exception e) {
