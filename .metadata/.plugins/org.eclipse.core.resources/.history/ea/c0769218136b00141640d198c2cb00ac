@@ -1,0 +1,11 @@
+package com.example.mathbomb;
+
+import java.util.Date;
+
+public class Global {
+	public static int 
+	    prevEasyScore, prevNormalScore, prevHardScore,	    
+	    indexEasy, indexNormal, indexHard;
+	public static Date prevEasyDate, prevNormalDate, prevHardDate;
+	
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MathBomb</string>
+    <string name="action_settings">Settings</string>
+    <string name="score">Score: </string>
+    <string name="timeleft">Time Left: </string>
+    <string name="highscore">High Score: </string>
+	<string name="setRange">Choose Range of Numbers: </string>
+</resources>

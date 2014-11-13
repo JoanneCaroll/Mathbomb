@@ -1,0 +1,27 @@
+package com.example.mathbomb;
+
+import java.util.Date;
+
+import android.content.Context;
+import android.util.Log;
+
+public class Normal_SaveScore {
+	private Context mAppContext;
+
+	public Normal_SaveScore(Context appContext) {
+		this.mAppContext = appContext;
+	}
+	
+	public void saveScore(int score, Date date) throws Exception {
+		Normal_Record mRecord = new Normal_Record();
+		
+		mRecord.setScore(Integer.toString(score));
+		mRecord.setDate(date);
+		Easy_SingleRecord.get(mAppContext).addDetails(mRecord);
+		Easy_SingleRecord.get(mAppContext).saveDetails();
+		Log.i("SaveScore",score+"");	
+		Log.i("SaveScore",date+"");
+	}
+	
+	
+}

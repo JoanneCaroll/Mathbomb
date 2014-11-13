@@ -3,3 +3,48 @@
 1415766412173	Delete element
 1415766416149	Delete element
 1415766473914	Delete element
+1415775597393	Delete element
+1415775607950	Delete element
+1415777198534	Rename type 'CustomListCategory'
+1415777249035	Rename type 'MainMenu'
+1415777259617	Rename type 'NewGame'
+1415777307274	Rename type 'ScoreShow'
+1415777420134	Rename type 'StartGame'
+1415778910009	Rename resource 'main_menu.xml'
+1415778958607	Rename resource 'list_main.xml'
+1415778988174	Rename resource 'highscore_single.xml'
+1415778996379	Delete element
+1415783218245	Delete element
+1415783230312	Rename resource 'cat2.png'
+1415783236499	Rename resource 'cat3.png'
+1415783242664	Rename resource 'cat4.png'
+1415789197788	Delete element
+1415789214404	Delete element
+1415789232872	Delete element
+1415789245602	Delete element
+1415789252907	Delete element
+1415789254999	Delete element
+1415789256081	Delete element
+1415789257278	Delete element
+1415789304170	Delete element
+1415789306646	Delete element
+1415789401089	Delete element
+1415789617537	Copy files
+1415789704046	Delete element
+1415839849907	Rename type 'SaveScore'
+1415839874138	Rename type 'Record'
+1415839887952	Rename type 'SingleRecord'
+1415840179936	Rename type 'JSONScoreSerializer'
+1415840203694	Rename type 'RecordEasy'
+1415840219516	Rename type 'SaveEasyScore'
+1415840232705	Rename type 'SingleRecordEasy'
+1415840242624	Delete element
+1415840244115	Delete element
+1415840245448	Delete element
+1415841880289	Rename type 'Easy_JSONSerializer'
+1415841883679	Delete elements
+1415841895486	Rename type 'Easy_Record'
+1415841902150	Rename type 'Easy_SaveScore'
+1415841909060	Rename type 'Easy_SingleRecord'
+1415868796905	Delete element
+1415869048896	Delete element

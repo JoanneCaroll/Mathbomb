@@ -3,26 +3,23 @@ package com.example.mathbomb;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.UUID;
 
 import org.json.JSONException;
 
 import android.content.Context;
-import android.util.Log;
 
 public class SingleRecord {
-
 
 	private static final String FILENAME = "score.json";
 
 	private ArrayList<Record> mRecord;
 
-	private JSONScoreSerializer mJsonSerializer;
+	private JSONSerializer mJsonSerializer;
 
 	private static SingleRecord sSingleRecord;
 
 	private SingleRecord(Context context) {
-		mJsonSerializer = new JSONScoreSerializer(context, FILENAME);
+		mJsonSerializer = new JSONSerializer(context, FILENAME);
 		try {
 			mRecord = highScores();
 		} catch (Exception e) {
@@ -35,9 +32,7 @@ public class SingleRecord {
 		if (sSingleRecord == null) {
 			sSingleRecord = new SingleRecord(c.getApplicationContext());
 		}
-
 		return sSingleRecord;
-
 	}
 
 	public ArrayList<Record> getDetails() {
