@@ -26,9 +26,9 @@ public class Activity_StartGame extends Activity {
 	private Hard_SaveScore mHardSaveScore;
 	private TextView 
 	showScore, showHighScore, showTimeLeft, showResult,
-	randomInteger1, randomInteger2, randomOperator;
+	txtfirstRandomNumber, txtsecondRandomNumber, randomOperator;
 	private int 
-	randomInt1, randomInt2, randomOpt,
+	firstRandomInteger, secondRandomInteger, randomOpt,
 	randomResult1, randomResult2, randomResult3, randomResult4, 
 	score, answer;
 	private Button[] randomResult = new Button[4];
@@ -73,8 +73,8 @@ public class Activity_StartGame extends Activity {
 		mNormalSaveScore = new Normal_SaveScore(this);
 		mHardSaveScore = new Hard_SaveScore(this);
 
-		randomInteger1 = (TextView) findViewById(R.id.integer1);
-		randomInteger2 = (TextView) findViewById(R.id.integer2);
+		txtfirstRandomNumber = (TextView) findViewById(R.id.integer1);
+		txtsecondRandomNumber = (TextView) findViewById(R.id.integer2);
 		randomOperator = (TextView) findViewById(R.id.operator);  
 
 		randomResult[0] = (Button) findViewById(R.id.choice1);
@@ -212,21 +212,21 @@ public class Activity_StartGame extends Activity {
 			} else if(resetchoice == 2) {
 				generateInput(10,10);
 		}
-			randomInteger1.setText(Integer.toString(randomInt1));
-			randomInteger2.setText(Integer.toString(randomInt2));
+			txtfirstRandomNumber.setText(Integer.toString(firstRandomInteger));
+			txtsecondRandomNumber.setText(Integer.toString(secondRandomInteger));
 			calculateAnswer();
 			generateUnique(answer);
 			randomResult[a].setText(Integer.toString(answer));
 	}
 
 	private void calculateAnswer() {
-			if (randomOpt == 1) {
-				randomOperator.setText("+");
-				answer = randomInt1 + randomInt2;
-			} else if (randomOpt == 2) {
-				randomOperator.setText("-");
-				answer = randomInt1 - randomInt2;
-			}
+		if (randomOpt == 1) {
+			randomOperator.setText("+");
+			answer = firstRandomInteger + secondRandomInteger;
+		} else if (randomOpt == 2) {
+			randomOperator.setText("-");
+			answer = firstRandomInteger - secondRandomInteger;
+		}
 	}
 
 	private void checkAnswer() {
@@ -268,7 +268,7 @@ public class Activity_StartGame extends Activity {
 					mDate = new Date();	    			
 					try {
 						Bundle getextra = getIntent().getExtras();
-						int choices = getextra.getInt("choice");    	
+						int choices = getextra.getInt("choice");
 						if(choices==0)
 						{
 							mEasySaveScore.saveScore(score, mDate);
@@ -293,12 +293,12 @@ public class Activity_StartGame extends Activity {
 	}
 
 	private void generateInput(int min, int max) {
-		randomInt1 = random.nextInt(max) + min;
-		randomInt2 = random.nextInt(max) + min;
+		firstRandomInteger = random.nextInt(max) + min;
+		secondRandomInteger = random.nextInt(max) + min;
 		// avoid negative results
-		while (randomInt2 > randomInt1) {
-			randomInt1 = random.nextInt(max) + min;
-			randomInt2 = random.nextInt(max) + min;
+		while (secondRandomInteger > firstRandomInteger) {
+			firstRandomInteger = random.nextInt(max) + min;
+			secondRandomInteger = random.nextInt(max) + min;
 		}
 	}
 }
