@@ -19,8 +19,7 @@ public class Activity_HighScore extends Activity {
 		normal, normalscore, normaldate, 
 		hard, hardscore, harddate;
 	private Button okbutton;
-	
-	@SuppressLint("SimpleDateFormat")
+	@SuppressLint({ "SimpleDateFormat", "CutPasteId" })
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -28,7 +27,23 @@ public class Activity_HighScore extends Activity {
 		setContentView(R.layout.activity_highscore);
 		
 		highscore = (TextView)findViewById(R.id.highscoreshow);
-		highscore.setText(R.string.highscoretitle);    	
+		highscore.setText(R.string.highscoretitle); 
+		
+		easy = (TextView)findViewById(R.id.easyscore);
+		easy.setText(Activity_StartGame.category[0]);
+		easyscore = (TextView)findViewById(R.id.easyscore);
+		easydate = (TextView)findViewById(R.id.easydate);
+		
+		normal = (TextView)findViewById(R.id.normal);
+		normal.setText(Activity_StartGame.category[1]);
+		normalscore = (TextView)findViewById(R.id.normalscore);
+		normaldate = (TextView)findViewById(R.id.normaldate); 
+		
+ 		hard = (TextView)findViewById(R.id.hard);
+		hard.setText(Activity_StartGame.category[2]);
+		hardscore = (TextView)findViewById(R.id.hardscore);
+		harddate = (TextView)findViewById(R.id.harddate);
+		
 		okbutton = (Button)findViewById(R.id.ok_highscore);
 		okbutton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -43,57 +58,34 @@ public class Activity_HighScore extends Activity {
 		
         try {
         	mEasyRecord = Easy_SingleRecord.get(this).getDetails();		
-			Easy_Record recordeasy = mEasyRecord.get(0);
-			easyscore = (TextView)findViewById(R.id.easyscore);
+			Easy_Record recordeasy = mEasyRecord.get(0);			
 			easyscore.setText(recordeasy.getScore());		 
-		    easydate = (TextView)findViewById(R.id.easydate); 
 		    easydate.setText(dateFormat.format(recordeasy.getDate())+"");
-		} catch (Exception e) {
-			
+		} catch (Exception e) {			
      		e.printStackTrace(); 	
-     		easy = (TextView)findViewById(R.id.easy);
-	    	easy.setText(Activity_StartGame.category[0]);
-		   	easyscore = (TextView)findViewById(R.id.easyscore);
-		   	easyscore.setText("norecord");
-		   	easydate = (TextView)findViewById(R.id.easydate);
+		   	easyscore.setText("norecord");		   	
 	   		easydate.setText("norecord");	
 		}
         
         try {
 			mNormalRecord = Normal_SingleRecord.get(this).getDetails();			
-			Normal_Record recordNormal = mNormalRecord.get(0);
-	    	normal = (TextView)findViewById(R.id.normal);
-			normal.setText(recordNormal.getCategory());
-			normalscore = (TextView)findViewById(R.id.normalscore);
-			normalscore.setText(recordNormal.getScore());		 
-			normaldate = (TextView)findViewById(R.id.normaldate); 
+			Normal_Record recordNormal = mNormalRecord.get(0);			
+			normalscore.setText(recordNormal.getScore());	 
 			normaldate.setText(dateFormat.format(recordNormal.getDate())+"");	
 		} catch (Exception e) {
-			e.printStackTrace(); 	
-			normal = (TextView)findViewById(R.id.normal);
-			normal.setText(Activity_StartGame.category[1]);
-	    	normalscore = (TextView)findViewById(R.id.normalscore);
+			e.printStackTrace();			
 	    	normalscore.setText("norecord");	     		 
-	     	normaldate = (TextView)findViewById(R.id.normaldate);
 	     	normaldate.setText("norecord");	   	    	
 		}
         
         try {
 			mHardRecord = Hard_SingleRecord.get(this).getDetails();			
-			Hard_Record recordHard = mHardRecord.get(0);
-			hard = (TextView)findViewById(R.id.hard);
-			hard.setText(recordHard.getCategory());
-	    	hardscore = (TextView)findViewById(R.id.hardscore);
-	    	hardscore.setText(recordHard.getScore());     		 
-	     	harddate = (TextView)findViewById(R.id.harddate);
+			Hard_Record recordHard = mHardRecord.get(0);	    	
+	    	hardscore.setText(recordHard.getScore());   		 
 	     	harddate.setText(dateFormat.format(recordHard.getDate())+"");	   	
 		} catch (Exception e) {			
      		e.printStackTrace();
-     		hard = (TextView)findViewById(R.id.hard);
-			hard.setText(Activity_StartGame.category[2]);
-     		hardscore = (TextView)findViewById(R.id.hardscore);
      		hardscore.setText("norecord");	     		 
-     		harddate = (TextView)findViewById(R.id.harddate);
      		harddate.setText("norecord");	     		
 		}
 	}	
