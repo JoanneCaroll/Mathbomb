@@ -2,7 +2,6 @@ package com.example.mathbomb;
 import java.util.Date;
 
 import android.content.Context;
-import android.util.Log;
 
 public class Hard_SaveScore {
 	private Context mHardAppContext;
@@ -20,10 +19,6 @@ public class Hard_SaveScore {
 		
 		Hard_SingleRecord.get(mHardAppContext).addDetails(mHardRecord);
 		Hard_SingleRecord.get(mHardAppContext).saveDetails();
-		
-		Log.i("SaveScore",score+"");	
-		Log.i("SaveScore",date+"");
-		Log.i("SaveSocre",category+"");
 	}
 	
 	

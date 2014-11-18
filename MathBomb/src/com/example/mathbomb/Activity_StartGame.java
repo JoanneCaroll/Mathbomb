@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,7 +20,6 @@ import android.widget.TextView;
 
 public class Activity_StartGame extends Activity {
 
-	private static final String TAG = "StartGameActivity";
 	private Date mDate;
 	private Easy_SaveScore mEasySaveScore;	
 	private Normal_SaveScore mNormalSaveScore;
@@ -228,7 +226,7 @@ public class Activity_StartGame extends Activity {
 
 			choice[a].setText(Integer.toString(answer));
 		} catch (Exception e) {
-			Log.e(TAG, "resetGame()");
+			e.printStackTrace();
 		}
 	}
 
@@ -242,7 +240,7 @@ public class Activity_StartGame extends Activity {
 				answer = randomInt1 - randomInt2;
 			}
 		} catch (Exception e) {
-			Log.e(TAG, "calculateAnswer()");
+			e.printStackTrace();
 		}
 	}
 
@@ -276,7 +274,7 @@ public class Activity_StartGame extends Activity {
 			}
 			resetGame();
 		} catch (Exception e) {
-			Log.e(TAG, "checkAnswer()");
+			e.printStackTrace();
 		}
 	}    
 
@@ -293,21 +291,17 @@ public class Activity_StartGame extends Activity {
 						int choices = getextra.getInt("choice");    	
 						if(choices==0)
 						{
-							mEasySaveScore.saveScore(score, mDate);   	
-							Log.i(TAG,"Score saved.");
+							mEasySaveScore.saveScore(score, mDate);
 						} else if (choices==1)
 						{
-							mNormalSaveScore.saveScore(score, category[choices], mDate);   	
-							Log.i(TAG,"Score saved.");
+							mNormalSaveScore.saveScore(score, category[choices], mDate);
 						} else if (choices==2)
 						{
-							mHardSaveScore.saveScore(score, category[choices], mDate);   	
-							Log.i(TAG,"Score saved.");
+							mHardSaveScore.saveScore(score, category[choices], mDate);
 						}		            		 
 
 					} catch (Exception e) {
 						e.printStackTrace();
-						Log.e(TAG,"Error saving score");
 					}
 					Intent i = new Intent(Activity_StartGame.this, Activity_MainMenu.class);
 					startActivity(i);
@@ -315,7 +309,7 @@ public class Activity_StartGame extends Activity {
 				}
 			}).setCancelable(false).show(); 
 		} catch (Exception e) {
-			Log.e(TAG, "gameOver()");
+			e.printStackTrace();
 		}
 	}
 
@@ -329,7 +323,7 @@ public class Activity_StartGame extends Activity {
 				randomInt2 = random.nextInt(max) + min;
 			}
 		} catch (Exception e) {
-			Log.e(TAG, "generateInput()");
+			e.printStackTrace();
 		}
 	}
 }

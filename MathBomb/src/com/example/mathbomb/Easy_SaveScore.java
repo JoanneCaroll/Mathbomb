@@ -2,7 +2,6 @@ package com.example.mathbomb;
 import java.util.Date;
 
 import android.content.Context;
-import android.util.Log;
 
 public class Easy_SaveScore {
 	private Context mEasyAppContext;
@@ -19,9 +18,6 @@ public class Easy_SaveScore {
 		
 		Easy_SingleRecord.get(mEasyAppContext).addDetails(mEasyRecord);
 		Easy_SingleRecord.get(mEasyAppContext).saveDetails();
-		
-		Log.i("SaveScore",score+"");	
-		Log.i("SaveScore",date+"");;
 	}
 	
 	
