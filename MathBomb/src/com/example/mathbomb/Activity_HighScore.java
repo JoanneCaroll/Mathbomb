@@ -26,6 +26,8 @@ public class Activity_HighScore extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_highscore);
 
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		
 		highscore = (TextView)findViewById(R.id.highscoreshow);
 		highscore.setText(R.string.highscoretitle); 
 
@@ -50,8 +52,7 @@ public class Activity_HighScore extends Activity {
 				finish();
 			}
 		});
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-
+		
 		ArrayList<Easy_Record> mEasyRecord = null;
 		ArrayList<Normal_Record> mNormalRecord = null;
 		ArrayList<Hard_Record> mHardRecord = null;

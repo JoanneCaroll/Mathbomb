@@ -31,7 +31,7 @@ public class Activity_StartGame extends Activity {
 	randomInt1, randomInt2, randomOpt,
 	randomResult1, randomResult2, randomResult3, randomResult4, 
 	score, answer;
-	private Button[] choice = new Button[4];
+	private Button[] randomResult = new Button[4];
 	private List<Integer> arrayList = new ArrayList<Integer>();
 	private String choiceText = "";
 	public static final String[] category = {
@@ -48,16 +48,16 @@ public class Activity_StartGame extends Activity {
 			switch (v.getId()) {
 			// set apart views
 			case (R.id.choice1):
-				choiceText = (String) choice[0].getText();
+				choiceText = (String) randomResult[0].getText();
 			break;
 			case (R.id.choice2):
-				choiceText = (String) choice[1].getText();
+				choiceText = (String) randomResult[1].getText();
 			break;
 			case (R.id.choice3):
-				choiceText = (String) choice[2].getText();
+				choiceText = (String) randomResult[2].getText();
 			break;
 			case (R.id.choice4):
-				choiceText = (String) choice[3].getText();
+				choiceText = (String) randomResult[3].getText();
 			break;
 			}
 			// checkanswer only when a button is clicked
@@ -78,16 +78,17 @@ public class Activity_StartGame extends Activity {
 		randomInteger2 = (TextView) findViewById(R.id.integer2);
 		randomOperator = (TextView) findViewById(R.id.operator);  
 
-		choice[0] = (Button) findViewById(R.id.choice1);
-		choice[1] = (Button) findViewById(R.id.choice2);
-		choice[2] = (Button) findViewById(R.id.choice3);
-		choice[3] = (Button) findViewById(R.id.choice4);	
+		randomResult[0] = (Button) findViewById(R.id.choice1);
+		randomResult[1] = (Button) findViewById(R.id.choice2);
+		randomResult[2] = (Button) findViewById(R.id.choice3);
+		randomResult[3] = (Button) findViewById(R.id.choice4);	
 
 		showScore = (TextView) findViewById(R.id.showscore);
 		showScore.setText(Integer.toString(score));
 
 		showResult = (TextView)findViewById(R.id.showresult);
 		showResult.setVisibility(View.INVISIBLE);
+		
 		Bundle getextra = getIntent().getExtras();
 		int choices = getextra.getInt("choice");    
 
@@ -133,10 +134,10 @@ public class Activity_StartGame extends Activity {
 
 		resetGame();
 
-		choice[0].setOnClickListener(choiceClicker);
-		choice[1].setOnClickListener(choiceClicker);
-		choice[2].setOnClickListener(choiceClicker);
-		choice[3].setOnClickListener(choiceClicker);
+		randomResult[0].setOnClickListener(choiceClicker);
+		randomResult[1].setOnClickListener(choiceClicker);
+		randomResult[2].setOnClickListener(choiceClicker);
+		randomResult[3].setOnClickListener(choiceClicker);
 
 		showTimeLeft = (TextView) findViewById(R.id.showtimeleft);
 
@@ -197,10 +198,10 @@ public class Activity_StartGame extends Activity {
 			arrayList.remove(index);
 		}
 
-		choice[0].setText(Integer.toString(randomResult1));
-		choice[1].setText(Integer.toString(randomResult2));
-		choice[2].setText(Integer.toString(randomResult3));
-		choice[3].setText(Integer.toString(randomResult4));
+		randomResult[0].setText(Integer.toString(randomResult1));
+		randomResult[1].setText(Integer.toString(randomResult2));
+		randomResult[2].setText(Integer.toString(randomResult3));
+		randomResult[3].setText(Integer.toString(randomResult4));
 	}
 
 	private void resetGame() {
@@ -224,7 +225,7 @@ public class Activity_StartGame extends Activity {
 			calculateAnswer();
 			generateUnique(answer);
 
-			choice[a].setText(Integer.toString(answer));
+			randomResult[a].setText(Integer.toString(answer));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
