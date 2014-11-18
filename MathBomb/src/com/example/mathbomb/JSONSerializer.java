@@ -1,6 +1,5 @@
 package com.example.mathbomb;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,26 +15,26 @@ import org.json.JSONTokener;
 
 import android.content.Context;
 
-public class Hard_JSONSerializer {
-    private Context mHardContext;
-    private String mHardFilename;
-    private int jsonArrayCount;
-    public Hard_JSONSerializer(Context cHard, String fnameHard) {
-        mHardContext = cHard;
-        mHardFilename = fnameHard;
+public class JSONSerializer {
+    private Context mNormalContext;
+    private String mNormalFilename;
+
+    public JSONSerializer(Context cNormal, String fnameNormal) {
+        mNormalContext = cNormal;
+        mNormalFilename = fnameNormal;
     }
 
-    public void saveDetails(ArrayList<Hard_Record> mRecord)
+    public void saveDetails(ArrayList<Normal_Record> mRecord)
             throws JSONException, IOException {
         JSONArray jsonArray = new JSONArray();
 
-        for (Hard_Record er : mRecord) {
-            jsonArray.put(er.toJsonObject());
+        for (Normal_Record nr : mRecord) {
+            jsonArray.put(nr.toJsonObject());
         }
 
         Writer writer = null;
 
-        OutputStream outputStream = mHardContext.openFileOutput(mHardFilename, Context.MODE_PRIVATE);
+        OutputStream outputStream = mNormalContext.openFileOutput(mNormalFilename, Context.MODE_PRIVATE);
         writer = new OutputStreamWriter(outputStream);
         writer.write(jsonArray.toString());
 
@@ -44,12 +43,12 @@ public class Hard_JSONSerializer {
         }
     }
 
-    public ArrayList<Hard_Record> loadDetails() throws Exception {
+    public ArrayList<Normal_Record> loadDetails() throws Exception {
 
-        ArrayList<Hard_Record> mRecord = new ArrayList<Hard_Record>();
+        ArrayList<Normal_Record> mRecord = new ArrayList<Normal_Record>();
         BufferedReader reader = null;
 
-        InputStream inputStream = mHardContext.openFileInput(mHardFilename);
+        InputStream inputStream = mNormalContext.openFileInput(mNormalFilename);
         reader = new BufferedReader(new InputStreamReader(inputStream));
 
         StringBuilder json_string = new StringBuilder();
@@ -61,9 +60,9 @@ public class Hard_JSONSerializer {
 
         JSONArray jsonArray = (JSONArray) new JSONTokener(
                 json_string.toString()).nextValue();
-        jsonArrayCount = jsonArray.length();
-        for (int i = 0; i < jsonArrayCount; i++) {
-            mRecord.add(new Hard_Record(jsonArray.getJSONObject(i)));
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            mRecord.add(new Normal_Record(jsonArray.getJSONObject(i)));
         }
 
         if (reader != null)

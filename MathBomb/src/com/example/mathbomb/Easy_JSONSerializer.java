@@ -18,7 +18,7 @@ import android.content.Context;
 public class Easy_JSONSerializer {
     private Context mEasyContext;
     private String mEasyFilename;
-
+    private int jsonArrayCount;
     public Easy_JSONSerializer(Context cEasy, String fnameEasy) {
         mEasyContext = cEasy;
         mEasyFilename = fnameEasy;
@@ -60,8 +60,8 @@ public class Easy_JSONSerializer {
 
         JSONArray jsonArray = (JSONArray) new JSONTokener(
                 json_string.toString()).nextValue();
-
-        for (int i = 0; i < jsonArray.length(); i++) {
+        jsonArrayCount = jsonArray.length();
+        for (int i = 0; i < jsonArrayCount; i++) {
             mRecord.add(new Easy_Record(jsonArray.getJSONObject(i)));
         }
 

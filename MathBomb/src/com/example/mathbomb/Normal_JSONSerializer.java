@@ -18,7 +18,7 @@ import android.content.Context;
 public class Normal_JSONSerializer {
     private Context mNormalContext;
     private String mNormalFilename;
-
+    private int jsonArrayCount;
     public Normal_JSONSerializer(Context cNormal, String fnameNormal) {
         mNormalContext = cNormal;
         mNormalFilename = fnameNormal;
@@ -60,7 +60,7 @@ public class Normal_JSONSerializer {
 
         JSONArray jsonArray = (JSONArray) new JSONTokener(
                 json_string.toString()).nextValue();
-
+        jsonArrayCount = jsonArray.length();
         for (int i = 0; i < jsonArray.length(); i++) {
             mRecord.add(new Normal_Record(jsonArray.getJSONObject(i)));
         }
