@@ -37,7 +37,6 @@ public class Activity_StartGame extends Activity {
 	public static final String[] category = {
 		"Easy", "Normal", "Hard",
 	};
-	//    private SingleRecord record;
 	private Random random = new Random();
 
 	// create reusable listener instead of anonymous types
@@ -97,7 +96,7 @@ public class Activity_StartGame extends Activity {
 		ArrayList<Hard_Record> mHardRecord = null;		
 
 		try {				
-			mEasyRecord = Easy_SingleRecord.get(this).getDetails();   							   	
+			mEasyRecord = Easy_SingleRecord.get(this).getDetails();
 			Easy_Record easyrecord = mEasyRecord.get(0);	
 			if(choices == 0) {	
 				showHighScore = (TextView)findViewById(R.id.showhighscore);
@@ -130,8 +129,6 @@ public class Activity_StartGame extends Activity {
 			e.printStackTrace(); 	
 		}
 
-
-
 		resetGame();
 
 		randomResult[0].setOnClickListener(choiceClicker);
@@ -143,13 +140,12 @@ public class Activity_StartGame extends Activity {
 
 		new CountDownTimer(11000, 1000) {
 			public void onTick(long millisUntilFinished) {
-				showTimeLeft.setText(millisUntilFinished / 1000 + " sec(s)");               
+				showTimeLeft.setText(millisUntilFinished / 1000 + " sec(s)");
 			}
 			public void onFinish() {
 				gameOver();
 			}
 		}.start();  
-
 	}
 
 	public void generateUnique(int answer) {    	
@@ -205,34 +201,25 @@ public class Activity_StartGame extends Activity {
 	}
 
 	private void resetGame() {
-		try {
-			final int a = random.nextInt(3);	        
-			randomOpt = random.nextInt(2) + 1;
-			Bundle getextra = getIntent().getExtras();
-			int resetchoice = getextra.getInt("choice");
-
+		final int a = random.nextInt(3);	        
+		randomOpt = random.nextInt(2) + 1;
+		Bundle getextra = getIntent().getExtras();
+		int resetchoice = getextra.getInt("choice");
 			if(resetchoice == 0) {
 				generateInput(1,5);
 			} else if(resetchoice == 1) {
 				generateInput(1,20);
 			} else if(resetchoice == 2) {
 				generateInput(10,10);
-			}
-
+		}
 			randomInteger1.setText(Integer.toString(randomInt1));
 			randomInteger2.setText(Integer.toString(randomInt2));
-
 			calculateAnswer();
 			generateUnique(answer);
-
 			randomResult[a].setText(Integer.toString(answer));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	private void calculateAnswer() {
-		try {
 			if (randomOpt == 1) {
 				randomOperator.setText("+");
 				answer = randomInt1 + randomInt2;
@@ -240,43 +227,35 @@ public class Activity_StartGame extends Activity {
 				randomOperator.setText("-");
 				answer = randomInt1 - randomInt2;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	private void checkAnswer() {
-		try {
-			if (choiceText == Integer.toString(answer)) {
-				score++;
-				showScore.setText(String.valueOf(score));
-				new CountDownTimer(1000, 500) {
-					public void onTick(long millisUntilFinished) {
-						showResult.setVisibility(View.VISIBLE);
-						showResult.setTextColor(Color.GREEN);
-						showResult.setText("Correct!");              
-					}
-					public void onFinish() {
-						showResult.setVisibility(View.INVISIBLE);
-					}
-				}.start();           
-
-			} else {
-				new CountDownTimer(1000, 500) {
-					public void onTick(long millisUntilFinished) {
-						showResult.setVisibility(View.VISIBLE);
-						showResult.setTextColor(Color.RED);
-						showResult.setText("Wrong!");              
-					}
-					public void onFinish() {
-						showResult.setVisibility(View.INVISIBLE);
-					}
-				}.start();
-			}
-			resetGame();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (choiceText == Integer.toString(answer)) {
+			score++;
+			showScore.setText(String.valueOf(score));
+			new CountDownTimer(1000, 500) {
+				public void onTick(long millisUntilFinished) {
+					showResult.setVisibility(View.VISIBLE);
+					showResult.setTextColor(Color.GREEN);
+					showResult.setText("Correct!");
+				}
+				public void onFinish() {
+					showResult.setVisibility(View.INVISIBLE);
+				}
+			}.start();
+		} else {
+			new CountDownTimer(1000, 500) {
+				public void onTick(long millisUntilFinished) {
+					showResult.setVisibility(View.VISIBLE);
+					showResult.setTextColor(Color.RED);
+					showResult.setText("Wrong!");              
+				}
+				public void onFinish() {
+					showResult.setVisibility(View.INVISIBLE);
+				}
+			}.start();
 		}
+		resetGame();
 	}    
 
 	private void gameOver() {
@@ -315,16 +294,12 @@ public class Activity_StartGame extends Activity {
 	}
 
 	private void generateInput(int min, int max) {
-		try {
+		randomInt1 = random.nextInt(max) + min;
+		randomInt2 = random.nextInt(max) + min;		   
+		// avoid negative results
+		while (randomInt2 > randomInt1) {
 			randomInt1 = random.nextInt(max) + min;
-			randomInt2 = random.nextInt(max) + min;		   
-			// avoid negative results
-			while (randomInt2 > randomInt1) {
-				randomInt1 = random.nextInt(max) + min;
-				randomInt2 = random.nextInt(max) + min;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			randomInt2 = random.nextInt(max) + min;
 		}
 	}
 }
