@@ -16,58 +16,58 @@ import org.json.JSONTokener;
 import android.content.Context;
 
 public class Normal_JSONSerializer {
-	private Context mNormalContext;
-	private String mNormalFilename;
+    private Context mNormalContext;
+    private String mNormalFilename;
 
-	public Normal_JSONSerializer(Context cNormal, String fnameNormal) {
-		mNormalContext = cNormal;
-		mNormalFilename = fnameNormal;
-	}
+    public Normal_JSONSerializer(Context cNormal, String fnameNormal) {
+        mNormalContext = cNormal;
+        mNormalFilename = fnameNormal;
+    }
 
-	public void saveDetails(ArrayList<Normal_Record> mRecord)
-			throws JSONException, IOException {
-		JSONArray jsonArray = new JSONArray();
+    public void saveDetails(ArrayList<Normal_Record> mRecord)
+            throws JSONException, IOException {
+        JSONArray jsonArray = new JSONArray();
 
-		for (Normal_Record nr : mRecord) {
-			jsonArray.put(nr.toJsonObject());
-		}
+        for (Normal_Record nr : mRecord) {
+            jsonArray.put(nr.toJsonObject());
+        }
 
-		Writer writer = null;
+        Writer writer = null;
 
-		OutputStream outputStream = mNormalContext.openFileOutput(mNormalFilename, Context.MODE_PRIVATE);
-		writer = new OutputStreamWriter(outputStream);
-		writer.write(jsonArray.toString());
+        OutputStream outputStream = mNormalContext.openFileOutput(mNormalFilename, Context.MODE_PRIVATE);
+        writer = new OutputStreamWriter(outputStream);
+        writer.write(jsonArray.toString());
 
-		if (writer != null) {
-			writer.close();
-		}
-	}
+        if (writer != null) {
+            writer.close();
+        }
+    }
 
-	public ArrayList<Normal_Record> loadDetails() throws Exception {
+    public ArrayList<Normal_Record> loadDetails() throws Exception {
 
-		ArrayList<Normal_Record> mRecord = new ArrayList<Normal_Record>();
-		BufferedReader reader = null;
+        ArrayList<Normal_Record> mRecord = new ArrayList<Normal_Record>();
+        BufferedReader reader = null;
 
-		InputStream inputStream = mNormalContext.openFileInput(mNormalFilename);
-		reader = new BufferedReader(new InputStreamReader(inputStream));
+        InputStream inputStream = mNormalContext.openFileInput(mNormalFilename);
+        reader = new BufferedReader(new InputStreamReader(inputStream));
 
-		StringBuilder json_string = new StringBuilder();
-		String line = null;
+        StringBuilder json_string = new StringBuilder();
+        String line = null;
 
-		while ((line = reader.readLine()) != null) {
-			json_string.append(line);
-		}
+        while ((line = reader.readLine()) != null) {
+            json_string.append(line);
+        }
 
-		JSONArray jsonArray = (JSONArray) new JSONTokener(
-				json_string.toString()).nextValue();
+        JSONArray jsonArray = (JSONArray) new JSONTokener(
+                json_string.toString()).nextValue();
 
-		for (int i = 0; i < jsonArray.length(); i++) {
-			mRecord.add(new Normal_Record(jsonArray.getJSONObject(i)));
-		}
+        for (int i = 0; i < jsonArray.length(); i++) {
+            mRecord.add(new Normal_Record(jsonArray.getJSONObject(i)));
+        }
 
-		if (reader != null)
-			reader.close();
+        if (reader != null)
+            reader.close();
 
-		return mRecord;
-	}
+        return mRecord;
+    }
 }
