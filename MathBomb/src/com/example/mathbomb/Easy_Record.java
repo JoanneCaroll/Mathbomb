@@ -11,7 +11,7 @@ public class Easy_Record implements Serializable, Comparable<Easy_Record>  {
 
     private static final String JSON_EasySCORE = "score";
     private static final String JSON_EasyDATE = "date";
-
+    
     private String mEasyScore;
     private Date mEasyDate;
 

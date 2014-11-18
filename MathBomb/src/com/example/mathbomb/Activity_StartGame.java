@@ -21,6 +21,7 @@ import android.widget.TextView;
 public class Activity_StartGame extends Activity {
 
     private Date mDate;
+    public static final String easy = "easy";
     private Easy_SaveScore mEasySaveScore;	
     private Normal_SaveScore mNormalSaveScore;
     private Hard_SaveScore mHardSaveScore;
@@ -37,6 +38,8 @@ public class Activity_StartGame extends Activity {
     public static final String[] category = {
         "Easy", "Normal", "Hard",
     };
+    String alertText = "";
+    int textColor;
     private Random random = new Random();
 
     // create reusable listener instead of anonymous types
@@ -230,31 +233,28 @@ public class Activity_StartGame extends Activity {
     }
 
     private void checkAnswer() {
+        
         if (choiceText == Integer.toString(answer)) {
             score++;
             showScore.setText(String.valueOf(score));
-            new CountDownTimer(1000, 500) {
-                public void onTick(long millisUntilFinished) {
-                    showResult.setVisibility(View.VISIBLE);
-                    showResult.setTextColor(Color.GREEN);
-                    showResult.setText("Correct!");
-                }
-                public void onFinish() {
-                    showResult.setVisibility(View.INVISIBLE);
-                }
-            }.start();
+            alertText = "Correct!";
+            textColor = Color.GREEN;
         } else {
-            new CountDownTimer(1000, 500) {
-                public void onTick(long millisUntilFinished) {
-                    showResult.setVisibility(View.VISIBLE);
-                    showResult.setTextColor(Color.RED);
-                    showResult.setText("Wrong!");              
-                }
-                public void onFinish() {
-                    showResult.setVisibility(View.INVISIBLE);
-                }
-            }.start();
+            alertText = "Wrong!";
+            textColor = Color.RED;
         }
+        
+        new CountDownTimer(1000, 500) {
+            public void onTick(long millisUntilFinished) {
+                showResult.setVisibility(View.VISIBLE);
+                showResult.setTextColor(textColor);
+                showResult.setText(alertText);
+            }
+            public void onFinish() {
+                showResult.setVisibility(View.INVISIBLE);
+            }
+        }.start();
+        
         resetGame();
     }    
 
