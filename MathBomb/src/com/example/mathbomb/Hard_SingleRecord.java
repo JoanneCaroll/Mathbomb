@@ -69,5 +69,5 @@ public class Hard_SingleRecord {
 		}
 		return tempRecord2;
 	}
-	
+
 }

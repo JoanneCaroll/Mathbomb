@@ -10,18 +10,17 @@ public class Normal_SaveScore {
 	public Normal_SaveScore(Context appNormalContext) {
 		this.mNormalAppContext = appNormalContext;
 	}
-	
-	public void saveScore(int score, String category, Date date) throws Exception {
+
+	public void saveScore(int score, Date date) throws Exception {
 		Normal_Record mNormalRecord = new Normal_Record();
-		
+
 		mNormalRecord.setScore(Integer.toString(score));
-		mNormalRecord.setCategory(category.toString());
 		mNormalRecord.setDate(date);
-		
+
 		Normal_SingleRecord.get(mNormalAppContext).addDetails(mNormalRecord);
 		Normal_SingleRecord.get(mNormalAppContext).saveDetails();
-		
+
 	}
-	
-	
+
+
 }

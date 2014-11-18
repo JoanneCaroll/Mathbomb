@@ -8,12 +8,11 @@ import org.json.JSONObject;
 
 @SuppressWarnings("serial")
 public class Normal_Record implements Serializable, Comparable<Normal_Record>  {
-	
+
 	private static final String JSON_NormalSCORE = "score";
 	private static final String JSON_NormalDATE = "date";
-	private static final String JSON_NormalCATEGORY = "category";
-	
-	private String mNormalScore, mNormalCategory;
+
+	private String mNormalScore;
 	private Date mNormalDate;
 
 	public Normal_Record() {
@@ -22,7 +21,6 @@ public class Normal_Record implements Serializable, Comparable<Normal_Record>  {
 
 	public Normal_Record(JSONObject jsonObject) throws JSONException {
 		mNormalScore = jsonObject.getString(JSON_NormalSCORE);
-		mNormalCategory = jsonObject.getString(JSON_NormalCATEGORY);
 		mNormalDate = new Date(jsonObject.getLong(JSON_NormalDATE));
 	}
 
@@ -31,8 +29,7 @@ public class Normal_Record implements Serializable, Comparable<Normal_Record>  {
 		JSONObject jsonObject = new JSONObject();
 
 		jsonObject.put(JSON_NormalSCORE, mNormalScore);
-		jsonObject.put(JSON_NormalCATEGORY, mNormalCategory);
-        jsonObject.put(JSON_NormalDATE, mNormalDate.getTime());
+		jsonObject.put(JSON_NormalDATE, mNormalDate.getTime());
 
 		return jsonObject;
 	}
@@ -43,14 +40,6 @@ public class Normal_Record implements Serializable, Comparable<Normal_Record>  {
 
 	public void setScore(String score) {
 		mNormalScore = score;
-	}
-	
-	public String getCategory() {
-		return mNormalCategory;
-	}
-
-	public void setCategory(String category) {
-		mNormalCategory = category;
 	}
 
 	public Date getDate() {

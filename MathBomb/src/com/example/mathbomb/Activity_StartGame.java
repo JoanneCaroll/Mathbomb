@@ -294,10 +294,10 @@ public class Activity_StartGame extends Activity {
 							mEasySaveScore.saveScore(score, mDate);
 						} else if (choices==1)
 						{
-							mNormalSaveScore.saveScore(score, category[choices], mDate);
+							mNormalSaveScore.saveScore(score, mDate);
 						} else if (choices==2)
 						{
-							mHardSaveScore.saveScore(score, category[choices], mDate);
+							mHardSaveScore.saveScore(score, mDate);
 						}		            		 
 
 					} catch (Exception e) {

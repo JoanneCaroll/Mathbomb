@@ -8,12 +8,11 @@ import org.json.JSONObject;
 
 @SuppressWarnings("serial")
 public class Hard_Record implements Serializable, Comparable<Hard_Record>  {
-	
+
 	private static final String JSON_HardSCORE = "score";
 	private static final String JSON_HardDATE = "date";
-	private static final String JSON_HardCATEGORY = "category";
-	
-	private String mHardScore, mHardCategory;
+
+	private String mHardScore;
 	private Date mHardDate;
 
 	public Hard_Record() {
@@ -22,7 +21,6 @@ public class Hard_Record implements Serializable, Comparable<Hard_Record>  {
 
 	public Hard_Record(JSONObject jsonObject) throws JSONException {
 		mHardScore = jsonObject.getString(JSON_HardSCORE);
-		mHardCategory = jsonObject.getString(JSON_HardCATEGORY);
 		mHardDate = new Date(jsonObject.getLong(JSON_HardDATE));
 	}
 
@@ -31,8 +29,7 @@ public class Hard_Record implements Serializable, Comparable<Hard_Record>  {
 		JSONObject jsonObject = new JSONObject();
 
 		jsonObject.put(JSON_HardSCORE, mHardScore);
-		jsonObject.put(JSON_HardCATEGORY, mHardCategory);
-        jsonObject.put(JSON_HardDATE, mHardDate.getTime());
+		jsonObject.put(JSON_HardDATE, mHardDate.getTime());
 
 		return jsonObject;
 	}
@@ -43,14 +40,6 @@ public class Hard_Record implements Serializable, Comparable<Hard_Record>  {
 
 	public void setScore(String score) {
 		mHardScore = score;
-	}
-	
-	public String getCategory() {
-		return mHardCategory;
-	}
-
-	public void setCategory(String category) {
-		mHardCategory = category;
 	}
 
 	public Date getDate() {

@@ -9,16 +9,16 @@ public class Easy_SaveScore {
 	public Easy_SaveScore(Context appEasyContext) {
 		this.mEasyAppContext = appEasyContext;
 	}
-	
+
 	public void saveScore(int score, Date date) throws Exception {
 		Easy_Record mEasyRecord = new Easy_Record();
-		
+
 		mEasyRecord.setScore(Integer.toString(score));
 		mEasyRecord.setDate(date);
-		
+
 		Easy_SingleRecord.get(mEasyAppContext).addDetails(mEasyRecord);
 		Easy_SingleRecord.get(mEasyAppContext).saveDetails();
 	}
-	
-	
+
+
 }

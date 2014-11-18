@@ -23,7 +23,7 @@ public class Easy_JSONSerializer {
 		mEasyContext = cEasy;
 		mEasyFilename = fnameEasy;
 	}
-   
+
 	public void saveDetails(ArrayList<Easy_Record> mRecord)
 			throws JSONException, IOException {
 		JSONArray jsonArray = new JSONArray();

@@ -70,5 +70,5 @@ public class Normal_SingleRecord {
 		}
 		return tempRecord2;
 	}
-	
+
 }

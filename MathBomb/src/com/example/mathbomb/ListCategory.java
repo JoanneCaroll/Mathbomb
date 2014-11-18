@@ -19,7 +19,7 @@ public class ListCategory extends ArrayAdapter<String>{
 		this.category = category;
 		this.image = image;
 	}
-	
+
 	@SuppressLint({ "InflateParams", "ViewHolder" }) 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {

@@ -23,7 +23,7 @@ public class Normal_JSONSerializer {
 		mNormalContext = cNormal;
 		mNormalFilename = fnameNormal;
 	}
-   
+
 	public void saveDetails(ArrayList<Normal_Record> mRecord)
 			throws JSONException, IOException {
 		JSONArray jsonArray = new JSONArray();

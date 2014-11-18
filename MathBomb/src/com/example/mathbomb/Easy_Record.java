@@ -8,10 +8,10 @@ import org.json.JSONObject;
 
 @SuppressWarnings("serial")
 public class Easy_Record implements Serializable, Comparable<Easy_Record>  {
-	
+
 	private static final String JSON_EasySCORE = "score";
 	private static final String JSON_EasyDATE = "date";
-	
+
 	private String mEasyScore;
 	private Date mEasyDate;
 
@@ -29,7 +29,7 @@ public class Easy_Record implements Serializable, Comparable<Easy_Record>  {
 		JSONObject jsonObject = new JSONObject();
 
 		jsonObject.put(JSON_EasySCORE, mEasyScore);
-        jsonObject.put(JSON_EasyDATE, mEasyDate.getTime());
+		jsonObject.put(JSON_EasyDATE, mEasyDate.getTime());
 
 		return jsonObject;
 	}

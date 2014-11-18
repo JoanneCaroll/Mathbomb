@@ -9,17 +9,16 @@ public class Hard_SaveScore {
 	public Hard_SaveScore(Context appHardContext) {
 		this.mHardAppContext = appHardContext;
 	}
-	
-	public void saveScore(int score, String category, Date date) throws Exception {
+
+	public void saveScore(int score, Date date) throws Exception {
 		Hard_Record mHardRecord = new Hard_Record();
-		
+
 		mHardRecord.setScore(Integer.toString(score));
-		mHardRecord.setCategory(category.toString());
 		mHardRecord.setDate(date);
-		
+
 		Hard_SingleRecord.get(mHardAppContext).addDetails(mHardRecord);
 		Hard_SingleRecord.get(mHardAppContext).saveDetails();
 	}
-	
-	
+
+
 }

@@ -24,7 +24,7 @@ public class Hard_JSONSerializer {
 		mHardContext = cHard;
 		mHardFilename = fnameHard;
 	}
-   
+
 	public void saveDetails(ArrayList<Hard_Record> mRecord)
 			throws JSONException, IOException {
 		JSONArray jsonArray = new JSONArray();
