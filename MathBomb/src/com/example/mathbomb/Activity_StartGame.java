@@ -30,7 +30,8 @@ public class Activity_StartGame extends Activity {
     txtfirstRandomNumber, txtsecondRandomNumber, randomOperator;
     private int 
     firstRandomInteger, secondRandomInteger, randomOpt,
-    randomResult1, randomResult2, randomResult3, randomResult4, 
+    randomResult1, 
+    randomResult2, randomResult3, randomResult4, 
     score, answer;
     private Button[] randomResult = new Button[4];
     private List<Integer> arrayList = new ArrayList<Integer>();
@@ -180,27 +181,9 @@ public class Activity_StartGame extends Activity {
 
         for (int i = 0; i < 4; i++) {
             int index = new Random().nextInt(arrayList.size());
-            switch (i) {
-            case 0:
-                randomResult1 = (Integer) arrayList.get(index);
-                break;
-            case 1:
-                randomResult2 = (Integer) arrayList.get(index);
-                break;
-            case 2:
-                randomResult3 = (Integer) arrayList.get(index);
-                break;
-            case 3:
-                randomResult4 = (Integer) arrayList.get(index);
-                break;
-            }
+            randomResult[i].setText(Integer.toString((Integer) arrayList.get(index)));
             arrayList.remove(index);
         }
-
-        randomResult[0].setText(Integer.toString(randomResult1));
-        randomResult[1].setText(Integer.toString(randomResult2));
-        randomResult[2].setText(Integer.toString(randomResult3));
-        randomResult[3].setText(Integer.toString(randomResult4));
     }
 
     private void resetGame() {
