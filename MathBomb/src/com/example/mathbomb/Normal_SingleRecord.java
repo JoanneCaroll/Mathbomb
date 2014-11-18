@@ -45,9 +45,8 @@ public class Normal_SingleRecord {
         saveDetails();
     }
 
-    public boolean saveDetails() throws JSONException, IOException {
+    public void saveDetails() throws JSONException, IOException {
         mNormalJsonSerializer.saveDetails(mNormalRecord);
-        return true;
     }
 
     // Sorting Scores in descending order

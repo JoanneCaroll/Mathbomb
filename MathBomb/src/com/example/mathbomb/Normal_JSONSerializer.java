@@ -61,7 +61,7 @@ public class Normal_JSONSerializer {
         JSONArray jsonArray = (JSONArray) new JSONTokener(
                 json_string.toString()).nextValue();
         jsonArrayCount = jsonArray.length();
-        for (int i = 0; i < jsonArray.length(); i++) {
+        for (int i = 0; i < jsonArrayCount; i++) {
             mRecord.add(new Normal_Record(jsonArray.getJSONObject(i)));
         }
 

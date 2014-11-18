@@ -44,9 +44,8 @@ public class Hard_SingleRecord {
         saveDetails();
     }
 
-    public boolean saveDetails() throws JSONException, IOException {
+    public void saveDetails() throws JSONException, IOException {
         mHardJsonSerializer.saveDetails(mHardRecord);
-        return true;
     }
 
     // Sorting Scores in descending order

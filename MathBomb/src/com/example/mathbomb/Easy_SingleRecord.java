@@ -44,9 +44,8 @@ public class Easy_SingleRecord {
         saveDetails();
     }
 
-    public boolean saveDetails() throws JSONException, IOException {
+    public void saveDetails() throws JSONException, IOException {
         mEasyJsonSerializer.saveDetails(mEasyRecord);
-        return true;
     }
 
     // Sorting Scores in descending order
