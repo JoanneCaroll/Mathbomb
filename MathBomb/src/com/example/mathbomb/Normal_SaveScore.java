@@ -21,6 +21,4 @@ public class Normal_SaveScore {
 		Normal_SingleRecord.get(mNormalAppContext).saveDetails();
 
 	}
-
-
 }

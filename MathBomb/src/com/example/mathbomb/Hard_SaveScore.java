@@ -19,6 +19,4 @@ public class Hard_SaveScore {
 		Hard_SingleRecord.get(mHardAppContext).addDetails(mHardRecord);
 		Hard_SingleRecord.get(mHardAppContext).saveDetails();
 	}
-
-
 }

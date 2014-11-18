@@ -52,42 +52,42 @@ public class Activity_HighScore extends Activity {
 				finish();
 			}
 		});
-		
+
 		ArrayList<Easy_Record> mEasyRecord = null;
 		ArrayList<Normal_Record> mNormalRecord = null;
 		ArrayList<Hard_Record> mHardRecord = null;
 
 		try {
-			mEasyRecord = Easy_SingleRecord.get(this).getDetails();		
-			Easy_Record recordeasy = mEasyRecord.get(0);			
-			easyscore.setText(recordeasy.getScore());		 
+			mEasyRecord = Easy_SingleRecord.get(this).getDetails();
+			Easy_Record recordeasy = mEasyRecord.get(0);
+			easyscore.setText(recordeasy.getScore());
 			easydate.setText(dateFormat.format(recordeasy.getDate())+"");
-		} catch (Exception e) {			
-			e.printStackTrace(); 	
-			easyscore.setText("norecord");		   	
-			easydate.setText("norecord");	
-		}
-
-		try {
-			mNormalRecord = Normal_SingleRecord.get(this).getDetails();			
-			Normal_Record recordNormal = mNormalRecord.get(0);			
-			normalscore.setText(recordNormal.getScore());	 
-			normaldate.setText(dateFormat.format(recordNormal.getDate())+"");	
-		} catch (Exception e) {
-			e.printStackTrace();			
-			normalscore.setText("norecord");	     		 
-			normaldate.setText("norecord");	   	    	
-		}
-
-		try {
-			mHardRecord = Hard_SingleRecord.get(this).getDetails();			
-			Hard_Record recordHard = mHardRecord.get(0);	    	
-			hardscore.setText(recordHard.getScore());   		 
-			harddate.setText(dateFormat.format(recordHard.getDate())+"");	   	
-		} catch (Exception e) {			
+		} catch (Exception e) {	
 			e.printStackTrace();
-			hardscore.setText("norecord");	     		 
-			harddate.setText("norecord");	     		
+			easyscore.setText("norecord");
+			easydate.setText("norecord");
 		}
-	}	
+
+		try {
+			mNormalRecord = Normal_SingleRecord.get(this).getDetails();
+			Normal_Record recordNormal = mNormalRecord.get(0);
+			normalscore.setText(recordNormal.getScore());
+			normaldate.setText(dateFormat.format(recordNormal.getDate())+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+			normalscore.setText("norecord");
+			normaldate.setText("norecord");
+		}
+
+		try {
+			mHardRecord = Hard_SingleRecord.get(this).getDetails();
+			Hard_Record recordHard = mHardRecord.get(0);
+			hardscore.setText(recordHard.getScore());
+			harddate.setText(dateFormat.format(recordHard.getDate())+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+			hardscore.setText("norecord");
+			harddate.setText("norecord");
+		}
+	}
 }

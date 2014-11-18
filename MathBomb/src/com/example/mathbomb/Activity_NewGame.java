@@ -24,11 +24,11 @@ public class Activity_NewGame extends Activity {
 	};
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {	
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_listcategory);
 		ListCategory adapter = new
-				ListCategory(Activity_NewGame.this, category, image);
+		ListCategory(Activity_NewGame.this, category, image);
 		listcategory=(ListView)findViewById(R.id.list_category);
 		listcategory.setAdapter(adapter);
 		listcategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {

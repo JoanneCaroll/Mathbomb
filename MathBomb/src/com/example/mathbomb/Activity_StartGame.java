@@ -26,7 +26,7 @@ public class Activity_StartGame extends Activity {
 	private Hard_SaveScore mHardSaveScore;
 	private TextView 
 	showScore, showHighScore, showTimeLeft, showResult,
-	randomInteger1, randomInteger2, randomOperator;    
+	randomInteger1, randomInteger2, randomOperator;
 	private int 
 	randomInt1, randomInt2, randomOpt,
 	randomResult1, randomResult2, randomResult3, randomResult4, 
@@ -89,44 +89,44 @@ public class Activity_StartGame extends Activity {
 		showResult.setVisibility(View.INVISIBLE);
 		
 		Bundle getextra = getIntent().getExtras();
-		int choices = getextra.getInt("choice");    
+		int choices = getextra.getInt("choice");
 
-		ArrayList<Easy_Record> mEasyRecord = null;		
-		ArrayList<Normal_Record> mNormalRecord = null;	
-		ArrayList<Hard_Record> mHardRecord = null;		
+		ArrayList<Easy_Record> mEasyRecord = null;
+		ArrayList<Normal_Record> mNormalRecord = null;
+		ArrayList<Hard_Record> mHardRecord = null;
 
-		try {				
+		try {
 			mEasyRecord = Easy_SingleRecord.get(this).getDetails();
 			Easy_Record easyrecord = mEasyRecord.get(0);	
-			if(choices == 0) {	
+			if(choices == 0) {
 				showHighScore = (TextView)findViewById(R.id.showhighscore);
-				showHighScore.setText(easyrecord.getScore());										
-			}		
+				showHighScore.setText(easyrecord.getScore());
+			}
 		} catch (Exception e) {
-			e.printStackTrace(); 	
+			e.printStackTrace();
 		}
 
-		try {					
-			mNormalRecord = Normal_SingleRecord.get(this).getDetails();   							   	
-			Normal_Record normalrecord = mNormalRecord.get(0);	
+		try {
+			mNormalRecord = Normal_SingleRecord.get(this).getDetails();
+			Normal_Record normalrecord = mNormalRecord.get(0);
 			if(choices == 1) {
 				showHighScore = (TextView)findViewById(R.id.showhighscore);
-				showHighScore.setText(normalrecord.getScore());										
-			}							
+				showHighScore.setText(normalrecord.getScore());
+			}
 		} catch (Exception e) {
-			e.printStackTrace(); 	
+			e.printStackTrace();
 		}
 
-		try {				
-			mHardRecord = Hard_SingleRecord.get(this).getDetails();   							   	
-			Hard_Record hardrecord = mHardRecord.get(0);				
-			if(choices == 2) {	
+		try {
+			mHardRecord = Hard_SingleRecord.get(this).getDetails();
+			Hard_Record hardrecord = mHardRecord.get(0);
+			if(choices == 2) {
 				showHighScore = (TextView)findViewById(R.id.showhighscore);
 				showHighScore.setText(hardrecord.getScore());
-			} 					
+			}
 
 		} catch (Exception e) {
-			e.printStackTrace(); 	
+			e.printStackTrace();
 		}
 
 		resetGame();
@@ -145,10 +145,10 @@ public class Activity_StartGame extends Activity {
 			public void onFinish() {
 				gameOver();
 			}
-		}.start();  
+		}.start();
 	}
 
-	public void generateUnique(int answer) {    	
+	public void generateUnique(int answer) {
 		//clear arraylist
 		arrayList.clear();
 
@@ -201,7 +201,7 @@ public class Activity_StartGame extends Activity {
 	}
 
 	private void resetGame() {
-		final int a = random.nextInt(3);	        
+		final int a = random.nextInt(3);
 		randomOpt = random.nextInt(2) + 1;
 		Bundle getextra = getIntent().getExtras();
 		int resetchoice = getextra.getInt("choice");
@@ -278,8 +278,7 @@ public class Activity_StartGame extends Activity {
 						} else if (choices==2)
 						{
 							mHardSaveScore.saveScore(score, mDate);
-						}		            		 
-
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -295,7 +294,7 @@ public class Activity_StartGame extends Activity {
 
 	private void generateInput(int min, int max) {
 		randomInt1 = random.nextInt(max) + min;
-		randomInt2 = random.nextInt(max) + min;		   
+		randomInt2 = random.nextInt(max) + min;
 		// avoid negative results
 		while (randomInt2 > randomInt1) {
 			randomInt1 = random.nextInt(max) + min;

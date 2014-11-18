@@ -19,6 +19,4 @@ public class Easy_SaveScore {
 		Easy_SingleRecord.get(mEasyAppContext).addDetails(mEasyRecord);
 		Easy_SingleRecord.get(mEasyAppContext).saveDetails();
 	}
-
-
 }

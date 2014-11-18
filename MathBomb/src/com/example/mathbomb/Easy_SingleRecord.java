@@ -69,5 +69,4 @@ public class Easy_SingleRecord {
 		}
 		return tempRecord2;
 	}
-
 }
