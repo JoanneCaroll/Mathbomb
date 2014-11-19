@@ -148,7 +148,7 @@ public class Activity_StartGame extends Activity {
         return super.onKeyDown(keyCode, event);
     }
     
-    public void generateUniqueResults(int answer) {
+    public void generateUniqueChoices(int answer) {
         //clear arraylist
         arrayList.clear();
 
@@ -199,7 +199,7 @@ public class Activity_StartGame extends Activity {
         txtsecondRandomNumber.setText(Integer.toString(secondRandomInteger));
         
         calculateAnswer();
-        generateUniqueResults(answer);
+        generateUniqueChoices(answer);
         
         btnrandomResult[a].setText(Integer.toString(answer));
     }
