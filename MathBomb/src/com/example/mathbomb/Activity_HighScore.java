@@ -21,14 +21,14 @@ public class Activity_HighScore extends Activity {
     private String highscoreshow = "";
 //    private ArrayList<Normal_Record> mEasyRecord, mNormalRecord, mHardRecord;
     private Button okbutton;
-    @SuppressLint({ "SimpleDateFormat", "CutPasteId" })
+    @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        
 
         highscore = (TextView)findViewById(R.id.highscoreshow);
         highscore.setText(R.string.highscoretitle); 
@@ -55,44 +55,9 @@ public class Activity_HighScore extends Activity {
             }
         });
 
-        try {
-            SingleRecord easySingleRecord = new SingleRecord(this, SingleRecord.EASYFILENAME);
-            easySingleRecord.getDetails();
-            Record normalrecord = easySingleRecord.highScores().get(0);
-            highscoreshow = normalrecord.getScore();
-            easyscore.setText(highscoreshow);
-            easydate.setText(dateFormat.format(normalrecord.getDate())+"");
-        } catch (Exception e) {	
-            e.printStackTrace();
-            easyscore.setText("norecord");
-            easydate.setText("norecord");
-        }
-
-        try {
-            SingleRecord normalSingleRecord = new SingleRecord(this, SingleRecord.NORMALFILENAME);
-            normalSingleRecord.getDetails();
-            Record normalrecord = normalSingleRecord.highScores().get(0);
-            highscoreshow = normalrecord.getScore();
-            normalscore.setText(highscoreshow);
-            normaldate.setText(dateFormat.format(normalrecord.getDate())+"");
-        } catch (Exception e) {
-            e.printStackTrace();
-            normalscore.setText("norecord");
-            normaldate.setText("norecord");
-        }
-
-        try {
-            SingleRecord hardSingleRecord = new SingleRecord(this, SingleRecord.HARDFILENAME);
-            hardSingleRecord.getDetails();
-            Record normalrecord = hardSingleRecord.highScores().get(0);
-            highscoreshow = normalrecord.getScore();
-            hardscore.setText(highscoreshow);
-            harddate.setText(dateFormat.format(normalrecord.getDate())+"");
-        } catch (Exception e) {
-            e.printStackTrace();
-            hardscore.setText("norecord");
-            harddate.setText("norecord");
-        }
+        showScoreDate(SingleRecord.EASYFILENAME);
+        showScoreDate(SingleRecord.NORMALFILENAME);
+        showScoreDate(SingleRecord.HARDFILENAME);
     }
     
     @Override
@@ -105,4 +70,40 @@ public class Activity_HighScore extends Activity {
         return super.onKeyDown(keyCode, event);
     }
     
+    private void showScoreDate(String fileName) {
+        try {
+            SingleRecord singleRecord = new SingleRecord(this, fileName);
+            singleRecord.getDetails();
+            Record normalrecord = singleRecord.highScores().get(0);
+            highscoreshow = normalrecord.getScore();
+            if(fileName == SingleRecord.EASYFILENAME)
+            {
+                easyscore.setText(highscoreshow);
+                easydate.setText(dateFormat.format(normalrecord.getDate())+"");
+            } else if(fileName == SingleRecord.NORMALFILENAME)
+            {
+                normalscore.setText(highscoreshow);
+                normaldate.setText(dateFormat.format(normalrecord.getDate())+"");
+            } else if(fileName == SingleRecord.HARDFILENAME)
+            {
+                hardscore.setText(highscoreshow);
+                harddate.setText(dateFormat.format(normalrecord.getDate())+"");
+            }
+        } catch (Exception e) { 
+            e.printStackTrace();
+            if(fileName == SingleRecord.EASYFILENAME)
+            {
+                easyscore.setText("norecord");
+                easydate.setText("norecord");
+            } else if(fileName == SingleRecord.NORMALFILENAME)
+            {
+                normalscore.setText("norecord");
+                normaldate.setText("norecord");
+            } else if(fileName == SingleRecord.HARDFILENAME)
+            {
+                hardscore.setText("norecord");
+                harddate.setText("norecord");
+            }
+        }
+    }
 }
