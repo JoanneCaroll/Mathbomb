@@ -24,7 +24,6 @@ public class Normal_SingleRecord {
 
     public Normal_SingleRecord(Context context, String fileName) {
         mNormalJsonSerializer = new Normal_JSONSerializer(context, fileName);
-        Log.i("SingleRecord", fileName);
         if(mNormalRecord == null)
             mNormalRecord = highScores();
         else
@@ -46,7 +45,6 @@ public class Normal_SingleRecord {
     public void addDetails(Normal_Record c, String fileName) throws JSONException, IOException {
         mNormalRecord.add(c);
         saveDetails();
-        Log.i("addDetails()", fileName );
     }
 
     public void saveDetails() throws JSONException, IOException {
@@ -65,7 +63,6 @@ public class Normal_SingleRecord {
         }
 
         Collections.sort(tempRecord1);
-
         for (Normal_Record mC : tempRecord1) {
             if (tempRecord2.size() > 9)
                 break;

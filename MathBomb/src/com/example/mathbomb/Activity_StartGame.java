@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,22 +22,28 @@ import android.widget.TextView;
 public class Activity_StartGame extends Activity {
 
     private Date mDate;
-    public static final String easy = "easy";
     private Normal_SaveScore mEasySaveScore, mNormalSaveScore, mHardSaveScore;
     private TextView 
-    showScore, showHighScore, showTimeLeft, showResult,
-    txtfirstRandomNumber, txtsecondRandomNumber, randomOperator;
+    txtshowScore, txtshowHighScore, txtshowTimeLeft, txtshowResult,
+    txtfirstRandomNumber, txtsecondRandomNumber, txtrandomOperator;
     private int 
-    firstRandomInteger, secondRandomInteger, randomOpt,
-    score, answer;
-    private Button[] randomResult = new Button[4];
+    firstRandomInteger, secondRandomInteger, randomOperator,
+    score, answer,textColor;
+    private final int 
+    button1=0, button2=1, button3=2, button4=3,
+    categoryEasy=0, categoryNormal=1, categoryHard=2,
+    timerGameSpan=30000, timerGameSpeed=1000,
+    timerCheckSpan=1000, timerCheckSpeed=500, maxIndexOfRandomResults=3,
+    addOperator=1, subOperator=2,
+    easyMin=1, easyMax=5, easySize=5,
+    normalMin=1, normalMax=20, normalSize=20,
+    hardMin=10, hardMax=10, hardSize=40;
+    private Button[] btnrandomResult = new Button[4];
     private List<Integer> arrayList = new ArrayList<Integer>();
-    private String choiceText = "", newScore = "";
+    private String choiceText = "", newScore = "", alertText = "";
     public static final String[] category = {
         "Easy", "Normal", "Hard",
     };
-    String alertText = "";
-    int textColor;
     private Random random = new Random();
 
     // create reusable listener instead of anonymous types
@@ -48,16 +53,16 @@ public class Activity_StartGame extends Activity {
             switch (v.getId()) {
             // set apart views
             case (R.id.choice1):
-                choiceText = (String) randomResult[0].getText();
+                choiceText = (String) btnrandomResult[button1].getText();
             break;
             case (R.id.choice2):
-                choiceText = (String) randomResult[1].getText();
+                choiceText = (String) btnrandomResult[button2].getText();
             break;
             case (R.id.choice3):
-                choiceText = (String) randomResult[2].getText();
+                choiceText = (String) btnrandomResult[button3].getText();
             break;
             case (R.id.choice4):
-                choiceText = (String) randomResult[3].getText();
+                choiceText = (String) btnrandomResult[button4].getText();
             break;
             }
             // checkanswer only when a button is clicked
@@ -70,77 +75,75 @@ public class Activity_StartGame extends Activity {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.activity_startgame);
-
-       
-
+        
         txtfirstRandomNumber = (TextView) findViewById(R.id.integer1);
         txtsecondRandomNumber = (TextView) findViewById(R.id.integer2);
-        randomOperator = (TextView) findViewById(R.id.operator);  
+        txtrandomOperator = (TextView) findViewById(R.id.operator);  
 
-        randomResult[0] = (Button) findViewById(R.id.choice1);
-        randomResult[1] = (Button) findViewById(R.id.choice2);
-        randomResult[2] = (Button) findViewById(R.id.choice3);
-        randomResult[3] = (Button) findViewById(R.id.choice4);	
+        btnrandomResult[button1] = (Button) findViewById(R.id.choice1);
+        btnrandomResult[button2] = (Button) findViewById(R.id.choice2);
+        btnrandomResult[button3] = (Button) findViewById(R.id.choice3);
+        btnrandomResult[button4] = (Button) findViewById(R.id.choice4);	
 
-        showScore = (TextView) findViewById(R.id.showscore);
-        showScore.setText(Integer.toString(score));
+        txtshowScore = (TextView) findViewById(R.id.showscore);
+        txtshowScore.setText(Integer.toString(score));
 
-        showResult = (TextView)findViewById(R.id.showresult);
-        showResult.setVisibility(View.INVISIBLE);
+        txtshowResult = (TextView)findViewById(R.id.showresult);
+        txtshowResult.setVisibility(View.INVISIBLE);
 
-        showHighScore = (TextView)findViewById(R.id.showhighscore);
+        txtshowHighScore = (TextView)findViewById(R.id.showhighscore);
         
         Bundle getextra = getIntent().getExtras();
         int choices = getextra.getInt("choice");
         
         try {
             switch(choices) {
-                case 0 :
+                case categoryEasy :
                 {
                     Normal_SingleRecord easySingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.EASYFILENAME);
                     easySingleRecord.getDetails();
                     Normal_Record easyrecord = easySingleRecord.highScores().get(0);
                     newScore = easyrecord.getScore();
-                    showHighScore.setText(newScore);
+                    txtshowHighScore.setText(newScore);
                     break;
                 }
-                case 1 :
+                case categoryNormal :
                 {
                     Normal_SingleRecord normalSingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.NORMALFILENAME);
                     normalSingleRecord.getDetails();
                     Normal_Record normalrecord = normalSingleRecord.highScores().get(0);
                     newScore = normalrecord.getScore();
-                    showHighScore.setText(newScore);
+                    txtshowHighScore.setText(newScore);
                     break;
                 }
-                case 2 :
+                case categoryHard :
                 {
                     Normal_SingleRecord hardSingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.HARDFILENAME);
                     hardSingleRecord.getDetails();
                     Normal_Record hardrecord =hardSingleRecord.highScores().get(0);
                     newScore = hardrecord.getScore();
-                    showHighScore.setText(newScore);
+                    txtshowHighScore.setText(newScore);
                     break;
                 }
             }
         } catch (Exception e) {
-            showHighScore.setText("0");
+            txtshowHighScore.setText("0");
             e.printStackTrace();
         }
         
 
         resetGame();
 
-        randomResult[0].setOnClickListener(choiceClicker);
-        randomResult[1].setOnClickListener(choiceClicker);
-        randomResult[2].setOnClickListener(choiceClicker);
-        randomResult[3].setOnClickListener(choiceClicker);
+        btnrandomResult[button1].setOnClickListener(choiceClicker);
+        btnrandomResult[button2].setOnClickListener(choiceClicker);
+        btnrandomResult[button3].setOnClickListener(choiceClicker);
+        btnrandomResult[button4].setOnClickListener(choiceClicker);
 
-        showTimeLeft = (TextView) findViewById(R.id.showtimeleft);
+        txtshowTimeLeft = (TextView) findViewById(R.id.showtimeleft);
 
-        new CountDownTimer(11000, 1000) {
+        new CountDownTimer(timerGameSpan, timerGameSpeed) {
             public void onTick(long millisUntilFinished) {
-                showTimeLeft.setText(millisUntilFinished / 1000 + " sec(s)");
+                txtshowTimeLeft.setText(millisUntilFinished / timerGameSpeed + " sec(s)");
             }
             public void onFinish() {
                 gameOver();
@@ -165,17 +168,16 @@ public class Activity_StartGame extends Activity {
         Bundle getextra = getIntent().getExtras();
         int choices = getextra.getInt("choice");
 
-        if(choices==0) {
-            for (int i = 0; i < 5; i++) {
+        if(choices==categoryEasy) {
+            for (int i = 0; i < easySize; i++) {
                 arrayList.add(i);
             }
-        } else if(choices==1) {
-            for (int i = 0; i < 20; i++) {
+        } else if(choices==categoryNormal) {
+            for (int i = 0; i < normalSize; i++) {
                 arrayList.add(i);
             }
-        } else if(choices==2)
-        {
-            for (int i = 0; i < 40; i++) {
+        } else if(choices==categoryHard) {
+            for (int i = 0; i < hardSize; i++) {
                 arrayList.add(i);
             }
         }
@@ -185,38 +187,38 @@ public class Activity_StartGame extends Activity {
             arrayList.remove(arrayList.get(answer));
         }  
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i <= maxIndexOfRandomResults; i++) {
             int index = new Random().nextInt(arrayList.size());
-            randomResult[i].setText(Integer.toString((Integer) arrayList.get(index)));
+            btnrandomResult[i].setText(Integer.toString((Integer) arrayList.get(index)));
             arrayList.remove(index);
         }
     }
 
     private void resetGame() {
-        final int a = random.nextInt(3);
-        randomOpt = random.nextInt(2) + 1;
+        final int a = random.nextInt(maxIndexOfRandomResults);
+        randomOperator = random.nextInt(subOperator) + addOperator;
         Bundle getextra = getIntent().getExtras();
         int resetchoice = getextra.getInt("choice");
-        if(resetchoice == 0) {
-            generateInput(1,5);
-        } else if(resetchoice == 1) {
-            generateInput(1,20);
-        } else if(resetchoice == 2) {
-            generateInput(10,10);
+        if(resetchoice == categoryEasy) {
+            generateInput(easyMin,easyMax);
+        } else if(resetchoice == categoryNormal) {
+            generateInput(normalMin,normalMax);
+        } else if(resetchoice == categoryHard) {
+            generateInput(hardMin,hardMax);
         }
         txtfirstRandomNumber.setText(Integer.toString(firstRandomInteger));
         txtsecondRandomNumber.setText(Integer.toString(secondRandomInteger));
         calculateAnswer();
         generateUnique(answer);
-        randomResult[a].setText(Integer.toString(answer));
+        btnrandomResult[a].setText(Integer.toString(answer));
     }
 
     private void calculateAnswer() {
-        if (randomOpt == 1) {
-            randomOperator.setText("+");
+        if (randomOperator == addOperator) {
+            txtrandomOperator.setText("+");
             answer = firstRandomInteger + secondRandomInteger;
-        } else if (randomOpt == 2) {
-            randomOperator.setText("-");
+        } else if (randomOperator == subOperator) {
+            txtrandomOperator.setText("-");
             answer = firstRandomInteger - secondRandomInteger;
         }
     }
@@ -224,7 +226,7 @@ public class Activity_StartGame extends Activity {
     private void checkAnswer() {
         if (choiceText == Integer.toString(answer)) {
             score++;
-            showScore.setText(String.valueOf(score));
+            txtshowScore.setText(String.valueOf(score));
             alertText = "Correct!";
             textColor = Color.GREEN;
         } else {
@@ -232,14 +234,14 @@ public class Activity_StartGame extends Activity {
             textColor = Color.RED;
         }
         
-        new CountDownTimer(1000, 500) {
+        new CountDownTimer(timerCheckSpan, timerCheckSpeed) {
             public void onTick(long millisUntilFinished) {
-                showResult.setVisibility(View.VISIBLE);
-                showResult.setTextColor(textColor);
-                showResult.setText(alertText);
+                txtshowResult.setVisibility(View.VISIBLE);
+                txtshowResult.setTextColor(textColor);
+                txtshowResult.setText(alertText);
             }
             public void onFinish() {
-                showResult.setVisibility(View.INVISIBLE);
+                txtshowResult.setVisibility(View.INVISIBLE);
             }
         }.start();
         
@@ -250,24 +252,22 @@ public class Activity_StartGame extends Activity {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Game Over!")
-            .setMessage("Your score is " + showScore.getText())
+            .setMessage("Your score is " + txtshowScore.getText())
             .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     mDate = new Date();	    			
                     try {
                         Bundle getextra = getIntent().getExtras();
                         int choices = getextra.getInt("choice");
-                        Log.i("gameOver", choices+"");
-                        if(choices==0)
+                        if(choices==categoryEasy)
                         {
                             mEasySaveScore = new Normal_SaveScore(Activity_StartGame.this);
                             mEasySaveScore.saveScore(score, mDate, Normal_SingleRecord.EASYFILENAME);
-                        } else if (choices==1)
+                        } else if (choices==categoryNormal)
                         {
                             mNormalSaveScore = new Normal_SaveScore(Activity_StartGame.this);
-                            
                             mNormalSaveScore.saveScore(score, mDate, Normal_SingleRecord.NORMALFILENAME);
-                        } else if (choices==2)
+                        } else if (choices==categoryHard)
                         {
                             mHardSaveScore = new Normal_SaveScore(Activity_StartGame.this);
                             mHardSaveScore.saveScore(score, mDate, Normal_SingleRecord.HARDFILENAME);

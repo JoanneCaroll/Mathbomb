@@ -3,7 +3,6 @@ package com.example.mathbomb;
 import java.util.Date;
 
 import android.content.Context;
-import android.util.Log;
 
 public class Normal_SaveScore {
     private Context mNormalAppContext;
@@ -19,6 +18,5 @@ public class Normal_SaveScore {
 
         Normal_SingleRecord saveNormal = new Normal_SingleRecord(mNormalAppContext, fileName);
         saveNormal.addDetails(mNormalRecord, fileName);
-        Log.i("SaveScore()", fileName);
         }
 }

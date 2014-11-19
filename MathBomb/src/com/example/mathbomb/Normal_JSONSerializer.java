@@ -14,7 +14,6 @@ import org.json.JSONException;
 import org.json.JSONTokener;
 
 import android.content.Context;
-import android.util.Log;
 
 public class Normal_JSONSerializer {
     private Context mNormalContext;
@@ -23,7 +22,6 @@ public class Normal_JSONSerializer {
     public Normal_JSONSerializer(Context cNormal, String fnameNormal) {
         mNormalContext = cNormal;
         mNormalFilename = fnameNormal;
-        Log.i("JSON", mNormalFilename);
     }
 
     public void saveDetails(ArrayList<Normal_Record> mRecord)
@@ -39,7 +37,6 @@ public class Normal_JSONSerializer {
         OutputStream outputStream = mNormalContext.openFileOutput(mNormalFilename, Context.MODE_PRIVATE);
         writer = new OutputStreamWriter(outputStream);
         writer.write(jsonArray.toString());
-        Log.i("JSON", "saving"+mNormalFilename);
         if (writer != null) {
             writer.close();
         }
@@ -70,7 +67,6 @@ public class Normal_JSONSerializer {
 
         if (reader != null)
             reader.close();
-        Log.i("JSON", "loading"+mNormalFilename);
         return mRecord;
         
     }

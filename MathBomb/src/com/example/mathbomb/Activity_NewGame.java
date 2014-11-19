@@ -9,15 +9,15 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 public class Activity_NewGame extends Activity {
 
-    ListView listcategory;
+    private ListView listcategory;
 
     public static final String choice = "choice";
-    String[] category = {
+    private String[] category = {
             "Easy (1-5)",
             "Normal (1-20)",
             "Hard (10-20)",
     };
-    Integer[] image = {
+    private Integer[] image = {
             R.drawable.cat1,
             R.drawable.cat2,
             R.drawable.cat3
