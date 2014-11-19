@@ -52,18 +52,20 @@ public class Activity_StartGame extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
             // set apart views
-            case (R.id.choice1):
-                choiceText = (String) btnrandomResult[button1].getText();
-            break;
-            case (R.id.choice2):
-                choiceText = (String) btnrandomResult[button2].getText();
-            break;
-            case (R.id.choice3):
-                choiceText = (String) btnrandomResult[button3].getText();
-            break;
-            case (R.id.choice4):
-                choiceText = (String) btnrandomResult[button4].getText();
-            break;
+                case (R.id.choice1):
+                    choiceText = (String) btnrandomResult[button1].getText();
+                break;
+                case (R.id.choice2):
+                    choiceText = (String) btnrandomResult[button2].getText();
+                break;
+                case (R.id.choice3):
+                    choiceText = (String) btnrandomResult[button3].getText();
+                break;
+                case (R.id.choice4):
+                    choiceText = (String) btnrandomResult[button4].getText();
+                break;
+                default:
+                    return;
             }
             // checkanswer only when a button is clicked
             checkAnswer();
@@ -125,6 +127,8 @@ public class Activity_StartGame extends Activity {
                     txtshowHighScore.setText(newScore);
                     break;
                 }
+                default:
+                    return;
             }
         } catch (Exception e) {
             txtshowHighScore.setText("0");
