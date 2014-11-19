@@ -19,7 +19,6 @@ public class Activity_HighScore extends Activity {
     normal, normalscore, normaldate, 
     hard, hardscore, harddate;
     private String highscoreshow = "";
-//    private ArrayList<Normal_Record> mEasyRecord, mNormalRecord, mHardRecord;
     private Button okbutton;
     @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
     @Override
