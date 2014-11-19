@@ -9,8 +9,8 @@ import org.json.JSONObject;
 @SuppressWarnings("serial")
 public class Normal_Record implements Serializable, Comparable<Normal_Record>  {
 
-    private static final String JSON_NormalSCORE = "score";
-    private static final String JSON_NormalDATE = "date";
+    private static final String JSON_SCORE = "score";
+    private static final String JSON_DATE = "date";
 
     private String mNormalScore;
     private Date mNormalDate;
@@ -20,16 +20,16 @@ public class Normal_Record implements Serializable, Comparable<Normal_Record>  {
     }
 
     public Normal_Record(JSONObject jsonObject) throws JSONException {
-        mNormalScore = jsonObject.getString(JSON_NormalSCORE);
-        mNormalDate = new Date(jsonObject.getLong(JSON_NormalDATE));
+        mNormalScore = jsonObject.getString(JSON_SCORE);
+        mNormalDate = new Date(jsonObject.getLong(JSON_DATE));
     }
 
     public JSONObject toJsonObject() throws JSONException {
 
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put(JSON_NormalSCORE, mNormalScore);
-        jsonObject.put(JSON_NormalDATE, mNormalDate.getTime());
+        jsonObject.put(JSON_SCORE, mNormalScore);
+        jsonObject.put(JSON_DATE, mNormalDate.getTime());
 
         return jsonObject;
     }

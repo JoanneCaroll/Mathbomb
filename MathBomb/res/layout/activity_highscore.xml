@@ -1,119 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
     <TextView
-        android:paddingTop="70dp"
-        android:paddingBottom="30dp"
-        android:layout_gravity="center"
         android:id="@+id/highscoreshow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:text="@string/highscoretitle" />   
-    
-    <TextView
         android:layout_gravity="center"
+        android:paddingTop="70dp"
+        android:paddingBottom="20dp"
+        android:text="@string/highscoretitle"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/easy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:paddingBottom="10dp"/>     
-    
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="10dp"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         android:paddingBottom="10dp" >
-        
+
         <TextView
             android:id="@+id/easyscore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:paddingRight="50dp" />       
+            android:paddingRight="50dp"
+            android:textSize="20dp" />
+
         <TextView
             android:id="@+id/easydate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp" 
-            android:padding="5dp" />  
-            
-   </LinearLayout>
-   
-   <TextView
-        android:layout_gravity="center"
+            android:padding="5dp"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <TextView
         android:id="@+id/normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:paddingBottom="10dp"/> 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="10dp"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         android:paddingBottom="10dp" >
-        
+
         <TextView
             android:id="@+id/normalscore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:paddingRight="50dp" />       
+            android:paddingRight="50dp"
+            android:textSize="20dp" />
+
         <TextView
             android:id="@+id/normaldate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp" 
-            android:padding="5dp" />  
-            
-   </LinearLayout>
-   
+            android:padding="5dp"
+            android:textSize="20dp" />
+    </LinearLayout>
+
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/hard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:paddingBottom="10dp"/> 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="10dp"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         android:paddingBottom="30dp" >
-        
+
         <TextView
             android:id="@+id/hardscore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:paddingRight="50dp" />       
+            android:paddingRight="50dp"
+            android:textSize="20dp" />
+
         <TextView
             android:id="@+id/harddate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp" 
-            android:padding="5dp" />  
-            
-   </LinearLayout>
-    
-   <Button
-        android:layout_gravity="center"
-       	android:id="@+id/ok_highscore"
+            android:padding="5dp"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ok_highscore"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:padding="10dp"
         android:text="@string/ok"
-        android:padding="10dp" />   
+        android:textSize="20dp" />
 
 </LinearLayout>

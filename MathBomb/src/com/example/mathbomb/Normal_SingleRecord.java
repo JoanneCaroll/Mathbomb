@@ -8,30 +8,43 @@ import java.util.Collections;
 import org.json.JSONException;
 
 import android.content.Context;
+import android.util.Log;
 
 public class Normal_SingleRecord {
 
-    private static final String FILENAME = "scoreNormal.json";
+    public static final String EASYFILENAME = "scoreEasy.json";
+    public static final String NORMALFILENAME = "scoreNormal.json";
+    public static final String HARDFILENAME = "scoreHard.json";
+    
+    private ArrayList<Normal_Record> mEasyRecord, mNormalRecord, mHardRecord;
 
-    private ArrayList<Normal_Record> mNormalRecord;
-
-    private Normal_JSONSerializer mNormalJsonSerializer;
+    private Normal_JSONSerializer mEasyJsonSerializer, mNormalJsonSerializer;
 
     private static Normal_SingleRecord sNormalSingleRecord;
 
-    private Normal_SingleRecord(Context context) {
-        mNormalJsonSerializer = new Normal_JSONSerializer(context, FILENAME);
-        try {
-            mNormalRecord = highScores();
-        } catch (Exception e) {
-            mNormalRecord = new ArrayList<Normal_Record>();
-            e.printStackTrace();
+    public Normal_SingleRecord(Context context, String fileName) {
+        if(fileName == EASYFILENAME)
+        {
+            Log.i("SingleRecord", fileName);
         }
+        mNormalJsonSerializer = new Normal_JSONSerializer(context, fileName);
+        Log.i("SingleRecord", fileName);
+        if(mNormalRecord == null && mEasyRecord == null)
+        {
+           // mEasyRecord = highScores();
+            mNormalRecord = highScores();            
+        }else
+        {
+            mNormalRecord = new ArrayList<Normal_Record>();
+           // mEasyRecord = new ArrayList<Normal_Record>();
+        }
+           
     }
 
-    public static Normal_SingleRecord get(Context c) throws Exception {
+    public static Normal_SingleRecord get(Context c, String fileName) throws Exception {
         if (sNormalSingleRecord == null) {
-            sNormalSingleRecord = new Normal_SingleRecord(c.getApplicationContext());
+            sNormalSingleRecord = new Normal_SingleRecord(c.getApplicationContext(), fileName);
+            Log.i("SingleRecord", fileName);
         }
         return sNormalSingleRecord;
     }
@@ -40,7 +53,7 @@ public class Normal_SingleRecord {
         return highScores();
     }
 
-    public void addDetails(Normal_Record c) throws JSONException, IOException {
+    public void addDetails(Normal_Record c, String fileName) throws JSONException, IOException {
         mNormalRecord.add(c);
         saveDetails();
     }
@@ -69,4 +82,8 @@ public class Normal_SingleRecord {
         }
         return tempRecord2;
     }
+
+//    public Normal_Record get(int i) {
+//        return highScores().get(0);
+//    }
 }

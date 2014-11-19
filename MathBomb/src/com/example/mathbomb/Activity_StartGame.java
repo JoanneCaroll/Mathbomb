@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -22,20 +24,18 @@ public class Activity_StartGame extends Activity {
 
     private Date mDate;
     public static final String easy = "easy";
-    private Easy_SaveScore mEasySaveScore;	
-    private Normal_SaveScore mNormalSaveScore;
-    private Hard_SaveScore mHardSaveScore;
+//    private Easy_SaveScore mEasySaveScore;	
+    private Normal_SaveScore mEasySaveScore, mNormalSaveScore, mHardSaveScore;
+//    private Hard_SaveScore mHardSaveScore;
     private TextView 
     showScore, showHighScore, showTimeLeft, showResult,
     txtfirstRandomNumber, txtsecondRandomNumber, randomOperator;
     private int 
     firstRandomInteger, secondRandomInteger, randomOpt,
-    randomResult1, 
-    randomResult2, randomResult3, randomResult4, 
     score, answer;
     private Button[] randomResult = new Button[4];
     private List<Integer> arrayList = new ArrayList<Integer>();
-    private String choiceText = "";
+    private String choiceText = "", fileName = "", newScore = "";
     public static final String[] category = {
         "Easy", "Normal", "Hard",
     };
@@ -47,7 +47,6 @@ public class Activity_StartGame extends Activity {
     private OnClickListener choiceClicker = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            // get view id
             switch (v.getId()) {
             // set apart views
             case (R.id.choice1):
@@ -71,11 +70,12 @@ public class Activity_StartGame extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.activity_startgame);
 
-        mEasySaveScore = new Easy_SaveScore(this);
+        mEasySaveScore = new Normal_SaveScore(this);
         mNormalSaveScore = new Normal_SaveScore(this);
-        mHardSaveScore = new Hard_SaveScore(this);
+        mHardSaveScore = new Normal_SaveScore(this);
 
         txtfirstRandomNumber = (TextView) findViewById(R.id.integer1);
         txtsecondRandomNumber = (TextView) findViewById(R.id.integer2);
@@ -92,46 +92,53 @@ public class Activity_StartGame extends Activity {
         showResult = (TextView)findViewById(R.id.showresult);
         showResult.setVisibility(View.INVISIBLE);
 
+        showHighScore = (TextView)findViewById(R.id.showhighscore);
+        
         Bundle getextra = getIntent().getExtras();
         int choices = getextra.getInt("choice");
-
-        ArrayList<Easy_Record> mEasyRecord = null;
-        ArrayList<Normal_Record> mNormalRecord = null;
-        ArrayList<Hard_Record> mHardRecord = null;
-
+        
+        
+        ArrayList<Normal_Record> mHardRecord = null;
+        
         try {
-            mEasyRecord = Easy_SingleRecord.get(this).getDetails();
-            Easy_Record easyrecord = mEasyRecord.get(0);	
-            if(choices == 0) {
-                showHighScore = (TextView)findViewById(R.id.showhighscore);
-                showHighScore.setText(easyrecord.getScore());
+            switch(choices) {
+                case 0 :
+                {
+                    Normal_SingleRecord easySingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.EASYFILENAME);
+                    easySingleRecord.getDetails();
+                    Normal_Record normalrecord = easySingleRecord.highScores().get(0);
+                    newScore = normalrecord.getScore();
+                    showHighScore.setText(newScore);
+                    break;
+                }
+                case 1 :
+                {
+                    Normal_SingleRecord normalSingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.NORMALFILENAME);
+                    normalSingleRecord.getDetails();
+                    Normal_Record normalrecord = normalSingleRecord.highScores().get(0);
+                    newScore = normalrecord.getScore();
+                    showHighScore.setText(newScore);
+                    break;
+                }
+                case 2 :
+                {
+                    fileName = Normal_SingleRecord.HARDFILENAME;
+                    mHardRecord = Normal_SingleRecord.get(this, Normal_SingleRecord.HARDFILENAME).getDetails();
+                    Normal_Record normalrecord = mHardRecord.get(0);
+                    newScore = normalrecord.getScore();
+                    showHighScore.setText(newScore);
+                    for(int i= 0; i < mHardRecord.size(); i++) {
+                        Log.i("onCreate()", fileName);
+                     }
+                    break;
+                }
             }
+            Log.i("StartGameActivity", fileName);
         } catch (Exception e) {
+            Log.i("onCreate()", "No files saved");
             e.printStackTrace();
         }
-
-        try {
-            mNormalRecord = Normal_SingleRecord.get(this).getDetails();
-            Normal_Record normalrecord = mNormalRecord.get(0);
-            if(choices == 1) {
-                showHighScore = (TextView)findViewById(R.id.showhighscore);
-                showHighScore.setText(normalrecord.getScore());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            mHardRecord = Hard_SingleRecord.get(this).getDetails();
-            Hard_Record hardrecord = mHardRecord.get(0);
-            if(choices == 2) {
-                showHighScore = (TextView)findViewById(R.id.showhighscore);
-                showHighScore.setText(hardrecord.getScore());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        
 
         resetGame();
 
@@ -152,6 +159,16 @@ public class Activity_StartGame extends Activity {
         }.start();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    
     public void generateUnique(int answer) {
         //clear arraylist
         arrayList.clear();
@@ -174,7 +191,7 @@ public class Activity_StartGame extends Activity {
             }
         }
 
-        //removes answer in random set if its inside the set
+        //removes answer in random set if its inside the setasy
         if(arrayList.contains(answer)) {
             arrayList.remove(arrayList.get(answer));
         }  
@@ -254,13 +271,13 @@ public class Activity_StartGame extends Activity {
                         int choices = getextra.getInt("choice");
                         if(choices==0)
                         {
-                            mEasySaveScore.saveScore(score, mDate);
+                            mEasySaveScore.saveScore(score, mDate, Normal_SingleRecord.EASYFILENAME);
                         } else if (choices==1)
                         {
-                            mNormalSaveScore.saveScore(score, mDate);
+                            mNormalSaveScore.saveScore(score, mDate, Normal_SingleRecord.NORMALFILENAME);
                         } else if (choices==2)
                         {
-                            mHardSaveScore.saveScore(score, mDate);
+                            mHardSaveScore.saveScore(score, mDate, Normal_SingleRecord.HARDFILENAME);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

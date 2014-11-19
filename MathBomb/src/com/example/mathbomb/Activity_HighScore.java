@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class Activity_HighScore extends Activity {
     easy, easyscore, easydate,
     normal, normalscore, normaldate, 
     hard, hardscore, harddate;
+    private ArrayList<Normal_Record> mEasyRecord, mNormalRecord, mHardRecord;
     private Button okbutton;
     @SuppressLint({ "SimpleDateFormat", "CutPasteId" })
     @Override
@@ -31,7 +33,7 @@ public class Activity_HighScore extends Activity {
         highscore = (TextView)findViewById(R.id.highscoreshow);
         highscore.setText(R.string.highscoretitle); 
 
-        easy = (TextView)findViewById(R.id.easyscore);
+        easy = (TextView)findViewById(R.id.easy);
         easy.setText(Activity_StartGame.category[0]);
         easyscore = (TextView)findViewById(R.id.easyscore);
         easydate = (TextView)findViewById(R.id.easydate);
@@ -53,13 +55,10 @@ public class Activity_HighScore extends Activity {
             }
         });
 
-        ArrayList<Easy_Record> mEasyRecord = null;
-        ArrayList<Normal_Record> mNormalRecord = null;
-        ArrayList<Hard_Record> mHardRecord = null;
-
         try {
-            mEasyRecord = Easy_SingleRecord.get(this).getDetails();
-            Easy_Record recordeasy = mEasyRecord.get(0);
+            ArrayList<Normal_Record> mEasyRecord = null;
+            mEasyRecord = Normal_SingleRecord.get(this, Normal_SingleRecord.EASYFILENAME).getDetails();
+            Normal_Record recordeasy = mEasyRecord.get(0);
             easyscore.setText(recordeasy.getScore());
             easydate.setText(dateFormat.format(recordeasy.getDate())+"");
         } catch (Exception e) {	
@@ -69,7 +68,8 @@ public class Activity_HighScore extends Activity {
         }
 
         try {
-            mNormalRecord = Normal_SingleRecord.get(this).getDetails();
+            ArrayList<Normal_Record> mNormalRecord = null;
+            mNormalRecord = Normal_SingleRecord.get(this, Normal_SingleRecord.NORMALFILENAME).getDetails();
             Normal_Record recordNormal = mNormalRecord.get(0);
             normalscore.setText(recordNormal.getScore());
             normaldate.setText(dateFormat.format(recordNormal.getDate())+"");
@@ -80,8 +80,9 @@ public class Activity_HighScore extends Activity {
         }
 
         try {
-            mHardRecord = Hard_SingleRecord.get(this).getDetails();
-            Hard_Record recordHard = mHardRecord.get(0);
+            ArrayList<Normal_Record> mHardRecord = null;
+            mHardRecord = Normal_SingleRecord.get(this, Normal_SingleRecord.HARDFILENAME).getDetails();
+            Normal_Record recordHard = mHardRecord.get(0);
             hardscore.setText(recordHard.getScore());
             harddate.setText(dateFormat.format(recordHard.getDate())+"");
         } catch (Exception e) {
@@ -90,4 +91,15 @@ public class Activity_HighScore extends Activity {
             harddate.setText("norecord");
         }
     }
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    
 }
