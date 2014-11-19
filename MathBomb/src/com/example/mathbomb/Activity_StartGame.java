@@ -155,18 +155,18 @@ public class Activity_StartGame extends Activity {
         Bundle getextra = getIntent().getExtras();
         int choices = getextra.getInt("choice");
 
-        if(choices==categoryEasy) {
-            for (int i = 0; i < easySize; i++) {
-                arrayList.add(i);
-            }
-        } else if(choices==categoryNormal) {
-            for (int i = 0; i < normalSize; i++) {
-                arrayList.add(i);
-            }
-        } else if(choices==categoryHard) {
-            for (int i = 0; i < hardSize; i++) {
-                arrayList.add(i);
-            }
+        int categorySize = 0;
+        
+        if (choices==categoryEasy) {
+            categorySize = easySize;
+        } else if (choices==categoryNormal) {
+            categorySize = normalSize;
+        } else if (choices==categoryHard) {
+            categorySize = hardSize;
+        }
+        
+        for (int i = 0; i < categorySize; i++)  {
+            arrayList.add(i);
         }
 
         //removes answer in random set if its inside the setasy
