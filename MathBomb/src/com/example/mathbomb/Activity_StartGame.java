@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,7 +23,7 @@ import android.widget.TextView;
 public class Activity_StartGame extends Activity {
 
     private Date mDate;
-    private SaveScore mSaveScore, mNormalSaveScore, mHardSaveScore;
+    private SaveScore mSaveScore;
     private TextView 
     txtshowScore, txtshowHighScore, txtshowTimeLeft, txtshowResult,
     txtfirstRandomNumber, txtsecondRandomNumber, txtrandomOperator;
@@ -30,7 +31,6 @@ public class Activity_StartGame extends Activity {
     firstRandomInteger, secondRandomInteger, randomOperator,
     score, answer,textColor;
     private final int 
-    indexBtn = R.id.choice1,
     categoryEasy=0, categoryNormal=1, categoryHard=2,
     timerGameSpan=30000, timerGameSpeed=1000,
     timerCheckSpan=1000, timerCheckSpeed=500, maxIndexOfRandomResults=3,
@@ -50,11 +50,21 @@ public class Activity_StartGame extends Activity {
     private OnClickListener choiceClicker = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            for(int i = 0; i<=maxIndexOfRandomResults; i++){
-                if(btnrandomResult[i].getId() == indexBtn)
-                { 
-                    choiceText = (String) btnrandomResult[i].getText();
-                }
+//          get view id
+            switch (v.getId()) {
+            // set apart views
+            case (R.id.choice1):
+                choiceText = (String) btnrandomResult[0].getText();
+                break;
+            case (R.id.choice2):
+                choiceText = (String) btnrandomResult[1].getText();
+                break;
+            case (R.id.choice3):
+                choiceText = (String) btnrandomResult[2].getText();
+                break;
+            case (R.id.choice4):
+                choiceText = (String) btnrandomResult[3].getText();
+                break;
             }
             // checkanswer only when a button is clicked
             checkAnswer();
@@ -81,7 +91,7 @@ public class Activity_StartGame extends Activity {
         
         for(int i = 0; i<=maxIndexOfRandomResults; i++){
             btnrandomResult[i] = (Button) findViewById(index);
-            index++;
+            Log.i("onCreate()",index++ + "");
         }
         
         Bundle getextra = getIntent().getExtras();
@@ -249,8 +259,6 @@ public class Activity_StartGame extends Activity {
                     mDate = new Date();	    			
                     try {
                         Bundle getextra = getIntent().getExtras();
-                        
-                        
                         int choices = getextra.getInt("choice");
                         if(choices==categoryEasy)
                         {
@@ -268,9 +276,9 @@ public class Activity_StartGame extends Activity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    Intent i = new Intent(Activity_StartGame.this, Activity_MainMenu.class);
+                    Intent i=new Intent(Activity_StartGame.this, Activity_MainMenu.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
-                    finish();
                 }
             }).setCancelable(false).show(); 
         } catch (Exception e) {
