@@ -24,9 +24,7 @@ public class Activity_StartGame extends Activity {
 
     private Date mDate;
     public static final String easy = "easy";
-//    private Easy_SaveScore mEasySaveScore;	
     private Normal_SaveScore mEasySaveScore, mNormalSaveScore, mHardSaveScore;
-//    private Hard_SaveScore mHardSaveScore;
     private TextView 
     showScore, showHighScore, showTimeLeft, showResult,
     txtfirstRandomNumber, txtsecondRandomNumber, randomOperator;
@@ -35,7 +33,7 @@ public class Activity_StartGame extends Activity {
     score, answer;
     private Button[] randomResult = new Button[4];
     private List<Integer> arrayList = new ArrayList<Integer>();
-    private String choiceText = "", fileName = "", newScore = "";
+    private String choiceText = "", newScore = "";
     public static final String[] category = {
         "Easy", "Normal", "Hard",
     };
@@ -73,9 +71,7 @@ public class Activity_StartGame extends Activity {
         
         setContentView(R.layout.activity_startgame);
 
-        mEasySaveScore = new Normal_SaveScore(this);
-        mNormalSaveScore = new Normal_SaveScore(this);
-        mHardSaveScore = new Normal_SaveScore(this);
+       
 
         txtfirstRandomNumber = (TextView) findViewById(R.id.integer1);
         txtsecondRandomNumber = (TextView) findViewById(R.id.integer2);
@@ -97,17 +93,14 @@ public class Activity_StartGame extends Activity {
         Bundle getextra = getIntent().getExtras();
         int choices = getextra.getInt("choice");
         
-        
-        ArrayList<Normal_Record> mHardRecord = null;
-        
         try {
             switch(choices) {
                 case 0 :
                 {
                     Normal_SingleRecord easySingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.EASYFILENAME);
                     easySingleRecord.getDetails();
-                    Normal_Record normalrecord = easySingleRecord.highScores().get(0);
-                    newScore = normalrecord.getScore();
+                    Normal_Record easyrecord = easySingleRecord.highScores().get(0);
+                    newScore = easyrecord.getScore();
                     showHighScore.setText(newScore);
                     break;
                 }
@@ -122,20 +115,16 @@ public class Activity_StartGame extends Activity {
                 }
                 case 2 :
                 {
-                    fileName = Normal_SingleRecord.HARDFILENAME;
-                    mHardRecord = Normal_SingleRecord.get(this, Normal_SingleRecord.HARDFILENAME).getDetails();
-                    Normal_Record normalrecord = mHardRecord.get(0);
-                    newScore = normalrecord.getScore();
+                    Normal_SingleRecord hardSingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.HARDFILENAME);
+                    hardSingleRecord.getDetails();
+                    Normal_Record hardrecord =hardSingleRecord.highScores().get(0);
+                    newScore = hardrecord.getScore();
                     showHighScore.setText(newScore);
-                    for(int i= 0; i < mHardRecord.size(); i++) {
-                        Log.i("onCreate()", fileName);
-                     }
                     break;
                 }
             }
-            Log.i("StartGameActivity", fileName);
         } catch (Exception e) {
-            Log.i("onCreate()", "No files saved");
+            showHighScore.setText("0");
             e.printStackTrace();
         }
         
@@ -233,7 +222,6 @@ public class Activity_StartGame extends Activity {
     }
 
     private void checkAnswer() {
-        
         if (choiceText == Integer.toString(answer)) {
             score++;
             showScore.setText(String.valueOf(score));
@@ -269,14 +257,19 @@ public class Activity_StartGame extends Activity {
                     try {
                         Bundle getextra = getIntent().getExtras();
                         int choices = getextra.getInt("choice");
+                        Log.i("gameOver", choices+"");
                         if(choices==0)
                         {
+                            mEasySaveScore = new Normal_SaveScore(Activity_StartGame.this);
                             mEasySaveScore.saveScore(score, mDate, Normal_SingleRecord.EASYFILENAME);
                         } else if (choices==1)
                         {
+                            mNormalSaveScore = new Normal_SaveScore(Activity_StartGame.this);
+                            
                             mNormalSaveScore.saveScore(score, mDate, Normal_SingleRecord.NORMALFILENAME);
                         } else if (choices==2)
                         {
+                            mHardSaveScore = new Normal_SaveScore(Activity_StartGame.this);
                             mHardSaveScore.saveScore(score, mDate, Normal_SingleRecord.HARDFILENAME);
                         }
                     } catch (Exception e) {

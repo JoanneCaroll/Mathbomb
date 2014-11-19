@@ -2,7 +2,6 @@ package com.example.mathbomb;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -19,7 +18,8 @@ public class Activity_HighScore extends Activity {
     easy, easyscore, easydate,
     normal, normalscore, normaldate, 
     hard, hardscore, harddate;
-    private ArrayList<Normal_Record> mEasyRecord, mNormalRecord, mHardRecord;
+    private String highscoreshow = "";
+//    private ArrayList<Normal_Record> mEasyRecord, mNormalRecord, mHardRecord;
     private Button okbutton;
     @SuppressLint({ "SimpleDateFormat", "CutPasteId" })
     @Override
@@ -56,11 +56,12 @@ public class Activity_HighScore extends Activity {
         });
 
         try {
-            ArrayList<Normal_Record> mEasyRecord = null;
-            mEasyRecord = Normal_SingleRecord.get(this, Normal_SingleRecord.EASYFILENAME).getDetails();
-            Normal_Record recordeasy = mEasyRecord.get(0);
-            easyscore.setText(recordeasy.getScore());
-            easydate.setText(dateFormat.format(recordeasy.getDate())+"");
+            Normal_SingleRecord easySingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.EASYFILENAME);
+            easySingleRecord.getDetails();
+            Normal_Record normalrecord = easySingleRecord.highScores().get(0);
+            highscoreshow = normalrecord.getScore();
+            easyscore.setText(highscoreshow);
+            easydate.setText(dateFormat.format(normalrecord.getDate())+"");
         } catch (Exception e) {	
             e.printStackTrace();
             easyscore.setText("norecord");
@@ -68,11 +69,12 @@ public class Activity_HighScore extends Activity {
         }
 
         try {
-            ArrayList<Normal_Record> mNormalRecord = null;
-            mNormalRecord = Normal_SingleRecord.get(this, Normal_SingleRecord.NORMALFILENAME).getDetails();
-            Normal_Record recordNormal = mNormalRecord.get(0);
-            normalscore.setText(recordNormal.getScore());
-            normaldate.setText(dateFormat.format(recordNormal.getDate())+"");
+            Normal_SingleRecord normalSingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.NORMALFILENAME);
+            normalSingleRecord.getDetails();
+            Normal_Record normalrecord = normalSingleRecord.highScores().get(0);
+            highscoreshow = normalrecord.getScore();
+            normalscore.setText(highscoreshow);
+            normaldate.setText(dateFormat.format(normalrecord.getDate())+"");
         } catch (Exception e) {
             e.printStackTrace();
             normalscore.setText("norecord");
@@ -80,11 +82,12 @@ public class Activity_HighScore extends Activity {
         }
 
         try {
-            ArrayList<Normal_Record> mHardRecord = null;
-            mHardRecord = Normal_SingleRecord.get(this, Normal_SingleRecord.HARDFILENAME).getDetails();
-            Normal_Record recordHard = mHardRecord.get(0);
-            hardscore.setText(recordHard.getScore());
-            harddate.setText(dateFormat.format(recordHard.getDate())+"");
+            Normal_SingleRecord hardSingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.HARDFILENAME);
+            hardSingleRecord.getDetails();
+            Normal_Record normalrecord = hardSingleRecord.highScores().get(0);
+            highscoreshow = normalrecord.getScore();
+            hardscore.setText(highscoreshow);
+            harddate.setText(dateFormat.format(normalrecord.getDate())+"");
         } catch (Exception e) {
             e.printStackTrace();
             hardscore.setText("norecord");

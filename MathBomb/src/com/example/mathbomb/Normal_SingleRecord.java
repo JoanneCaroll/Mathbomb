@@ -16,29 +16,19 @@ public class Normal_SingleRecord {
     public static final String NORMALFILENAME = "scoreNormal.json";
     public static final String HARDFILENAME = "scoreHard.json";
     
-    private ArrayList<Normal_Record> mEasyRecord, mNormalRecord, mHardRecord;
+    private ArrayList<Normal_Record> mNormalRecord;
 
-    private Normal_JSONSerializer mEasyJsonSerializer, mNormalJsonSerializer;
+    private Normal_JSONSerializer mNormalJsonSerializer;
 
     private static Normal_SingleRecord sNormalSingleRecord;
 
     public Normal_SingleRecord(Context context, String fileName) {
-        if(fileName == EASYFILENAME)
-        {
-            Log.i("SingleRecord", fileName);
-        }
         mNormalJsonSerializer = new Normal_JSONSerializer(context, fileName);
         Log.i("SingleRecord", fileName);
-        if(mNormalRecord == null && mEasyRecord == null)
-        {
-           // mEasyRecord = highScores();
-            mNormalRecord = highScores();            
-        }else
-        {
+        if(mNormalRecord == null)
+            mNormalRecord = highScores();
+        else
             mNormalRecord = new ArrayList<Normal_Record>();
-           // mEasyRecord = new ArrayList<Normal_Record>();
-        }
-           
     }
 
     public static Normal_SingleRecord get(Context c, String fileName) throws Exception {
@@ -56,6 +46,7 @@ public class Normal_SingleRecord {
     public void addDetails(Normal_Record c, String fileName) throws JSONException, IOException {
         mNormalRecord.add(c);
         saveDetails();
+        Log.i("addDetails()", fileName );
     }
 
     public void saveDetails() throws JSONException, IOException {
@@ -82,8 +73,4 @@ public class Normal_SingleRecord {
         }
         return tempRecord2;
     }
-
-//    public Normal_Record get(int i) {
-//        return highScores().get(0);
-//    }
 }

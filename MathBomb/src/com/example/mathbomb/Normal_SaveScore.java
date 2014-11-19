@@ -17,9 +17,8 @@ public class Normal_SaveScore {
         mNormalRecord.setScore(Integer.toString(score));
         mNormalRecord.setDate(date);
 
-        Normal_SingleRecord.get(mNormalAppContext, fileName).addDetails(mNormalRecord, fileName);
+        Normal_SingleRecord saveNormal = new Normal_SingleRecord(mNormalAppContext, fileName);
+        saveNormal.addDetails(mNormalRecord, fileName);
         Log.i("SaveScore()", fileName);
-        Normal_SingleRecord.get(mNormalAppContext, fileName).saveDetails();
-
-    }
+        }
 }
