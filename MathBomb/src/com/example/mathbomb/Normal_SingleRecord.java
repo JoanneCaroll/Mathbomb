@@ -8,7 +8,6 @@ import java.util.Collections;
 import org.json.JSONException;
 
 import android.content.Context;
-import android.util.Log;
 
 public class Normal_SingleRecord {
 
@@ -33,7 +32,6 @@ public class Normal_SingleRecord {
     public static Normal_SingleRecord get(Context c, String fileName) throws Exception {
         if (sNormalSingleRecord == null) {
             sNormalSingleRecord = new Normal_SingleRecord(c.getApplicationContext(), fileName);
-            Log.i("SingleRecord", fileName);
         }
         return sNormalSingleRecord;
     }
