@@ -4,6 +4,7 @@ package com.example.mathbomb;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -37,7 +38,18 @@ public class Activity_NewGame extends Activity {
                 Intent i = new Intent(Activity_NewGame.this, Activity_StartGame.class);
                 i.putExtra(choice, position);
                 startActivity(i);
+                //finish();
             }
         });
+    }
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

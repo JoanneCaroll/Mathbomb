@@ -22,7 +22,7 @@ import android.widget.TextView;
 public class Activity_StartGame extends Activity {
 
     private Date mDate;
-    private SaveScore mEasySaveScore, mNormalSaveScore, mHardSaveScore;
+    private SaveScore mSaveScore, mNormalSaveScore, mHardSaveScore;
     private TextView 
     txtshowScore, txtshowHighScore, txtshowTimeLeft, txtshowResult,
     txtfirstRandomNumber, txtsecondRandomNumber, txtrandomOperator;
@@ -40,7 +40,7 @@ public class Activity_StartGame extends Activity {
     hardMin=10, hardMax=10, hardSize=40;
     private Button[] btnrandomResult = new Button[4];
     private List<Integer> arrayList = new ArrayList<Integer>();
-    private String choiceText = "", newScore = "", alertText = "";
+    private String choiceText = "", newScore = "", alertText = "", fileName = "";
     public static final String[] category = {
         "Easy", "Normal", "Hard",
     };
@@ -249,20 +249,22 @@ public class Activity_StartGame extends Activity {
                     mDate = new Date();	    			
                     try {
                         Bundle getextra = getIntent().getExtras();
+                        
+                        
                         int choices = getextra.getInt("choice");
                         if(choices==categoryEasy)
                         {
-                            mEasySaveScore = new SaveScore(Activity_StartGame.this);
-                            mEasySaveScore.saveScore(score, mDate, SingleRecord.EASYFILENAME);
+                            fileName = SingleRecord.EASYFILENAME;
+                            
                         } else if (choices==categoryNormal)
                         {
-                            mNormalSaveScore = new SaveScore(Activity_StartGame.this);
-                            mNormalSaveScore.saveScore(score, mDate, SingleRecord.NORMALFILENAME);
+                            fileName = SingleRecord.NORMALFILENAME;
                         } else if (choices==categoryHard)
                         {
-                            mHardSaveScore = new SaveScore(Activity_StartGame.this);
-                            mHardSaveScore.saveScore(score, mDate, SingleRecord.HARDFILENAME);
+                            fileName = SingleRecord.HARDFILENAME;
                         }
+                        mSaveScore = new SaveScore(Activity_StartGame.this);
+                        mSaveScore.saveScore(score, mDate, fileName);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
