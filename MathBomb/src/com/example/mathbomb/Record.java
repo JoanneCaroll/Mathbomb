@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 @SuppressWarnings("serial")
-public class Normal_Record implements Serializable, Comparable<Normal_Record>  {
+public class Record implements Serializable, Comparable<Record>  {
 
     private static final String JSON_SCORE = "score";
     private static final String JSON_DATE = "date";
@@ -15,11 +15,11 @@ public class Normal_Record implements Serializable, Comparable<Normal_Record>  {
     private String mNormalScore;
     private Date mNormalDate;
 
-    public Normal_Record() {
+    public Record() {
         // used for initialization
     }
 
-    public Normal_Record(JSONObject jsonObject) throws JSONException {
+    public Record(JSONObject jsonObject) throws JSONException {
         mNormalScore = jsonObject.getString(JSON_SCORE);
         mNormalDate = new Date(jsonObject.getLong(JSON_DATE));
     }
@@ -51,7 +51,7 @@ public class Normal_Record implements Serializable, Comparable<Normal_Record>  {
     }
 
     @Override
-    public int compareTo(Normal_Record another) {
+    public int compareTo(Record another) {
         return Integer.parseInt(another.mNormalScore) - Integer.parseInt(this.mNormalScore);
     }
 }

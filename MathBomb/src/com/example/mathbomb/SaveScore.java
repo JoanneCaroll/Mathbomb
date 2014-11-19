@@ -4,19 +4,19 @@ import java.util.Date;
 
 import android.content.Context;
 
-public class Normal_SaveScore {
+public class SaveScore {
     private Context mNormalAppContext;
-    public Normal_SaveScore(Context appNormalContext) {
+    public SaveScore(Context appNormalContext) {
         this.mNormalAppContext = appNormalContext;
     }
 
     public void saveScore(int score, Date date, String fileName) throws Exception {
-        Normal_Record mNormalRecord = new Normal_Record();
+        Record mNormalRecord = new Record();
 
         mNormalRecord.setScore(Integer.toString(score));
         mNormalRecord.setDate(date);
 
-        Normal_SingleRecord saveNormal = new Normal_SingleRecord(mNormalAppContext, fileName);
+        SingleRecord saveNormal = new SingleRecord(mNormalAppContext, fileName);
         saveNormal.addDetails(mNormalRecord, fileName);
         }
 }

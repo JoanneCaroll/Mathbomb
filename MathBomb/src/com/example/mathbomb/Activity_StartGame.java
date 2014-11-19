@@ -22,7 +22,7 @@ import android.widget.TextView;
 public class Activity_StartGame extends Activity {
 
     private Date mDate;
-    private Normal_SaveScore mEasySaveScore, mNormalSaveScore, mHardSaveScore;
+    private SaveScore mEasySaveScore, mNormalSaveScore, mHardSaveScore;
     private TextView 
     txtshowScore, txtshowHighScore, txtshowTimeLeft, txtshowResult,
     txtfirstRandomNumber, txtsecondRandomNumber, txtrandomOperator;
@@ -102,27 +102,27 @@ public class Activity_StartGame extends Activity {
             switch(choices) {
                 case categoryEasy :
                 {
-                    Normal_SingleRecord easySingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.EASYFILENAME);
+                    SingleRecord easySingleRecord = new SingleRecord(this, SingleRecord.EASYFILENAME);
                     easySingleRecord.getDetails();
-                    Normal_Record easyrecord = easySingleRecord.highScores().get(0);
+                    Record easyrecord = easySingleRecord.highScores().get(0);
                     newScore = easyrecord.getScore();
                     txtshowHighScore.setText(newScore);
                     break;
                 }
                 case categoryNormal :
                 {
-                    Normal_SingleRecord normalSingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.NORMALFILENAME);
+                    SingleRecord normalSingleRecord = new SingleRecord(this, SingleRecord.NORMALFILENAME);
                     normalSingleRecord.getDetails();
-                    Normal_Record normalrecord = normalSingleRecord.highScores().get(0);
+                    Record normalrecord = normalSingleRecord.highScores().get(0);
                     newScore = normalrecord.getScore();
                     txtshowHighScore.setText(newScore);
                     break;
                 }
                 case categoryHard :
                 {
-                    Normal_SingleRecord hardSingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.HARDFILENAME);
+                    SingleRecord hardSingleRecord = new SingleRecord(this, SingleRecord.HARDFILENAME);
                     hardSingleRecord.getDetails();
-                    Normal_Record hardrecord =hardSingleRecord.highScores().get(0);
+                    Record hardrecord =hardSingleRecord.highScores().get(0);
                     newScore = hardrecord.getScore();
                     txtshowHighScore.setText(newScore);
                     break;
@@ -265,16 +265,16 @@ public class Activity_StartGame extends Activity {
                         int choices = getextra.getInt("choice");
                         if(choices==categoryEasy)
                         {
-                            mEasySaveScore = new Normal_SaveScore(Activity_StartGame.this);
-                            mEasySaveScore.saveScore(score, mDate, Normal_SingleRecord.EASYFILENAME);
+                            mEasySaveScore = new SaveScore(Activity_StartGame.this);
+                            mEasySaveScore.saveScore(score, mDate, SingleRecord.EASYFILENAME);
                         } else if (choices==categoryNormal)
                         {
-                            mNormalSaveScore = new Normal_SaveScore(Activity_StartGame.this);
-                            mNormalSaveScore.saveScore(score, mDate, Normal_SingleRecord.NORMALFILENAME);
+                            mNormalSaveScore = new SaveScore(Activity_StartGame.this);
+                            mNormalSaveScore.saveScore(score, mDate, SingleRecord.NORMALFILENAME);
                         } else if (choices==categoryHard)
                         {
-                            mHardSaveScore = new Normal_SaveScore(Activity_StartGame.this);
-                            mHardSaveScore.saveScore(score, mDate, Normal_SingleRecord.HARDFILENAME);
+                            mHardSaveScore = new SaveScore(Activity_StartGame.this);
+                            mHardSaveScore.saveScore(score, mDate, SingleRecord.HARDFILENAME);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

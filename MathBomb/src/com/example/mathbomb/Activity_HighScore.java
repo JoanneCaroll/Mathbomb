@@ -56,9 +56,9 @@ public class Activity_HighScore extends Activity {
         });
 
         try {
-            Normal_SingleRecord easySingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.EASYFILENAME);
+            SingleRecord easySingleRecord = new SingleRecord(this, SingleRecord.EASYFILENAME);
             easySingleRecord.getDetails();
-            Normal_Record normalrecord = easySingleRecord.highScores().get(0);
+            Record normalrecord = easySingleRecord.highScores().get(0);
             highscoreshow = normalrecord.getScore();
             easyscore.setText(highscoreshow);
             easydate.setText(dateFormat.format(normalrecord.getDate())+"");
@@ -69,9 +69,9 @@ public class Activity_HighScore extends Activity {
         }
 
         try {
-            Normal_SingleRecord normalSingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.NORMALFILENAME);
+            SingleRecord normalSingleRecord = new SingleRecord(this, SingleRecord.NORMALFILENAME);
             normalSingleRecord.getDetails();
-            Normal_Record normalrecord = normalSingleRecord.highScores().get(0);
+            Record normalrecord = normalSingleRecord.highScores().get(0);
             highscoreshow = normalrecord.getScore();
             normalscore.setText(highscoreshow);
             normaldate.setText(dateFormat.format(normalrecord.getDate())+"");
@@ -82,9 +82,9 @@ public class Activity_HighScore extends Activity {
         }
 
         try {
-            Normal_SingleRecord hardSingleRecord = new Normal_SingleRecord(this, Normal_SingleRecord.HARDFILENAME);
+            SingleRecord hardSingleRecord = new SingleRecord(this, SingleRecord.HARDFILENAME);
             hardSingleRecord.getDetails();
-            Normal_Record normalrecord = hardSingleRecord.highScores().get(0);
+            Record normalrecord = hardSingleRecord.highScores().get(0);
             highscoreshow = normalrecord.getScore();
             hardscore.setText(highscoreshow);
             harddate.setText(dateFormat.format(normalrecord.getDate())+"");

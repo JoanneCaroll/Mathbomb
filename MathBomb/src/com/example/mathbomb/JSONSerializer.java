@@ -15,20 +15,20 @@ import org.json.JSONTokener;
 
 import android.content.Context;
 
-public class Normal_JSONSerializer {
+public class JSONSerializer {
     private Context mNormalContext;
     private String mNormalFilename;
     private int jsonArrayCount;
-    public Normal_JSONSerializer(Context cNormal, String fnameNormal) {
+    public JSONSerializer(Context cNormal, String fnameNormal) {
         mNormalContext = cNormal;
         mNormalFilename = fnameNormal;
     }
 
-    public void saveDetails(ArrayList<Normal_Record> mRecord)
+    public void saveDetails(ArrayList<Record> mRecord)
             throws JSONException, IOException {
         JSONArray jsonArray = new JSONArray();
 
-        for (Normal_Record nr : mRecord) {
+        for (Record nr : mRecord) {
             jsonArray.put(nr.toJsonObject());
         }
 
@@ -43,9 +43,9 @@ public class Normal_JSONSerializer {
         
     }
 
-    public ArrayList<Normal_Record> loadDetails() throws Exception {
+    public ArrayList<Record> loadDetails() throws Exception {
 
-        ArrayList<Normal_Record> mRecord = new ArrayList<Normal_Record>();
+        ArrayList<Record> mRecord = new ArrayList<Record>();
         BufferedReader reader = null;
 
         InputStream inputStream = mNormalContext.openFileInput(mNormalFilename);
@@ -62,7 +62,7 @@ public class Normal_JSONSerializer {
                 json_string.toString()).nextValue();
         jsonArrayCount = jsonArray.length();
         for (int i = 0; i < jsonArrayCount; i++) {
-            mRecord.add(new Normal_Record(jsonArray.getJSONObject(i)));
+            mRecord.add(new Record(jsonArray.getJSONObject(i)));
         }
 
         if (reader != null)
