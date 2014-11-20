@@ -260,15 +260,11 @@ public class Activity_StartGame extends Activity {
                     try {
                         Bundle getextra = getIntent().getExtras();
                         int choices = getextra.getInt("choice");
-                        if(choices==categoryEasy)
-                        {
+                        if(choices==categoryEasy) {
                             fileName = SingleRecord.EASYFILENAME;
-                            
-                        } else if (choices==categoryNormal)
-                        {
+                        } else if (choices==categoryNormal) {
                             fileName = SingleRecord.NORMALFILENAME;
-                        } else if (choices==categoryHard)
-                        {
+                        } else if (choices==categoryHard) {
                             fileName = SingleRecord.HARDFILENAME;
                         }
                         mSaveScore = new SaveScore(Activity_StartGame.this);
