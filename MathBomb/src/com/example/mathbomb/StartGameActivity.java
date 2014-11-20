@@ -243,38 +243,30 @@ public class StartGameActivity extends Activity {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.gameOver)
-                    .setMessage(getString(R.string.yourscoreis)+" " + txtShowScore.getText())
-                    .setPositiveButton(R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                        int id) {
-                                    mDate = new Date();
-                                    try {
-                                        Bundle getextra = getIntent()
-                                                .getExtras();
-                                        int choices = getextra.getInt("choice");
-                                        if (choices == categoryEasy) {
-                                            fileName = SingleRecord.EASYFILENAME;
-
-                                        } else if (choices == categoryNormal) {
-                                            fileName = SingleRecord.NORMALFILENAME;
-                                        } else if (choices == categoryHard) {
-                                            fileName = SingleRecord.HARDFILENAME;
-                                        }
-                                        mSaveScore = new SaveScore(
-                                                StartGameActivity.this);
-                                        mSaveScore.saveScore(score, mDate,
-                                                fileName);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                    Intent i = new Intent(
-                                            StartGameActivity.this,
-                                            MainMenuActivity.class);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(i);
-                                }
-                            }).setCancelable(false).show();
+            .setMessage(getString(R.string.yourscoreis) + " " + txtShowScore.getText())
+            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                        mDate = new Date();
+                        try {
+                            Bundle getextra = getIntent().getExtras();
+                            int choices = getextra.getInt("choice");
+                            if (choices == categoryEasy) {
+                                fileName = SingleRecord.EASYFILENAME;
+                            } else if (choices == categoryNormal) {
+                                fileName = SingleRecord.NORMALFILENAME;
+                            } else if (choices == categoryHard) {
+                                fileName = SingleRecord.HARDFILENAME;
+                            }
+                            mSaveScore = new SaveScore(StartGameActivity.this);
+                            mSaveScore.saveScore(score, mDate,fileName);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        Intent i = new Intent(StartGameActivity.this, MainMenuActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
+                        }
+                }).setCancelable(false).show();
         } catch (Exception e) {
             e.printStackTrace();
         }
