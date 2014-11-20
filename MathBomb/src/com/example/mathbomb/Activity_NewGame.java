@@ -8,7 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-public class NewGameActivity extends Activity {
+public class Activity_NewGame extends Activity {
 
     private ListView listcategory;
 
@@ -29,13 +29,13 @@ public class NewGameActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listcategory);
         ListCategory adapter = new
-                ListCategory(NewGameActivity.this, category, image);
+                ListCategory(Activity_NewGame.this, category, image);
         listcategory=(ListView)findViewById(R.id.list_category);
         listcategory.setAdapter(adapter);
         listcategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(NewGameActivity.this, StartGameActivity.class);
+                Intent i = new Intent(Activity_NewGame.this, Activity_StartGame.class);
                 i.putExtra(choice, position);
                 startActivity(i);
                 //finish();

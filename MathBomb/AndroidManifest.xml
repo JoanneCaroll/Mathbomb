@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme" 
         >
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".Activity_MainMenu"
             android:screenOrientation="portrait">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,15 +23,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".StartGameActivity"
+            android:name=".Activity_StartGame"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".NewGameActivity"
+            android:name=".Activity_NewGame"
             android:screenOrientation="portrait">           
         </activity>
         <activity
-            android:name=".HighScoreActivity"
+            android:name=".Activity_HighScore"
             android:screenOrientation="portrait">           
         </activity>
     </application>
