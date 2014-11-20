@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,7 +11,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -100,10 +98,6 @@ public class StartGameActivity extends Activity {
                 easySingleRecord.getDetails();
                 Record easyrecord = easySingleRecord.highScores().get(0);
                 newScore = easyrecord.getScore();
-                for (int i=0; i< easySingleRecord.highScores().size(); i++)
-                {
-                    Log.i("onCreate()", easySingleRecord.highScores().get(i)+"");
-                }
                 txtShowHighScore.setText(newScore);
                 break;
             }
@@ -114,10 +108,6 @@ public class StartGameActivity extends Activity {
                 Record normalrecord = normalSingleRecord.highScores().get(0);
                 newScore = normalrecord.getScore();
                 txtShowHighScore.setText(newScore);
-                for (int i=0; i< normalSingleRecord.highScores().size(); i++)
-                {
-                    Log.i("onCreate()", normalSingleRecord.highScores().get(i)+"");
-                }
                 break;
             }
             case categoryHard: {
@@ -127,10 +117,6 @@ public class StartGameActivity extends Activity {
                 Record hardrecord = hardSingleRecord.highScores().get(0);
                 newScore = hardrecord.getScore();
                 txtShowHighScore.setText(newScore);
-                for (int i=0; i< hardSingleRecord.highScores().size(); i++)
-                {
-                    Log.i("onCreate()", hardSingleRecord.highScores().get(i)+"");
-                }
                 break;
             }
             default:

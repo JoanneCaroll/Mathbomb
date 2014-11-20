@@ -5,9 +5,9 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainMenuActivity extends Activity {
     public static Date prevEasyDate, prevNormalDate, prevHardDate;
@@ -47,11 +47,11 @@ public class MainMenuActivity extends Activity {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Toast.makeText(this, "Score not saved", Toast.LENGTH_SHORT).show();
-        finish();
-    };
-
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }
