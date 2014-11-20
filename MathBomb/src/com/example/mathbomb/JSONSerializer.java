@@ -67,9 +67,8 @@ public class JSONSerializer {
             mRecord.add(new Record(jsonArray.getJSONObject(i)));
         }
 
-        if (reader != null) {
+        if (reader != null)
             reader.close();
-        }
         return mRecord;
 
     }
