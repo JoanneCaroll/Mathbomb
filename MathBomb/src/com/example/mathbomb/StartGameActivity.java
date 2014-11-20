@@ -20,7 +20,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Activity_StartGame extends Activity {
+public class StartGameActivity extends Activity {
 
     private Date mDate;
     private SaveScore mSaveScore;
@@ -271,12 +271,12 @@ public class Activity_StartGame extends Activity {
                         {
                             fileName = SingleRecord.HARDFILENAME;
                         }
-                        mSaveScore = new SaveScore(Activity_StartGame.this);
+                        mSaveScore = new SaveScore(StartGameActivity.this);
                         mSaveScore.saveScore(score, mDate, fileName);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    Intent i=new Intent(Activity_StartGame.this, Activity_MainMenu.class);
+                    Intent i=new Intent(StartGameActivity.this, MainMenuActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                 }

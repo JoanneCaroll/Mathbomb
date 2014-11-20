@@ -9,7 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
-public class Activity_MainMenu extends Activity {
+public class MainMenuActivity extends Activity {
     public static Date prevEasyDate, prevNormalDate, prevHardDate;
     public Button playButton, highscoreButton, howtoplayButton, settingsButton, exitButton;
 
@@ -21,14 +21,14 @@ public class Activity_MainMenu extends Activity {
         playButton = (Button)findViewById(R.id.playbutton);
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(Activity_MainMenu.this, Activity_NewGame.class);
+                Intent i = new Intent(MainMenuActivity.this, NewGameActivity.class);
                 startActivity(i);
             }
         });
         highscoreButton = (Button)findViewById(R.id.highscorebutton);
         highscoreButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(Activity_MainMenu.this, Activity_HighScore.class);
+                Intent i = new Intent(MainMenuActivity.this, HighScoreActivity.class);
                 startActivity(i);
             }
         });

@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Activity_HighScore extends Activity {
+public class HighScoreActivity extends Activity {
 
     private TextView 
     txthighscore, 
@@ -31,17 +31,17 @@ public class Activity_HighScore extends Activity {
         txthighscore.setText(R.string.highscoretitle); 
 
         txteasy = (TextView)findViewById(R.id.easy);
-        txteasy.setText(Activity_StartGame.category[0]);
+        txteasy.setText(StartGameActivity.category[0]);
         txteasyscore = (TextView)findViewById(R.id.easyscore);
         txteasydate = (TextView)findViewById(R.id.easydate);
 
         txtnormal = (TextView)findViewById(R.id.normal);
-        txtnormal.setText(Activity_StartGame.category[1]);
+        txtnormal.setText(StartGameActivity.category[1]);
         txtnormalscore = (TextView)findViewById(R.id.normalscore);
         txtnormaldate = (TextView)findViewById(R.id.normaldate); 
 
         txthard = (TextView)findViewById(R.id.hard);
-        txthard.setText(Activity_StartGame.category[2]);
+        txthard.setText(StartGameActivity.category[2]);
         txthardscore = (TextView)findViewById(R.id.hardscore);
         txtharddate = (TextView)findViewById(R.id.harddate);
 
