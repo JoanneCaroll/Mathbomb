@@ -13,11 +13,11 @@ import android.widget.TextView;
 
 public class HighScoreActivity extends Activity {
 
-    private TextView txtHighScore, txtEasy, txtEasyScore, txtEasyDate,
-            txtNormal, txtNormalScore, txtNormalDate, txtHard, txtHardScore,
-            txtHardDate;
-    private String highScoreShow = "";
-    private Button okButton;
+    private TextView txthighscore, txteasy, txteasyscore, txteasydate,
+            txtnormal, txtnormalscore, txtnormaldate, txthard, txthardscore,
+            txtharddate;
+    private String highscoreshow = "";
+    private Button okbutton;
     @SuppressLint("SimpleDateFormat")
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
@@ -26,26 +26,26 @@ public class HighScoreActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
-        txtHighScore = (TextView) findViewById(R.id.highscoreshow);
-        txtHighScore.setText(R.string.highscoretitle);
+        txthighscore = (TextView) findViewById(R.id.highscoreshow);
+        txthighscore.setText(R.string.highscoretitle);
 
-        txtEasy = (TextView) findViewById(R.id.easy);
-        txtEasy.setText(StartGameActivity.category[0]);
-        txtEasyScore = (TextView) findViewById(R.id.easyscore);
-        txtEasyDate = (TextView) findViewById(R.id.easydate);
+        txteasy = (TextView) findViewById(R.id.easy);
+        txteasy.setText(StartGameActivity.category[0]);
+        txteasyscore = (TextView) findViewById(R.id.easyscore);
+        txteasydate = (TextView) findViewById(R.id.easydate);
 
-        txtNormal = (TextView) findViewById(R.id.normal);
-        txtNormal.setText(StartGameActivity.category[1]);
-        txtNormalScore = (TextView) findViewById(R.id.normalscore);
-        txtNormalDate = (TextView) findViewById(R.id.normaldate);
+        txtnormal = (TextView) findViewById(R.id.normal);
+        txtnormal.setText(StartGameActivity.category[1]);
+        txtnormalscore = (TextView) findViewById(R.id.normalscore);
+        txtnormaldate = (TextView) findViewById(R.id.normaldate);
 
-        txtHard = (TextView) findViewById(R.id.hard);
-        txtHard.setText(StartGameActivity.category[2]);
-        txtHardScore = (TextView) findViewById(R.id.hardscore);
-        txtHardDate = (TextView) findViewById(R.id.harddate);
+        txthard = (TextView) findViewById(R.id.hard);
+        txthard.setText(StartGameActivity.category[2]);
+        txthardscore = (TextView) findViewById(R.id.hardscore);
+        txtharddate = (TextView) findViewById(R.id.harddate);
 
-        okButton = (Button) findViewById(R.id.ok_highscore);
-        okButton.setOnClickListener(new View.OnClickListener() {
+        okbutton = (Button) findViewById(R.id.ok_highscore);
+        okbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }
@@ -69,31 +69,31 @@ public class HighScoreActivity extends Activity {
             SingleRecord singleRecord = new SingleRecord(this, fileName);
             singleRecord.getDetails();
             Record normalrecord = singleRecord.highScores().get(0);
-            highScoreShow = normalrecord.getScore();
+            highscoreshow = normalrecord.getScore();
             if (fileName == SingleRecord.EASYFILENAME) {
-                txtEasyScore.setText(highScoreShow);
-                txtEasyDate.setText(dateFormat.format(normalrecord.getDate())
+                txteasyscore.setText(highscoreshow);
+                txteasydate.setText(dateFormat.format(normalrecord.getDate())
                         + "");
             } else if (fileName == SingleRecord.NORMALFILENAME) {
-                txtNormalScore.setText(highScoreShow);
-                txtNormalDate.setText(dateFormat.format(normalrecord.getDate())
+                txtnormalscore.setText(highscoreshow);
+                txtnormaldate.setText(dateFormat.format(normalrecord.getDate())
                         + "");
             } else if (fileName == SingleRecord.HARDFILENAME) {
-                txtHardScore.setText(highScoreShow);
-                txtHardDate.setText(dateFormat.format(normalrecord.getDate())
+                txthardscore.setText(highscoreshow);
+                txtharddate.setText(dateFormat.format(normalrecord.getDate())
                         + "");
             }
         } catch (Exception e) {
             e.printStackTrace();
             if (fileName == SingleRecord.EASYFILENAME) {
-                txtEasyScore.setText("norecord");
-                txtEasyDate.setText("norecord");
+                txteasyscore.setText("norecord");
+                txteasydate.setText("norecord");
             } else if (fileName == SingleRecord.NORMALFILENAME) {
-                txtNormalScore.setText("norecord");
-                txtNormalDate.setText("norecord");
+                txtnormalscore.setText("norecord");
+                txtnormaldate.setText("norecord");
             } else if (fileName == SingleRecord.HARDFILENAME) {
-                txtHardScore.setText("norecord");
-                txtHardDate.setText("norecord");
+                txthardscore.setText("norecord");
+                txtharddate.setText("norecord");
             }
         }
     }
