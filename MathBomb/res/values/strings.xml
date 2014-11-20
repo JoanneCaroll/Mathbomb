@@ -15,5 +15,7 @@
 	<string name="menuhowtoplay">How to Play</string>
 	<string name="menusettings">Settings</string>
 	<string name="menuexit">Exit</string>
+	<string name="defaultvalue">0</string>
+	<string name="seconds"> sec(s)</string>
 	
 </resources>
