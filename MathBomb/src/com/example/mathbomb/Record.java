@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 @SuppressWarnings("serial")
-public class Record implements Serializable, Comparable<Record>  {
+public class Record implements Serializable, Comparable<Record> {
 
     private static final String JSON_SCORE = "score";
     private static final String JSON_DATE = "date";
@@ -52,6 +52,7 @@ public class Record implements Serializable, Comparable<Record>  {
 
     @Override
     public int compareTo(Record another) {
-        return Integer.parseInt(another.mNormalScore) - Integer.parseInt(this.mNormalScore);
+        return Integer.parseInt(another.mNormalScore)
+                - Integer.parseInt(this.mNormalScore);
     }
 }
