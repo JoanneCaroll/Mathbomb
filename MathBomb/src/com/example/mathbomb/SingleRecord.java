@@ -22,10 +22,11 @@ public class SingleRecord {
 
     public SingleRecord(Context context, String fileName) {
         mNormalJsonSerializer = new JSONSerializer(context, fileName);
-        if (mNormalRecord == null)
+        if (mNormalRecord == null) {
             mNormalRecord = highScores();
-        else
+        } else {
             mNormalRecord = new ArrayList<Record>();
+        }
     }
 
     public static SingleRecord get(Context c, String fileName) throws Exception {
