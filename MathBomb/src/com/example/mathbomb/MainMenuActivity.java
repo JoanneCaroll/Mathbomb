@@ -5,7 +5,6 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -45,6 +44,7 @@ public class MainMenuActivity extends Activity {
             }
         });
     }
+<<<<<<< HEAD:MathBomb/src/com/example/mathbomb/MainMenuActivity.java
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -54,4 +54,6 @@ public class MainMenuActivity extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
+=======
+>>>>>>> parent of 405a36b... fixed the back stack of the activities:MathBomb/src/com/example/mathbomb/Activity_MainMenu.java
 }
