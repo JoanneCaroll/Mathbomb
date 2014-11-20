@@ -11,21 +11,21 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Activity_StartGame extends Activity {
     private Date mDate;
     private SaveScore mSaveScore;
     private TextView
-        txtshowScore, txtshowHighScore, txtshowTimeLeft, txtshowResult,
-        txtfirstRandomNumber, txtsecondRandomNumber, txtrandomOperator;
+    txtshowScore, txtshowHighScore, txtshowTimeLeft, txtshowResult,
+    txtfirstRandomNumber, txtsecondRandomNumber, txtrandomOperator;
     private int
-        firstRandomInteger, secondRandomInteger, randomOperator,
-        score, answer,textColor;
+    firstRandomInteger, secondRandomInteger, randomOperator,
+    score, answer,textColor;
     private final int
     categoryEasy=0, categoryNormal=1, categoryHard=2,
     timerGameSpan=30000, timerGameSpeed=1000,
@@ -65,12 +65,7 @@ public class Activity_StartGame extends Activity {
             checkAnswer();
         }
     };
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Toast.makeText(this, "Score not saved", Toast.LENGTH_SHORT).show();
-        finish();
-    };
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,6 +131,16 @@ public class Activity_StartGame extends Activity {
                 gameOver();
             }
         }.start();
+    }
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
     
     public void generateUniqueChoices(int answer) {
