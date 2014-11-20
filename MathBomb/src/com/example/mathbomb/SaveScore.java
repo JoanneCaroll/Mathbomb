@@ -6,13 +6,11 @@ import android.content.Context;
 
 public class SaveScore {
     private Context mNormalAppContext;
-
     public SaveScore(Context appNormalContext) {
         this.mNormalAppContext = appNormalContext;
     }
 
-    public void saveScore(int score, Date date, String fileName)
-            throws Exception {
+    public void saveScore(int score, Date date, String fileName) throws Exception {
         Record mNormalRecord = new Record();
 
         mNormalRecord.setScore(Integer.toString(score));
@@ -20,5 +18,5 @@ public class SaveScore {
 
         SingleRecord saveNormal = new SingleRecord(mNormalAppContext, fileName);
         saveNormal.addDetails(mNormalRecord, fileName);
-    }
+        }
 }

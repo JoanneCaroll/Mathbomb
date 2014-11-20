@@ -1,5 +1,6 @@
 package com.example.mathbomb;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +14,7 @@ public class SingleRecord {
     public static final String EASYFILENAME = "scoreEasy.json";
     public static final String NORMALFILENAME = "scoreNormal.json";
     public static final String HARDFILENAME = "scoreHard.json";
-
+    
     private ArrayList<Record> mNormalRecord;
 
     private JSONSerializer mNormalJsonSerializer;
@@ -22,7 +23,7 @@ public class SingleRecord {
 
     public SingleRecord(Context context, String fileName) {
         mNormalJsonSerializer = new JSONSerializer(context, fileName);
-        if (mNormalRecord == null)
+        if(mNormalRecord == null)
             mNormalRecord = highScores();
         else
             mNormalRecord = new ArrayList<Record>();
@@ -30,8 +31,7 @@ public class SingleRecord {
 
     public static SingleRecord get(Context c, String fileName) throws Exception {
         if (sNormalSingleRecord == null) {
-            sNormalSingleRecord = new SingleRecord(c.getApplicationContext(),
-                    fileName);
+            sNormalSingleRecord = new SingleRecord(c.getApplicationContext(), fileName);
         }
         return sNormalSingleRecord;
     }
@@ -40,8 +40,7 @@ public class SingleRecord {
         return highScores();
     }
 
-    public void addDetails(Record c, String fileName) throws JSONException,
-            IOException {
+    public void addDetails(Record c, String fileName) throws JSONException, IOException {
         mNormalRecord.add(c);
         saveDetails();
     }

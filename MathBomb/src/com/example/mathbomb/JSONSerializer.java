@@ -19,14 +19,13 @@ public class JSONSerializer {
     private Context mNormalContext;
     private String mNormalFilename;
     private int jsonArrayCount;
-
     public JSONSerializer(Context cNormal, String fnameNormal) {
         mNormalContext = cNormal;
         mNormalFilename = fnameNormal;
     }
 
-    public void saveDetails(ArrayList<Record> mRecord) throws JSONException,
-            IOException {
+    public void saveDetails(ArrayList<Record> mRecord)
+            throws JSONException, IOException {
         JSONArray jsonArray = new JSONArray();
 
         for (Record nr : mRecord) {
@@ -35,14 +34,13 @@ public class JSONSerializer {
 
         Writer writer = null;
 
-        OutputStream outputStream = mNormalContext.openFileOutput(
-                mNormalFilename, Context.MODE_PRIVATE);
+        OutputStream outputStream = mNormalContext.openFileOutput(mNormalFilename, Context.MODE_PRIVATE);
         writer = new OutputStreamWriter(outputStream);
         writer.write(jsonArray.toString());
         if (writer != null) {
             writer.close();
         }
-
+        
     }
 
     public ArrayList<Record> loadDetails() throws Exception {
@@ -70,6 +68,6 @@ public class JSONSerializer {
         if (reader != null)
             reader.close();
         return mRecord;
-
+        
     }
 }
