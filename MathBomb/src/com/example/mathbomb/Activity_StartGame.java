@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -90,6 +91,7 @@ public class Activity_StartGame extends Activity {
         
         for(int i = 0; i<=maxIndexOfRandomResults; i++){
             btnrandomResult[i] = (Button) findViewById(index);
+            Log.i("onCreate()",index++ + "");
         }
         
         Bundle getextra = getIntent().getExtras();
