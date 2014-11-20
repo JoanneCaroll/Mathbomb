@@ -65,6 +65,7 @@ public class Activity_StartGame extends Activity {
             checkAnswer();
         }
     };
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +132,7 @@ public class Activity_StartGame extends Activity {
             }
         }.start();
     }
+    
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -140,6 +142,7 @@ public class Activity_StartGame extends Activity {
         }
         return super.onKeyDown(keyCode, event);
     }
+    
     public void generateUniqueChoices(int answer) {
         //clear arraylist
         arrayList.clear();
@@ -166,6 +169,7 @@ public class Activity_StartGame extends Activity {
             arrayList.remove(index);
         }
     }
+    
     private void resetGame() {
         final int a = random.nextInt(maxIndexOfRandomResults);
         randomOperator = random.nextInt(subOperator) + addOperator;
@@ -184,6 +188,7 @@ public class Activity_StartGame extends Activity {
         generateUniqueChoices(answer);
         btnrandomResult[a].setText(Integer.toString(answer));
     }
+    
     private void calculateAnswer() {
         if (randomOperator == addOperator) {
             txtrandomOperator.setText("+");
@@ -193,6 +198,7 @@ public class Activity_StartGame extends Activity {
             answer = firstRandomInteger - secondRandomInteger;
         }
     }
+    
     private void checkAnswer() {
         if (choiceText == Integer.toString(answer)) {
             score++;
@@ -215,6 +221,7 @@ public class Activity_StartGame extends Activity {
         }.start();
         resetGame();
     }
+    
     private void gameOver() {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -250,6 +257,7 @@ public class Activity_StartGame extends Activity {
             e.printStackTrace();
         }
     }
+    
     private void generateInput(int min, int max) {
         firstRandomInteger = random.nextInt(max) + min;
         secondRandomInteger = random.nextInt(max) + min;
