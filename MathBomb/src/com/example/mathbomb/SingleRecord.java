@@ -1,6 +1,5 @@
 package com.example.mathbomb;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,39 +13,42 @@ public class SingleRecord {
     public static final String EASYFILENAME = "scoreEasy.json";
     public static final String NORMALFILENAME = "scoreNormal.json";
     public static final String HARDFILENAME = "scoreHard.json";
-    
-    private ArrayList<Record> mNormalRecord;
+    private static final int maxArraySize = 9;
+    private ArrayList<Record> mRecord;
 
-    private JSONSerializer mNormalJsonSerializer;
+    private JSONSerializer mJsonSerializer;
 
-    private static SingleRecord sNormalSingleRecord;
+    private static SingleRecord sSingleRecord;
 
     public SingleRecord(Context context, String fileName) {
-        mNormalJsonSerializer = new JSONSerializer(context, fileName);
-        if(mNormalRecord == null)
-            mNormalRecord = highScores();
-        else
-            mNormalRecord = new ArrayList<Record>();
+        mJsonSerializer = new JSONSerializer(context, fileName);
+        if (mRecord == null) {
+            mRecord = highScores();
+        } else {
+            mRecord = new ArrayList<Record>();
+        }
     }
 
     public static SingleRecord get(Context c, String fileName) throws Exception {
-        if (sNormalSingleRecord == null) {
-            sNormalSingleRecord = new SingleRecord(c.getApplicationContext(), fileName);
+        if (sSingleRecord == null) {
+            sSingleRecord = new SingleRecord(c.getApplicationContext(),
+                    fileName);
         }
-        return sNormalSingleRecord;
+        return sSingleRecord;
     }
 
     public ArrayList<Record> getDetails() {
         return highScores();
     }
 
-    public void addDetails(Record c, String fileName) throws JSONException, IOException {
-        mNormalRecord.add(c);
+    public void addDetails(Record c, String fileName) throws JSONException,
+            IOException {
+        mRecord.add(c);
         saveDetails();
     }
 
     public void saveDetails() throws JSONException, IOException {
-        mNormalJsonSerializer.saveDetails(mNormalRecord);
+        mJsonSerializer.saveDetails(mRecord);
     }
 
     // Sorting Scores in descending order
@@ -55,15 +57,16 @@ public class SingleRecord {
         ArrayList<Record> tempRecord1 = new ArrayList<Record>();
         ArrayList<Record> tempRecord2 = new ArrayList<Record>();
         try {
-            tempRecord1 = mNormalJsonSerializer.loadDetails();
+            tempRecord1 = mJsonSerializer.loadDetails();
         } catch (Exception e1) {
             e1.printStackTrace();
         }
 
         Collections.sort(tempRecord1);
         for (Record mC : tempRecord1) {
-            if (tempRecord2.size() > 9)
+            if (tempRecord2.size() > maxArraySize) {
                 break;
+            }
             tempRecord2.add(mC);
         }
         return tempRecord2;

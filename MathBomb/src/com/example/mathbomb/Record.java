@@ -7,51 +7,51 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 @SuppressWarnings("serial")
-public class Record implements Serializable, Comparable<Record>  {
+public class Record implements Serializable, Comparable<Record> {
 
     private static final String JSON_SCORE = "score";
     private static final String JSON_DATE = "date";
 
-    private String mNormalScore;
-    private Date mNormalDate;
+    private String mScore;
+    private Date mDate;
 
     public Record() {
         // used for initialization
     }
 
     public Record(JSONObject jsonObject) throws JSONException {
-        mNormalScore = jsonObject.getString(JSON_SCORE);
-        mNormalDate = new Date(jsonObject.getLong(JSON_DATE));
+        mScore = jsonObject.getString(JSON_SCORE);
+        mDate = new Date(jsonObject.getLong(JSON_DATE));
     }
 
     public JSONObject toJsonObject() throws JSONException {
 
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put(JSON_SCORE, mNormalScore);
-        jsonObject.put(JSON_DATE, mNormalDate.getTime());
+        jsonObject.put(JSON_SCORE, mScore);
+        jsonObject.put(JSON_DATE, mDate.getTime());
 
         return jsonObject;
     }
 
     public String getScore() {
-        return mNormalScore;
+        return mScore;
     }
 
     public void setScore(String score) {
-        mNormalScore = score;
+        mScore = score;
     }
 
     public Date getDate() {
-        return mNormalDate;
+        return mDate;
     }
 
     public void setDate(Date date) {
-        mNormalDate = date;
+        mDate = date;
     }
 
     @Override
     public int compareTo(Record another) {
-        return Integer.parseInt(another.mNormalScore) - Integer.parseInt(this.mNormalScore);
+        return Integer.parseInt(another.mScore) - Integer.parseInt(this.mScore);
     }
 }

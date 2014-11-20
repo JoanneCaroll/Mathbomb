@@ -5,18 +5,20 @@ import java.util.Date;
 import android.content.Context;
 
 public class SaveScore {
-    private Context mNormalAppContext;
-    public SaveScore(Context appNormalContext) {
-        this.mNormalAppContext = appNormalContext;
+    private Context mAppContext;
+
+    public SaveScore(Context appContext) {
+        this.mAppContext = appContext;
     }
 
-    public void saveScore(int score, Date date, String fileName) throws Exception {
-        Record mNormalRecord = new Record();
+    public void saveScore(int score, Date date, String fileName)
+            throws Exception {
+        Record mRecord = new Record();
 
-        mNormalRecord.setScore(Integer.toString(score));
-        mNormalRecord.setDate(date);
+        mRecord.setScore(Integer.toString(score));
+        mRecord.setDate(date);
 
-        SingleRecord saveNormal = new SingleRecord(mNormalAppContext, fileName);
-        saveNormal.addDetails(mNormalRecord, fileName);
-        }
+        SingleRecord saveNormal = new SingleRecord(mAppContext, fileName);
+        saveNormal.addDetails(mRecord, fileName);
+    }
 }

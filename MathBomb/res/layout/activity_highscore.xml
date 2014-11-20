@@ -9,8 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingTop="70dp"
         android:paddingBottom="20dp"
+        android:paddingTop="70dp"
         android:text="@string/highscoretitle"
         android:textSize="30dp"
         android:textStyle="bold" />

@@ -16,31 +16,33 @@ import org.json.JSONTokener;
 import android.content.Context;
 
 public class JSONSerializer {
-    private Context mNormalContext;
-    private String mNormalFilename;
+    private Context mContext;
+    private String mFilename;
     private int jsonArrayCount;
-    public JSONSerializer(Context cNormal, String fnameNormal) {
-        mNormalContext = cNormal;
-        mNormalFilename = fnameNormal;
+
+    public JSONSerializer(Context c, String fname) {
+        mContext = c;
+        mFilename = fname;
     }
 
-    public void saveDetails(ArrayList<Record> mRecord)
-            throws JSONException, IOException {
+    public void saveDetails(ArrayList<Record> mRecord) throws JSONException,
+            IOException {
         JSONArray jsonArray = new JSONArray();
 
-        for (Record nr : mRecord) {
-            jsonArray.put(nr.toJsonObject());
+        for (Record r : mRecord) {
+            jsonArray.put(r.toJsonObject());
         }
 
         Writer writer = null;
 
-        OutputStream outputStream = mNormalContext.openFileOutput(mNormalFilename, Context.MODE_PRIVATE);
+        OutputStream outputStream = mContext.openFileOutput(mFilename,
+                Context.MODE_PRIVATE);
         writer = new OutputStreamWriter(outputStream);
         writer.write(jsonArray.toString());
         if (writer != null) {
             writer.close();
         }
-        
+
     }
 
     public ArrayList<Record> loadDetails() throws Exception {
@@ -48,7 +50,7 @@ public class JSONSerializer {
         ArrayList<Record> mRecord = new ArrayList<Record>();
         BufferedReader reader = null;
 
-        InputStream inputStream = mNormalContext.openFileInput(mNormalFilename);
+        InputStream inputStream = mContext.openFileInput(mFilename);
         reader = new BufferedReader(new InputStreamReader(inputStream));
 
         StringBuilder json_string = new StringBuilder();
@@ -65,9 +67,10 @@ public class JSONSerializer {
             mRecord.add(new Record(jsonArray.getJSONObject(i)));
         }
 
-        if (reader != null)
+        if (reader != null) {
             reader.close();
+        }
         return mRecord;
-        
+
     }
 }
