@@ -62,8 +62,6 @@ public class StartGameActivity extends Activity {
             }
             // checkanswer only when a button is clicked
             checkAnswer();
-//            resetGame();
-
         }
     };
 
