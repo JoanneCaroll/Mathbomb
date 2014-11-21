@@ -1293,6 +1293,7 @@ containing a value of this type.
         public static final int menuhowtoplay=0x7f0a0017;
         public static final int menuplay=0x7f0a0015;
         public static final int menusettings=0x7f0a0018;
+        public static final int noRecord=0x7f0a001e;
         public static final int ok=0x7f0a0013;
         public static final int score=0x7f0a000f;
         public static final int seconds=0x7f0a001b;

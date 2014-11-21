@@ -16,7 +16,7 @@ public class HighScoreActivity extends Activity {
     private TextView txtHighScore, txtEasy, txtEasyScore, txtEasyDate,
             txtNormal, txtNormalScore, txtNormalDate, txtHard, txtHardScore,
             txtHardDate;
-    private String highScoreShow = "", noRecord="";
+    private String highScoreShow = "";
     private Button okButton;
     @SuppressLint("SimpleDateFormat")
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
@@ -86,14 +86,14 @@ public class HighScoreActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
             if (fileName == SingleRecord.EASYFILENAME) {
-                txtEasyScore.setText(noRecord);
-                txtEasyDate.setText(noRecord);
+                txtEasyScore.setText(R.string.noRecord);
+                txtEasyDate.setText(R.string.noRecord);
             } else if (fileName == SingleRecord.NORMALFILENAME) {
-                txtNormalScore.setText(noRecord);
-                txtNormalDate.setText(noRecord);
+                txtNormalScore.setText(R.string.noRecord);
+                txtNormalDate.setText(R.string.noRecord);
             } else if (fileName == SingleRecord.HARDFILENAME) {
-                txtHardScore.setText(noRecord);
-                txtHardDate.setText(noRecord);
+                txtHardScore.setText(R.string.noRecord);
+                txtHardDate.setText(R.string.noRecord);
             }
         }
     }

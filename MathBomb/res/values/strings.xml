@@ -18,4 +18,5 @@
     <string name="seconds"> sec(s)</string>
 	<string name="gameOver">Game Over!</string>
 	<string name="yourscoreis">Your score is </string>
+	<string name="noRecord">No Record</string>
 </resources>
