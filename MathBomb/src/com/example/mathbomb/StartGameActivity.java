@@ -247,7 +247,7 @@ public class StartGameActivity extends Activity {
         }
     }
     
-    private void generatingNumbers(int num1, int num2) {
+    private List<Integer> generatingNumbers(int num1, int num2) {
         if(num2 == secondNumber){
             // clear arraylist
             arrayList.clear();
@@ -279,7 +279,7 @@ public class StartGameActivity extends Activity {
                 btnRandomResult[i].setText(Integer.toString((Integer) arrayList
                         .get(index)));
                 arrayList.remove(index);
-            }            
+            }
         } else {
             firstRandomInteger = random.nextInt(num2) + num1;
             secondRandomInteger = random.nextInt(num2) + num1;
@@ -289,6 +289,7 @@ public class StartGameActivity extends Activity {
                 secondRandomInteger = random.nextInt(num2) + num1;
             }
         }
+        return arrayList;
     }
 
     @Override
