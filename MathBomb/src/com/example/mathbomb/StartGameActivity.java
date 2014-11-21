@@ -27,12 +27,12 @@ public class StartGameActivity extends Activity {
     private int firstRandomInteger, secondRandomInteger, randomOperator, score,
             answer, textColor;
     private final int categoryEasy = 0, categoryNormal = 1, categoryHard = 2,
-            timerGameSpan = 30000, timerGameSpeed = 1000,
+            timerGameSpan = 31000, timerGameSpeed = 1000,
             timerCheckSpan = 1000, timerCheckSpeed = 500,
             maxIndexOfRandomResults = 3, addOperator = 1, subOperator = 2,
             easyMin = 1, easyMax = 5, easySize = 5, normalMin = 1,
             normalMax = 20, normalSize = 20, hardMin = 10, hardMax = 10,
-            hardSize = 40;
+            hardSize = 40, numberOfResults=4;
     private Button[] btnRandomResult = new Button[4];
     private List<Integer> arrayList = new ArrayList<Integer>();
     private String choiceText = "", newScore = "", alertText = "",
@@ -181,7 +181,7 @@ public class StartGameActivity extends Activity {
     }
 
     private void resetGame() {
-        final int a = random.nextInt(maxIndexOfRandomResults);
+        final int a = random.nextInt(numberOfResults);
         randomOperator = random.nextInt(subOperator) + addOperator;
         Bundle getextra = getIntent().getExtras();
         int resetchoice = getextra.getInt("choice");
