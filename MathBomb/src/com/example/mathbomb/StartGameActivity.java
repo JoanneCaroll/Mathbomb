@@ -134,6 +134,10 @@ public class StartGameActivity extends Activity {
             btnRandomResult[i].setOnClickListener(choiceClicker);
         }
 
+        startGameTimer();
+    }
+
+    private void startGameTimer(){
         new CountDownTimer(timerGameSpan, timerGameSpeed) {
             public void onTick(long millisUntilFinished) {
                 txtShowTimeLeft.setText(millisUntilFinished / timerGameSpeed
@@ -145,7 +149,6 @@ public class StartGameActivity extends Activity {
             }
         }.start();
     }
-
     public void generateUniqueChoices(int answer) {
         // clear arraylist
         arrayList.clear();

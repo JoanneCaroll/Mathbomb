@@ -34,7 +34,6 @@ public class NewGameActivity extends Activity {
                                 StartGameActivity.class);
                         i.putExtra(choice, position);
                         startActivity(i);
-                        // finish();
                     }
                 });
     }
