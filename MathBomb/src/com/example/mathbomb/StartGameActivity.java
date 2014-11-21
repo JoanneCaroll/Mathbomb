@@ -269,7 +269,7 @@ public class StartGameActivity extends Activity {
                 arrayList.add(i);
             }
     
-            // removes answer in random set if its inside the setasy
+            // removes num1 in random set if its inside the setasy
             if (arrayList.contains(num1)) {
                 arrayList.remove(arrayList.get(num1));
             }
