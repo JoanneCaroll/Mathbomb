@@ -25,7 +25,7 @@ public class StartGameActivity extends Activity {
             txtShowResult, txtfirstRandomNumber, txtsecondRandomNumber,
             txtrandomOperator;
     private int firstRandomInteger, secondRandomInteger, randomOperator, score,
-            answer, textColor;
+            textColor;
     private final int categoryEasy = 0, categoryNormal = 1, categoryHard = 2,
             timerGameSpan = 31000, timerGameSpeed = 1000,
             timerCheckSpan = 1000, timerCheckSpeed = 500,
@@ -182,25 +182,24 @@ public class StartGameActivity extends Activity {
 
         txtfirstRandomNumber.setText(Integer.toString(firstRandomInteger));
         txtsecondRandomNumber.setText(Integer.toString(secondRandomInteger));
-
-        calculateAnswer();
-        generatingNumbers(answer, secondNumber);
-
-        btnRandomResult[a].setText(Integer.toString(answer));
+        
+        generatingNumbers(calculateAnswer(), secondNumber);
+        btnRandomResult[a].setText(String.valueOf(calculateAnswer()));
     }
 
-    private void calculateAnswer() {
+    private int calculateAnswer() {
         if (randomOperator == addOperator) {
             txtrandomOperator.setText("+");
-            answer = firstRandomInteger + secondRandomInteger;
+            return firstRandomInteger + secondRandomInteger;
         } else if (randomOperator == subOperator) {
             txtrandomOperator.setText("-");
-            answer = firstRandomInteger - secondRandomInteger;
+            return firstRandomInteger - secondRandomInteger;
         }
+        return 0;
     }
 
     private void checkAnswer() {
-        if (choiceText == Integer.toString(answer)) {
+        if (choiceText == Integer.toString(calculateAnswer())) {
             score++;
             txtShowScore.setText(String.valueOf(score));
             alertText = "Correct!";
