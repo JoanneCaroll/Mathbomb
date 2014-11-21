@@ -134,20 +134,34 @@ public class StartGameActivity extends Activity {
             btnRandomResult[i].setOnClickListener(choiceClicker);
         }
 
-        startGameTimer();
+        startGameTimer(timerGameSpan, timerGameSpeed);
     }
 
-    private void startGameTimer(){
-        new CountDownTimer(timerGameSpan, timerGameSpeed) {
-            public void onTick(long millisUntilFinished) {
-                txtShowTimeLeft.setText(millisUntilFinished / timerGameSpeed
-                        + getString(R.string.seconds));
-            }
+    private void startGameTimer(int span, int speed){
+        if(span == timerGameSpan) {
+            new CountDownTimer(timerGameSpan, timerGameSpeed) {
+                public void onTick(long millisUntilFinished) {
+                    txtShowTimeLeft.setText(millisUntilFinished / timerGameSpeed
+                            + getString(R.string.seconds));
+                }
+    
+                public void onFinish() {
+                    gameOver();
+                }
+            }.start();
+        } else if (span == timerCheckSpan) {
+            new CountDownTimer(timerCheckSpan, timerCheckSpeed) {
+                public void onTick(long millisUntilFinished) {
+                    txtShowResult.setVisibility(View.VISIBLE);
+                    txtShowResult.setTextColor(textColor);
+                    txtShowResult.setText(alertText);
+                }
 
-            public void onFinish() {
-                gameOver();
-            }
-        }.start();
+                public void onFinish() {
+                    txtShowResult.setVisibility(View.INVISIBLE);
+                }
+            }.start();
+        }
     }
     public void generateUniqueChoices(int answer) {
         // clear arraylist
@@ -227,18 +241,7 @@ public class StartGameActivity extends Activity {
             textColor = Color.RED;
         }
 
-        new CountDownTimer(timerCheckSpan, timerCheckSpeed) {
-            public void onTick(long millisUntilFinished) {
-                txtShowResult.setVisibility(View.VISIBLE);
-                txtShowResult.setTextColor(textColor);
-                txtShowResult.setText(alertText);
-            }
-
-            public void onFinish() {
-                txtShowResult.setVisibility(View.INVISIBLE);
-            }
-        }.start();
-
+        startGameTimer(timerCheckSpan, timerCheckSpeed);
         resetGame();
     }
 
