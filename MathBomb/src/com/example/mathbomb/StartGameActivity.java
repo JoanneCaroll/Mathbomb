@@ -32,7 +32,7 @@ public class StartGameActivity extends Activity {
             maxIndexOfRandomResults = 3, addOperator = 1, subOperator = 2,
             easyMin = 1, easyMax = 5, easySize = 5, normalMin = 1,
             normalMax = 20, normalSize = 20, hardMin = 10, hardMax = 10,
-            hardSize = 40, numberOfResults=4;
+            hardSize = 40, numberOfResults=4, secondNumber=0;
     private Button[] btnRandomResult = new Button[4];
     private List<Integer> arrayList = new ArrayList<Integer>();
     private String choiceText = "", newScore = "", alertText = "",
@@ -62,6 +62,8 @@ public class StartGameActivity extends Activity {
             }
             // checkanswer only when a button is clicked
             checkAnswer();
+//            resetGame();
+
         }
     };
 
@@ -163,39 +165,6 @@ public class StartGameActivity extends Activity {
             }.start();
         }
     }
-    public void generateUniqueChoices(int answer) {
-        // clear arraylist
-        arrayList.clear();
-
-        Bundle getextra = getIntent().getExtras();
-        int choices = getextra.getInt("choice");
-
-        int categorySize = 0;
-
-        if (choices == categoryEasy) {
-            categorySize = easySize;
-        } else if (choices == categoryNormal) {
-            categorySize = normalSize;
-        } else if (choices == categoryHard) {
-            categorySize = hardSize;
-        }
-
-        for (int i = 0; i < categorySize; i++) {
-            arrayList.add(i);
-        }
-
-        // removes answer in random set if its inside the setasy
-        if (arrayList.contains(answer)) {
-            arrayList.remove(arrayList.get(answer));
-        }
-
-        for (int i = 0; i <= maxIndexOfRandomResults; i++) {
-            int index = new Random().nextInt(arrayList.size());
-            btnRandomResult[i].setText(Integer.toString((Integer) arrayList
-                    .get(index)));
-            arrayList.remove(index);
-        }
-    }
 
     private void resetGame() {
         final int a = random.nextInt(numberOfResults);
@@ -204,18 +173,18 @@ public class StartGameActivity extends Activity {
         int resetchoice = getextra.getInt("choice");
 
         if (resetchoice == categoryEasy) {
-            generateInput(easyMin, easyMax);
+            generatingNumbers(easyMin, easyMax);
         } else if (resetchoice == categoryNormal) {
-            generateInput(normalMin, normalMax);
+            generatingNumbers(normalMin, normalMax);
         } else if (resetchoice == categoryHard) {
-            generateInput(hardMin, hardMax);
+            generatingNumbers(hardMin, hardMax);
         }
 
         txtfirstRandomNumber.setText(Integer.toString(firstRandomInteger));
         txtsecondRandomNumber.setText(Integer.toString(secondRandomInteger));
 
         calculateAnswer();
-        generateUniqueChoices(answer);
+        generatingNumbers(answer, secondNumber);
 
         btnRandomResult[a].setText(Integer.toString(answer));
     }
@@ -277,14 +246,48 @@ public class StartGameActivity extends Activity {
             e.printStackTrace();
         }
     }
-
-    private void generateInput(int min, int max) {
-        firstRandomInteger = random.nextInt(max) + min;
-        secondRandomInteger = random.nextInt(max) + min;
-        // avoid negative results
-        while (secondRandomInteger > firstRandomInteger) {
-            firstRandomInteger = random.nextInt(max) + min;
-            secondRandomInteger = random.nextInt(max) + min;
+    
+    private void generatingNumbers(int num1, int num2) {
+        if(num2 == secondNumber){
+            // clear arraylist
+            arrayList.clear();
+    
+            Bundle getextra = getIntent().getExtras();
+            int choices = getextra.getInt("choice");
+    
+            int categorySize = 0;
+    
+            if (choices == categoryEasy) {
+                categorySize = easySize;
+            } else if (choices == categoryNormal) {
+                categorySize = normalSize;
+            } else if (choices == categoryHard) {
+                categorySize = hardSize;
+            }
+    
+            for (int i = 0; i < categorySize; i++) {
+                arrayList.add(i);
+            }
+    
+            // removes answer in random set if its inside the setasy
+            if (arrayList.contains(num1)) {
+                arrayList.remove(arrayList.get(num1));
+            }
+    
+            for (int i = 0; i <= maxIndexOfRandomResults; i++) {
+                int index = new Random().nextInt(arrayList.size());
+                btnRandomResult[i].setText(Integer.toString((Integer) arrayList
+                        .get(index)));
+                arrayList.remove(index);
+            }            
+        } else {
+            firstRandomInteger = random.nextInt(num2) + num1;
+            secondRandomInteger = random.nextInt(num2) + num1;
+            // avoid negative results
+            while (secondRandomInteger > firstRandomInteger) {
+                firstRandomInteger = random.nextInt(num2) + num1;
+                secondRandomInteger = random.nextInt(num2) + num1;
+            }
         }
     }
 
